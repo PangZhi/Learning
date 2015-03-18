@@ -1,0 +1,16 @@
+%{  
+  #include <iostream>  
+  #include "testyy.h"
+  using namespace std;
+
+%}  
+%%  
+[0-9]+        { cout << "Number "; }  
+[a-zA-Z]+     { cout << "Word ";   }  
+[ \t]         ; //忽略空格  
+%%
+
+int yywrap() {
+  return 1;
+}
+
