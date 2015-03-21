@@ -35,9 +35,6 @@
 "write" {return TWRITE;}
 "allow" {return TALLOW;}
 "deny" {return TDENY;}
-
-
-"=" {cout << "equal";return TEQUAL;}
 [a-zA-Z]+     { cout << "identifier";yylval.sv = strdup(yytext); return TIDENTIFIER; }  
 \"[a-zA-z0-9]+\" {yylval.sv = strdup(yytext); return TIDENTIFIER;}
 

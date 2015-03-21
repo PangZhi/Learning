@@ -4,7 +4,8 @@
 #include <string>
 using namespace std;
 
-namespace ac {
+namespace util {
+
 class AttrVal {  
  public:
   enum Type {
@@ -20,6 +21,9 @@ class AttrVal {
   AttrVal(int intVal) : type_(TypeInt) {value_.asInt = intVal;}
   AttrVal(const string& strVal) : type_(TypeString) {value_.asString = new string(strVal);}
 
+  Type type() {
+    return type_;
+  }
  private:
   Type type_;
   union {
@@ -30,6 +34,6 @@ class AttrVal {
   } value_;
 };
 
-} // namespace ac
+} // namespace util 
 
 #endif // COMMON_H
