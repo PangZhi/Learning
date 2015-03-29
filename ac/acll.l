@@ -1,6 +1,9 @@
 %{  
   #include <iostream>  
-  #include "acyy.h"
+  #include "attrval.h"
+  #include "db_worker.h"
+  #include "acyy.hpp"
+  #include "access_control.h"
   using namespace std;
 
 %}  
