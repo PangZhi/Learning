@@ -1,4 +1,4 @@
-#include "postgres_worker.h"
+#include "db/postgres_worker.h"
 
 #include <cstdlib>
 #include <iostream>
@@ -8,7 +8,7 @@
 namespace db {
 
 PostgresWorker::PostgresWorker() {
-  c_ptr_ = new connection("dbname=acdb user=postgres password=fanjing0424 hostaddr=127.0.0.1 port=5432");
+  c_ptr_ = new pqxx::connection("dbname=acdb user=postgres password=fanjing0424 hostaddr=127.0.0.1 port=5432");
   if (c_ptr_->is_open()) {
     std::cout << "LOG : Connect to " << c_ptr_->dbname() << "\n";
   } else {
@@ -24,7 +24,7 @@ PostgresWorker::~PostgresWorker() {
 
 
 int PostgresWorker::execute(std::string sqlcmd) {
-  work w(*c_ptr_);
+  pqxx::work w(*c_ptr_);
   try {
     w.exec(sqlcmd);
     w.commit();
@@ -34,15 +34,21 @@ int PostgresWorker::execute(std::string sqlcmd) {
   }
 }
 
-std::vector<std::vector<util::AttrVal>>&& select(std::string sqlcmd) {
-  nontransaction nt(*c_ptr_);
-  result ret(nt.exec(sqlcmd));
+std::vector<std::vector<util::AttrVal>> PostgresWorker::select(std::string sqlcmd) {
+  pqxx::nontransaction nt(*c_ptr_);
+  pqxx::result ret(nt.exec(sqlcmd));
   std::vector<std::vector<util::AttrVal>> retVec;
   
-  for (result::const_iterator iter = ret.begin();
+  for (pqxx::result::const_iterator iter = ret.begin();
        iter != ret.end();
        ++iter) {
-        std::cout << iter[0].as<int>();
+        // std::cout << iter[0].as<int>();
+        int size = iter->size();
+        std::vector<util::AttrVal> attrVec;
+        for (int i = 0; i < size; ++i) {
+          attrVec.push_back(new util::AttrVal(iter[i]));
+        } 
+        retVec.push_back(attrVec);
        }
   return retVec;
 }

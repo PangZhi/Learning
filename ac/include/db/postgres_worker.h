@@ -1,11 +1,11 @@
 #ifndef POSTGRES_WORKER_H
 #define POSTGRES_WORKER_H
 
-#include "dbworker.h"
-
+#include "db/db_worker.h"
+#include "pqxx/pqxx"
 namespace db {
 
-class PostgresWorker : public dbWorker {
+class PostgresWorker : public DBWorker {
  public:
   // TODO: Do we need these two functions?
   PostgresWorker();
@@ -15,7 +15,7 @@ class PostgresWorker : public dbWorker {
   std::vector<std::vector<util::AttrVal>> select(std::string sqlcmd);
 
  private:
-  connection* c_ptr_;
+  pqxx::connection* c_ptr_;
 }; // DBWorker
 } // namespace db
 

@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11   -g    CMakeFiles/test.dir/src/acll.cpp.o CMakeFiles/test.dir/src/acyy.cpp.o CMakeFiles/test.dir/src/db_worker.cpp.o CMakeFiles/test.dir/src/postgres_worker.cpp.o CMakeFiles/test.dir/src/access_control.cpp.o  -o bin/test -rdynamic 

@@ -14,8 +14,8 @@ class DBWorker {
   DBWorker();
   virtual ~DBWorker();
 
-  int execute(std::string sqlcmd) = 0;
-  std::vector<std::vector<util::AttrVal>> select(std::string sqlcmd) = 0;
+  virtual int execute(std::string sqlcmd) = 0;
+  virtual std::vector<std::vector<util::AttrVal> > select(std::string sqlcmd) = 0;
 
 }; // DBWorker
 } // namespace db

@@ -1,0 +1,2 @@
+/home/echo/GitHub/Learning/ac/CMakeFiles/AcParser.dir
+/home/echo/GitHub/Learning/ac/CMakeFiles/test.dir
