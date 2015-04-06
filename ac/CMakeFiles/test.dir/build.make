@@ -49,51 +49,51 @@ include CMakeFiles/test.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/test.dir/flags.make
 
-CMakeFiles/test.dir/src/acll.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/src/acll.cpp.o: src/acll.cpp
+CMakeFiles/test.dir/lexer/acll.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/lexer/acll.cpp.o: lexer/acll.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/acll.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/acll.cpp.o -c /home/echo/GitHub/Learning/ac/src/acll.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/lexer/acll.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/lexer/acll.cpp.o -c /home/echo/GitHub/Learning/ac/lexer/acll.cpp
 
-CMakeFiles/test.dir/src/acll.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/acll.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/src/acll.cpp > CMakeFiles/test.dir/src/acll.cpp.i
+CMakeFiles/test.dir/lexer/acll.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/lexer/acll.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/lexer/acll.cpp > CMakeFiles/test.dir/lexer/acll.cpp.i
 
-CMakeFiles/test.dir/src/acll.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/acll.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/src/acll.cpp -o CMakeFiles/test.dir/src/acll.cpp.s
+CMakeFiles/test.dir/lexer/acll.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/lexer/acll.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/lexer/acll.cpp -o CMakeFiles/test.dir/lexer/acll.cpp.s
 
-CMakeFiles/test.dir/src/acll.cpp.o.requires:
-.PHONY : CMakeFiles/test.dir/src/acll.cpp.o.requires
+CMakeFiles/test.dir/lexer/acll.cpp.o.requires:
+.PHONY : CMakeFiles/test.dir/lexer/acll.cpp.o.requires
 
-CMakeFiles/test.dir/src/acll.cpp.o.provides: CMakeFiles/test.dir/src/acll.cpp.o.requires
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/acll.cpp.o.provides.build
-.PHONY : CMakeFiles/test.dir/src/acll.cpp.o.provides
+CMakeFiles/test.dir/lexer/acll.cpp.o.provides: CMakeFiles/test.dir/lexer/acll.cpp.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/lexer/acll.cpp.o.provides.build
+.PHONY : CMakeFiles/test.dir/lexer/acll.cpp.o.provides
 
-CMakeFiles/test.dir/src/acll.cpp.o.provides.build: CMakeFiles/test.dir/src/acll.cpp.o
+CMakeFiles/test.dir/lexer/acll.cpp.o.provides.build: CMakeFiles/test.dir/lexer/acll.cpp.o
 
-CMakeFiles/test.dir/src/acyy.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/src/acyy.cpp.o: src/acyy.cpp
+CMakeFiles/test.dir/lexer/acyy.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/lexer/acyy.cpp.o: lexer/acyy.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/acyy.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/acyy.cpp.o -c /home/echo/GitHub/Learning/ac/src/acyy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/lexer/acyy.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/lexer/acyy.cpp.o -c /home/echo/GitHub/Learning/ac/lexer/acyy.cpp
 
-CMakeFiles/test.dir/src/acyy.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/acyy.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/src/acyy.cpp > CMakeFiles/test.dir/src/acyy.cpp.i
+CMakeFiles/test.dir/lexer/acyy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/lexer/acyy.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/lexer/acyy.cpp > CMakeFiles/test.dir/lexer/acyy.cpp.i
 
-CMakeFiles/test.dir/src/acyy.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/acyy.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/src/acyy.cpp -o CMakeFiles/test.dir/src/acyy.cpp.s
+CMakeFiles/test.dir/lexer/acyy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/lexer/acyy.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/lexer/acyy.cpp -o CMakeFiles/test.dir/lexer/acyy.cpp.s
 
-CMakeFiles/test.dir/src/acyy.cpp.o.requires:
-.PHONY : CMakeFiles/test.dir/src/acyy.cpp.o.requires
+CMakeFiles/test.dir/lexer/acyy.cpp.o.requires:
+.PHONY : CMakeFiles/test.dir/lexer/acyy.cpp.o.requires
 
-CMakeFiles/test.dir/src/acyy.cpp.o.provides: CMakeFiles/test.dir/src/acyy.cpp.o.requires
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/acyy.cpp.o.provides.build
-.PHONY : CMakeFiles/test.dir/src/acyy.cpp.o.provides
+CMakeFiles/test.dir/lexer/acyy.cpp.o.provides: CMakeFiles/test.dir/lexer/acyy.cpp.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/lexer/acyy.cpp.o.provides.build
+.PHONY : CMakeFiles/test.dir/lexer/acyy.cpp.o.provides
 
-CMakeFiles/test.dir/src/acyy.cpp.o.provides.build: CMakeFiles/test.dir/src/acyy.cpp.o
+CMakeFiles/test.dir/lexer/acyy.cpp.o.provides.build: CMakeFiles/test.dir/lexer/acyy.cpp.o
 
 CMakeFiles/test.dir/src/db_worker.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/src/db_worker.cpp.o: src/db_worker.cpp
@@ -166,8 +166,8 @@ CMakeFiles/test.dir/src/access_control.cpp.o.provides.build: CMakeFiles/test.dir
 
 # Object files for target test
 test_OBJECTS = \
-"CMakeFiles/test.dir/src/acll.cpp.o" \
-"CMakeFiles/test.dir/src/acyy.cpp.o" \
+"CMakeFiles/test.dir/lexer/acll.cpp.o" \
+"CMakeFiles/test.dir/lexer/acyy.cpp.o" \
 "CMakeFiles/test.dir/src/db_worker.cpp.o" \
 "CMakeFiles/test.dir/src/postgres_worker.cpp.o" \
 "CMakeFiles/test.dir/src/access_control.cpp.o"
@@ -175,8 +175,8 @@ test_OBJECTS = \
 # External object files for target test
 test_EXTERNAL_OBJECTS =
 
-bin/test: CMakeFiles/test.dir/src/acll.cpp.o
-bin/test: CMakeFiles/test.dir/src/acyy.cpp.o
+bin/test: CMakeFiles/test.dir/lexer/acll.cpp.o
+bin/test: CMakeFiles/test.dir/lexer/acyy.cpp.o
 bin/test: CMakeFiles/test.dir/src/db_worker.cpp.o
 bin/test: CMakeFiles/test.dir/src/postgres_worker.cpp.o
 bin/test: CMakeFiles/test.dir/src/access_control.cpp.o
@@ -189,8 +189,8 @@ bin/test: CMakeFiles/test.dir/link.txt
 CMakeFiles/test.dir/build: bin/test
 .PHONY : CMakeFiles/test.dir/build
 
-CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/acll.cpp.o.requires
-CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/acyy.cpp.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/lexer/acll.cpp.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/lexer/acyy.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/db_worker.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/postgres_worker.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/access_control.cpp.o.requires

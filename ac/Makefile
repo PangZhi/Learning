@@ -99,19 +99,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named AcParser
-
-# Build rule for target.
-AcParser: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 AcParser
-.PHONY : AcParser
-
-# fast build rule for target.
-AcParser/fast:
-	$(MAKE) -f CMakeFiles/AcParser.dir/build.make CMakeFiles/AcParser.dir/build
-.PHONY : AcParser/fast
-
-#=============================================================================
 # Target rules for targets named test
 
 # Build rule for target.
@@ -123,6 +110,54 @@ test: cmake_check_build_system
 test/fast:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
 .PHONY : test/fast
+
+lexer/acll.o: lexer/acll.cpp.o
+.PHONY : lexer/acll.o
+
+# target to build an object file
+lexer/acll.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/lexer/acll.cpp.o
+.PHONY : lexer/acll.cpp.o
+
+lexer/acll.i: lexer/acll.cpp.i
+.PHONY : lexer/acll.i
+
+# target to preprocess a source file
+lexer/acll.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/lexer/acll.cpp.i
+.PHONY : lexer/acll.cpp.i
+
+lexer/acll.s: lexer/acll.cpp.s
+.PHONY : lexer/acll.s
+
+# target to generate assembly for a file
+lexer/acll.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/lexer/acll.cpp.s
+.PHONY : lexer/acll.cpp.s
+
+lexer/acyy.o: lexer/acyy.cpp.o
+.PHONY : lexer/acyy.o
+
+# target to build an object file
+lexer/acyy.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/lexer/acyy.cpp.o
+.PHONY : lexer/acyy.cpp.o
+
+lexer/acyy.i: lexer/acyy.cpp.i
+.PHONY : lexer/acyy.i
+
+# target to preprocess a source file
+lexer/acyy.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/lexer/acyy.cpp.i
+.PHONY : lexer/acyy.cpp.i
+
+lexer/acyy.s: lexer/acyy.cpp.s
+.PHONY : lexer/acyy.s
+
+# target to generate assembly for a file
+lexer/acyy.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/lexer/acyy.cpp.s
+.PHONY : lexer/acyy.cpp.s
 
 src/access_control.o: src/access_control.cpp.o
 .PHONY : src/access_control.o
@@ -147,54 +182,6 @@ src/access_control.s: src/access_control.cpp.s
 src/access_control.cpp.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/access_control.cpp.s
 .PHONY : src/access_control.cpp.s
-
-src/acll.o: src/acll.cpp.o
-.PHONY : src/acll.o
-
-# target to build an object file
-src/acll.cpp.o:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/acll.cpp.o
-.PHONY : src/acll.cpp.o
-
-src/acll.i: src/acll.cpp.i
-.PHONY : src/acll.i
-
-# target to preprocess a source file
-src/acll.cpp.i:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/acll.cpp.i
-.PHONY : src/acll.cpp.i
-
-src/acll.s: src/acll.cpp.s
-.PHONY : src/acll.s
-
-# target to generate assembly for a file
-src/acll.cpp.s:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/acll.cpp.s
-.PHONY : src/acll.cpp.s
-
-src/acyy.o: src/acyy.cpp.o
-.PHONY : src/acyy.o
-
-# target to build an object file
-src/acyy.cpp.o:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/acyy.cpp.o
-.PHONY : src/acyy.cpp.o
-
-src/acyy.i: src/acyy.cpp.i
-.PHONY : src/acyy.i
-
-# target to preprocess a source file
-src/acyy.cpp.i:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/acyy.cpp.i
-.PHONY : src/acyy.cpp.i
-
-src/acyy.s: src/acyy.cpp.s
-.PHONY : src/acyy.s
-
-# target to generate assembly for a file
-src/acyy.cpp.s:
-	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/acyy.cpp.s
-.PHONY : src/acyy.cpp.s
 
 src/db_worker.o: src/db_worker.cpp.o
 .PHONY : src/db_worker.o
@@ -250,19 +237,18 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... AcParser"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... lexer/acll.o"
+	@echo "... lexer/acll.i"
+	@echo "... lexer/acll.s"
+	@echo "... lexer/acyy.o"
+	@echo "... lexer/acyy.i"
+	@echo "... lexer/acyy.s"
 	@echo "... src/access_control.o"
 	@echo "... src/access_control.i"
 	@echo "... src/access_control.s"
-	@echo "... src/acll.o"
-	@echo "... src/acll.i"
-	@echo "... src/acll.s"
-	@echo "... src/acyy.o"
-	@echo "... src/acyy.i"
-	@echo "... src/acyy.s"
 	@echo "... src/db_worker.o"
 	@echo "... src/db_worker.i"
 	@echo "... src/db_worker.s"

@@ -9,32 +9,34 @@ SET(CMAKE_BUILD_TYPE Debug)
 SET(AC_ROOT_DIR ./)
 SET(AC_INCLUDE_DIR ./include)
 SET(AC_SRC_DIR ./src)
+SET(AC_LEXER_DIR ./lexer)
 
 project(AccessControl CXX C)
 
- SET_SOURCE_FILES_PROPERTIES(${AC_SRC_DIR}/acyy.cpp GENERATED)
- SET_SOURCE_FILES_PROPERTIES(${AC_SRC_DIR}/acll.cpp GENERATED)
+#
+# SET_SOURCE_FILES_PROPERTIES(${AC_SRC_DIR}/acyy.cpp GENERATED)
+# SET_SOURCE_FILES_PROPERTIES(${AC_SRC_DIR}/acll.cpp GENERATED)
 # Create target for the parser
- ADD_CUSTOM_TARGET(AcParser echo "Creating acyy.cpp")
+# ADD_CUSTOM_TARGET(AcParser echo "Creating acyy.cpp")
 
-ADD_CUSTOM_COMMAND(
-   SOURCE ${AC_ROOT_DIR}/lexer/acyy.y
-   COMMAND ${BISON_EXECUTABLE} 
-   ARGS -d ${AC_INCLUDE_DIR}/acyy.hpp
-        -o ${AC_SRC_DIR}/acyy.cpp
-        ${AC_ROOT_DIR}/lexer/acyy.y
-   TARGET AcParser
-   OUTPUTS ${AC_SRC_DIR}/src/acyy.cpp)
+#ADD_CUSTOM_COMMAND(
+#   SOURCE ${AC_ROOT_DIR}/lexer/acyy.y
+#   COMMAND ${BISON_EXECUTABLE} 
+#   ARGS -d ${AC_INCLUDE_DIR}/acyy.hpp
+#        -o${AC_SRC_DIR}/acyy.cpp
+#        ${AC_ROOT_DIR}/lexer/acyy.y
+#   TARGET AcParser
+#   OUTPUT ${AC_SRC_DIR}/src/acyy.cpp)
 
 # Create custom command for flex/lex (note the outputs)
- ADD_CUSTOM_COMMAND(
-   SOURCE ${AC_ROOT_DIR}/lexer/acll.l
-   COMMAND flex 
-   ARGS -i
-        -o${AC_SRC_DIR}/acll.cpp
-        ${AC_ROOT_DIR}/lexer/acll.l
-   TARGET AcParser
-   OUTPUTS ${AC_SRC_DIR}/src/acll.cpp)
+# ADD_CUSTOM_COMMAND(
+#   SOURCE ${AC_ROOT_DIR}/lexer/acll.l
+#   COMMAND ${FLEX_EXECUTABLE} 
+#   ARGS -i
+#        -o ${AC_SRC_DIR}/acll.cpp
+#        ${AC_ROOT_DIR}/lexer/acll.l
+#   TARGET AcParser
+#   OUTPUT ${AC_SRC_DIR}/src/acll.cpp)
 
 # Create custom command for bison/yacc (note the DEPENDS)
  
@@ -77,14 +79,14 @@ set(EXECUTABLE_OUTPUT_PATH bin)
 
 add_executable(
   test
-  ${AC_SRC_DIR}/acll.cpp
-  ${AC_SRC_DIR}/acyy.cpp
+  ${AC_LEXER_DIR}/acll.cpp
+  ${AC_LEXER_DIR}/acyy.cpp
   ${AC_SRC_DIR}/db_worker.cpp
   ${AC_SRC_DIR}/postgres_worker.cpp
   ${AC_SRC_DIR}/access_control.cpp
 )
 
-#target_link_libraries(
-#   merge_tfidf_aggreagation
-#    python2.6
-#    )
+target_link_libraries(
+    test
+    pqxx
+    )

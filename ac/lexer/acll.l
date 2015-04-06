@@ -2,8 +2,9 @@
   #include <iostream>  
   #include "attrval.h"
   #include "db/db_worker.h"
-  #include "acyy.hpp"
   #include "access_control.h"
+  #include "permission.h"
+  #include "acyy.hpp"
   using namespace std;
 
 %}  
@@ -39,7 +40,7 @@
 "allow" {return TALLOW;}
 "deny" {return TDENY;}
 [a-zA-Z]+     { cout << "identifier";yylval.sv = strdup(yytext); return TIDENTIFIER; }  
-\"[a-zA-z0-9]+\" {yylval.sv = strdup(yytext); return TIDENTIFIER;}
+\"[a-zA-Z0-9]+\" {yylval.sv = strdup(yytext); return TIDENTIFIER;}
 
 %%
 int yywrap() {

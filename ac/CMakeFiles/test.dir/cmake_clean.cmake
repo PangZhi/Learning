@@ -1,6 +1,6 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/test.dir/src/acll.cpp.o"
-  "CMakeFiles/test.dir/src/acyy.cpp.o"
+  "CMakeFiles/test.dir/lexer/acll.cpp.o"
+  "CMakeFiles/test.dir/lexer/acyy.cpp.o"
   "CMakeFiles/test.dir/src/db_worker.cpp.o"
   "CMakeFiles/test.dir/src/postgres_worker.cpp.o"
   "CMakeFiles/test.dir/src/access_control.cpp.o"

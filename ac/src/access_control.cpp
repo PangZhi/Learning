@@ -52,18 +52,36 @@ int AccessControl::addRule() {
 }
 */
 
-bool AccessControl::allow(const std::string& username, const std::string& object, const std::string& action) {
-  std::string sqlcmd;
-  sqlcmd = "SELECT count(DISTINCT ruleid) FROM"\
+int AccessControl::addRule(bool isAllow, Permission p, const Obj& obj, const std::string& logic) {
+  // TODO: distinguish value independent logic and value dependent logic.
+  // TODO: convert logic to disjunctions.
+  // TODO: put the logics into rule table.
+  // TODO: compute permission matrix for col level rule and table level rule.
+}
+
+bool AccessControl::allow(const std::string& username, const Obj& obj, const std::string& action) {
+  // go from higher level objects to lower level objects, if higher level
+  // permission is granted, then low level permission should be granted
+  // (assumption).
+
+  std::vector<Obj> parents = obj.getParent();
+  for (const Obj& par : parents) {
+    std::string objStr = par.serialize();
+    std::string sqlcmd;
+    sqlcmd = "SELECT COUNT(*) FROM"\
+           "(SELECT DISTINCT ruleid FROM"\
            "(SELECT * FROM Rules WHERE action='" + action + "') R"\
            "LEFT OUTER JOIN"\
            "(SELECT * FROM Users WHERE userid='" + username + "') U"\
            "ON R.attrid = U.attrid"\
-           "AND R.value != U.value";
-  
-  std::vector<std::vector<util::AttrVal> > ret = db_ptr_->select(sqlcmd);
-  
-  return true;
+           "AND R.value != U.value) s";
+    if (db_ptr_->hasValidRule(sqlcmd)) {
+      return true;
+    } 
+  }
+
+  return false;  
+  //std::vectorstd<std::vector<util::AttrVal> > ret = db_ptr_->select(sqlcmd);
 
 }
 

@@ -3,6 +3,8 @@
 
 #include "attrval.h"
 #include "db/db_worker.h"
+#include "permission.h"
+#include "obj.h"
 
 #include <vector>
 #include <string>
@@ -24,11 +26,12 @@ class AccessControl {
   /**
   @brief currently support equality.
   **/
-  int addRule(bool isAllow, const std::string& permission, const std::string& object, 
+  int addRule(bool isAllow, Permission p, const Obj& obj, 
               const std::string& logic);
 
   bool allow(const std::string& username, const std::string& object,
              const std::string& action);
+ 
  private:
   db::DBWorker* db_ptr_;
 

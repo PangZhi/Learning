@@ -13,8 +13,9 @@ class PostgresWorker : public DBWorker {
 
   int execute(std::string sqlcmd);
   std::vector<std::vector<util::AttrVal>> select(std::string sqlcmd);
-
- private:
+  bool hasValidRule(std::string sqlcmd);
+ 
+private:
   pqxx::connection* c_ptr_;
 }; // DBWorker
 } // namespace db

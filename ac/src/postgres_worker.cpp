@@ -46,11 +46,18 @@ std::vector<std::vector<util::AttrVal>> PostgresWorker::select(std::string sqlcm
         int size = iter->size();
         std::vector<util::AttrVal> attrVec;
         for (int i = 0; i < size; ++i) {
-          attrVec.push_back(new util::AttrVal(iter[i]));
+          // attrVec.push_back(new util::AttrVal(iter[i]));
         } 
         retVec.push_back(attrVec);
        }
   return retVec;
 }
 
+bool PostgresWorker::hasValidRule(std::string sqlcmd){ 
+  pqxx::nontransaction nt(*c_ptr_);
+  pqxx::result ret(nt.exec(sqlcmd));
+
+  int ruleNum = ret[0][0].as<int>();
+  return (ruleNum > 0);
+} 
 } // namespace db

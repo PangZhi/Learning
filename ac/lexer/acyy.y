@@ -3,8 +3,10 @@
 
 %{
   #include "attrval.h"
-  #include "db_worker.h"
+  #include "permission.h"
+  #include "db/db_worker.h"
   #include "access_control.h"
+  #include "obj.h"
 
   #include <cstring>
   #include <iostream>
@@ -13,11 +15,12 @@
   #include <vector>
 
   using namespace std;
-  using namespace ac;
+  //using namespace ac;
   int yylex();
   // This is mandatory.
   int yyerror(const char*);
-  
+
+  // Used for adding user.
   std::string username;
   std::vector<ac::AttrItem> attrList;
   
@@ -39,12 +42,18 @@
 
 %type <av> attrval
 %type <sv> userop
+%type <sv> ruleop
+%type <pv> permissionval
+%type <objv> obj
 
+%left TAND TOR
 %union {  
   int iv;  
   double dv;
   util::AttrVal* av;
   char *sv;  
+  ac::Permission pv; 
+  ac::Obj *objv;
 };
 
 %%
@@ -66,18 +75,19 @@ useradmin : userop TUSER TWITH attrlist
   attrList.clear();  
 }
 
-ruleadmin : ruleop permissionval TON obj TWHEN logicexp 
-
+ruleadmin : ruleop permissionval TON obj TWHEN logic 
+          {}
 userop : TADD {$$="add";} 
       |  TRM {$$="rm";}
       | TSET {$$="set";}
       ;
 
-ruleop : TALLOW
-      | TDENY
+ruleop : TALLOW {$$ = "allow";}
+      | TDENY {$$ = "deny";}
       ;
 
 
+// modify the attrlist value here.
 attrlist : attrlist TCOMMA attr
           | attr
           ;
@@ -93,7 +103,6 @@ attr: TIDENTIFIER TEQUAL attrval
     ac::AttrItem attr(std::string($1), *($3));
     attrList.push_back(attr);
   }
-
 }
 ;
 
@@ -103,19 +112,29 @@ attrval : TINT {$$ = new util::AttrVal($1);}
     | TIDENTIFIER {$$ = new util::AttrVal($1);}
     ;
 
-permissionval : TREAD
-              | TDENY
+permissionval : TREAD {$$ = ac::PRead;}
+              | TWRITE {$$ = ac::PWrite;}
               ;
 
-obj : tableobj
-    | tableobj TDOT rowobj
-    | tableobj TDOT colobj
-    | tableobj TDOT cellobj
+//obj : tableobj
+//    | tableobj TDOT rowobj
+//    | tableobj TDOT colobj
+//    | tableobj TDOT cellobj
 
-tableobj : TTABLE TLBRACKET TSTR TRBRACKET;
-rowobj : TROW TLBRACKET TINT TRBRACKET;
-colobj : TCOL TLBRACKET TIDENTIFIER TRBRACKET;
-cellobj : TCELL TLBRACKET TINT TDOT TIDENTIFIER TRBRACKET;
+//tableobj : TTABLE TLBRACKET TSTR TRBRACKET;
+//rowobj : TROW TLBRACKET TINT TRBRACKET;
+//colobj : TCOL TLBRACKET TIDENTIFIER TRBRACKET;
+//cellobj : TCELL TLBRACKET TINT TDOT TIDENTIFIER TRBRACKET;
+
+obj : TTABLE TLBRACKET TSTR TRBRACKET 
+      {$$ = new ac::Obj(std::string($3));}
+    | TTABLE TLBRACKET TSTR TRBRACKET TDOT TROW TLBRACKET TINT TRBRACKET 
+      {$$ = new ac::Obj(std::string($3),$8);}
+    | TTABLE TLBRACKET TSTR TRBRACKET TDOT TCOL TLBRACKET TIDENTIFIER TRBRACKET 
+      {$$ = new ac::Obj(std::string($3), std::string($8));}
+    | TTABLE TLBRACKET TSTR TRBRACKET TDOT TCELL TLBRACKET TINT TDOT TIDENTIFIER TRBRACKET
+      {$$ = new ac::Obj(std::string($3), $8, std::string($10));}
+    ;
 
 logicop : TEQUAL TGREATER TGE TLESS TLE;
 
@@ -127,12 +146,15 @@ logic : userval logicop objval
       | attrval logicop userval
       | objval logicop attrval
       | attrval logicop objval
+      | TLBRACKET logic TRBRACKET
+      | logic TAND logic
+      | logic TOR logic
       ;
 
-logicexp : logic 
-        | TLBRACKET logic TRBRACKET
-        | logicexp TAND logicexp
-        | logicexp TOR logicexp
+//logicexp : logic 
+//        | TLBRACKET logic TRBRACKET
+//        | logicexp TAND logicexp
+//        | logicexp TOR logicexp
 ;
 %%  
   
