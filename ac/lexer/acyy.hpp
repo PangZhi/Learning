@@ -84,15 +84,19 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 49 "acyy.y" /* yacc.c:1909  */
+#line 59 "acyy.y" /* yacc.c:1909  */
   
   int iv;  
   double dv;
   util::AttrVal* av;
   char *sv;  
+  // std::string *strv;
   ac::Permission pv; 
+  ac::Obj *objv;
+  ac::Predicate *predv;
+  ac::Comparison compv;
 
-#line 96 "acyy.hpp" /* yacc.c:1909  */
+#line 100 "acyy.hpp" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

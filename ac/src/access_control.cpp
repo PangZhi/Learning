@@ -65,7 +65,7 @@ bool AccessControl::allow(const std::string& username, const Obj& obj, const std
   // (assumption).
 
   std::vector<Obj> parents = obj.getParent();
-  for (const Obj& par : parents) {
+  for (Obj& par : parents) {
     std::string objStr = par.serialize();
     std::string sqlcmd;
     sqlcmd = "SELECT COUNT(*) FROM"\

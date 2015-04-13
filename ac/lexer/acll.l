@@ -4,6 +4,12 @@
   #include "db/db_worker.h"
   #include "access_control.h"
   #include "permission.h"
+
+  #include "expression/comparison.h"
+  #include "expression/comparison_predicate.h"
+  #include "expression/predicate.h"
+  #include "expression/predicate_tree.h"
+  
   #include "acyy.hpp"
   using namespace std;
 

@@ -17,10 +17,10 @@ class Obj {
   Obj(const std::string& tbName);
   Obj(const std::string& tbName, const int rName);
   Obj(const std::string& tbName, const std::string& cName);
-  obj(const std::string& tbName, const int rName, const std::string& cName);
+  Obj(const std::string& tbName, const int rName, const std::string& cName);
  
   // Get parent objects.
-  std::vector<Obj> getParent();
+  std::vector<Obj> getParent() const;
   
   // Serialize the object to a string.
   std::string serialize();

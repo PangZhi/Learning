@@ -4,6 +4,9 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/test.dir/src/db_worker.cpp.o"
   "CMakeFiles/test.dir/src/postgres_worker.cpp.o"
   "CMakeFiles/test.dir/src/access_control.cpp.o"
+  "CMakeFiles/test.dir/src/obj.cpp.o"
+  "CMakeFiles/test.dir/src/comparison_predicate.cpp.o"
+  "CMakeFiles/test.dir/src/predicate_tree.cpp.o"
   "bin/test.pdb"
   "bin/test"
 )

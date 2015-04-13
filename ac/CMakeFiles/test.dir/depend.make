@@ -4,6 +4,11 @@
 CMakeFiles/test.dir/lexer/acll.cpp.o: ./include/access_control.h
 CMakeFiles/test.dir/lexer/acll.cpp.o: ./include/attrval.h
 CMakeFiles/test.dir/lexer/acll.cpp.o: ./include/db/db_worker.h
+CMakeFiles/test.dir/lexer/acll.cpp.o: ./include/expression/comparison.h
+CMakeFiles/test.dir/lexer/acll.cpp.o: ./include/expression/comparison_predicate.h
+CMakeFiles/test.dir/lexer/acll.cpp.o: ./include/expression/predicate.h
+CMakeFiles/test.dir/lexer/acll.cpp.o: ./include/expression/predicate_tree.h
+CMakeFiles/test.dir/lexer/acll.cpp.o: ./include/obj.h
 CMakeFiles/test.dir/lexer/acll.cpp.o: ./include/permission.h
 CMakeFiles/test.dir/lexer/acll.cpp.o: lexer/acll.cpp
 CMakeFiles/test.dir/lexer/acll.cpp.o: lexer/acyy.hpp
@@ -11,6 +16,11 @@ CMakeFiles/test.dir/lexer/acll.cpp.o: lexer/acyy.hpp
 CMakeFiles/test.dir/lexer/acyy.cpp.o: ./include/access_control.h
 CMakeFiles/test.dir/lexer/acyy.cpp.o: ./include/attrval.h
 CMakeFiles/test.dir/lexer/acyy.cpp.o: ./include/db/db_worker.h
+CMakeFiles/test.dir/lexer/acyy.cpp.o: ./include/expression/comparison.h
+CMakeFiles/test.dir/lexer/acyy.cpp.o: ./include/expression/comparison_predicate.h
+CMakeFiles/test.dir/lexer/acyy.cpp.o: ./include/expression/predicate.h
+CMakeFiles/test.dir/lexer/acyy.cpp.o: ./include/expression/predicate_tree.h
+CMakeFiles/test.dir/lexer/acyy.cpp.o: ./include/obj.h
 CMakeFiles/test.dir/lexer/acyy.cpp.o: ./include/permission.h
 CMakeFiles/test.dir/lexer/acyy.cpp.o: lexer/acyy.cpp
 
@@ -18,14 +28,30 @@ CMakeFiles/test.dir/src/access_control.cpp.o: ./include/access_control.h
 CMakeFiles/test.dir/src/access_control.cpp.o: ./include/attrval.h
 CMakeFiles/test.dir/src/access_control.cpp.o: ./include/db/db_worker.h
 CMakeFiles/test.dir/src/access_control.cpp.o: ./include/db/postgres_worker.h
+CMakeFiles/test.dir/src/access_control.cpp.o: ./include/obj.h
+CMakeFiles/test.dir/src/access_control.cpp.o: ./include/permission.h
 CMakeFiles/test.dir/src/access_control.cpp.o: src/access_control.cpp
+
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o: ./include/attrval.h
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o: ./include/expression/comparison.h
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o: ./include/expression/comparison_predicate.h
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o: ./include/expression/predicate.h
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o: src/comparison_predicate.cpp
 
 CMakeFiles/test.dir/src/db_worker.cpp.o: ./include/attrval.h
 CMakeFiles/test.dir/src/db_worker.cpp.o: ./include/db/db_worker.h
 CMakeFiles/test.dir/src/db_worker.cpp.o: src/db_worker.cpp
 
+CMakeFiles/test.dir/src/obj.cpp.o: ./include/obj.h
+CMakeFiles/test.dir/src/obj.cpp.o: src/obj.cpp
+
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/attrval.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/db/db_worker.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/db/postgres_worker.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: src/postgres_worker.cpp
+
+CMakeFiles/test.dir/src/predicate_tree.cpp.o: ./include/attrval.h
+CMakeFiles/test.dir/src/predicate_tree.cpp.o: ./include/expression/predicate.h
+CMakeFiles/test.dir/src/predicate_tree.cpp.o: ./include/expression/predicate_tree.h
+CMakeFiles/test.dir/src/predicate_tree.cpp.o: src/predicate_tree.cpp
 

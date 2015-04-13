@@ -164,13 +164,85 @@ CMakeFiles/test.dir/src/access_control.cpp.o.provides: CMakeFiles/test.dir/src/a
 
 CMakeFiles/test.dir/src/access_control.cpp.o.provides.build: CMakeFiles/test.dir/src/access_control.cpp.o
 
+CMakeFiles/test.dir/src/obj.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/obj.cpp.o: src/obj.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_6)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/obj.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/obj.cpp.o -c /home/echo/GitHub/Learning/ac/src/obj.cpp
+
+CMakeFiles/test.dir/src/obj.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/obj.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/src/obj.cpp > CMakeFiles/test.dir/src/obj.cpp.i
+
+CMakeFiles/test.dir/src/obj.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/obj.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/src/obj.cpp -o CMakeFiles/test.dir/src/obj.cpp.s
+
+CMakeFiles/test.dir/src/obj.cpp.o.requires:
+.PHONY : CMakeFiles/test.dir/src/obj.cpp.o.requires
+
+CMakeFiles/test.dir/src/obj.cpp.o.provides: CMakeFiles/test.dir/src/obj.cpp.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/obj.cpp.o.provides.build
+.PHONY : CMakeFiles/test.dir/src/obj.cpp.o.provides
+
+CMakeFiles/test.dir/src/obj.cpp.o.provides.build: CMakeFiles/test.dir/src/obj.cpp.o
+
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o: src/comparison_predicate.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_7)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/comparison_predicate.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/comparison_predicate.cpp.o -c /home/echo/GitHub/Learning/ac/src/comparison_predicate.cpp
+
+CMakeFiles/test.dir/src/comparison_predicate.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/comparison_predicate.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/src/comparison_predicate.cpp > CMakeFiles/test.dir/src/comparison_predicate.cpp.i
+
+CMakeFiles/test.dir/src/comparison_predicate.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/comparison_predicate.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/src/comparison_predicate.cpp -o CMakeFiles/test.dir/src/comparison_predicate.cpp.s
+
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o.requires:
+.PHONY : CMakeFiles/test.dir/src/comparison_predicate.cpp.o.requires
+
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o.provides: CMakeFiles/test.dir/src/comparison_predicate.cpp.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/comparison_predicate.cpp.o.provides.build
+.PHONY : CMakeFiles/test.dir/src/comparison_predicate.cpp.o.provides
+
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o.provides.build: CMakeFiles/test.dir/src/comparison_predicate.cpp.o
+
+CMakeFiles/test.dir/src/predicate_tree.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/predicate_tree.cpp.o: src/predicate_tree.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_8)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/predicate_tree.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/predicate_tree.cpp.o -c /home/echo/GitHub/Learning/ac/src/predicate_tree.cpp
+
+CMakeFiles/test.dir/src/predicate_tree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/predicate_tree.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/src/predicate_tree.cpp > CMakeFiles/test.dir/src/predicate_tree.cpp.i
+
+CMakeFiles/test.dir/src/predicate_tree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/predicate_tree.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/src/predicate_tree.cpp -o CMakeFiles/test.dir/src/predicate_tree.cpp.s
+
+CMakeFiles/test.dir/src/predicate_tree.cpp.o.requires:
+.PHONY : CMakeFiles/test.dir/src/predicate_tree.cpp.o.requires
+
+CMakeFiles/test.dir/src/predicate_tree.cpp.o.provides: CMakeFiles/test.dir/src/predicate_tree.cpp.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/predicate_tree.cpp.o.provides.build
+.PHONY : CMakeFiles/test.dir/src/predicate_tree.cpp.o.provides
+
+CMakeFiles/test.dir/src/predicate_tree.cpp.o.provides.build: CMakeFiles/test.dir/src/predicate_tree.cpp.o
+
 # Object files for target test
 test_OBJECTS = \
 "CMakeFiles/test.dir/lexer/acll.cpp.o" \
 "CMakeFiles/test.dir/lexer/acyy.cpp.o" \
 "CMakeFiles/test.dir/src/db_worker.cpp.o" \
 "CMakeFiles/test.dir/src/postgres_worker.cpp.o" \
-"CMakeFiles/test.dir/src/access_control.cpp.o"
+"CMakeFiles/test.dir/src/access_control.cpp.o" \
+"CMakeFiles/test.dir/src/obj.cpp.o" \
+"CMakeFiles/test.dir/src/comparison_predicate.cpp.o" \
+"CMakeFiles/test.dir/src/predicate_tree.cpp.o"
 
 # External object files for target test
 test_EXTERNAL_OBJECTS =
@@ -180,6 +252,9 @@ bin/test: CMakeFiles/test.dir/lexer/acyy.cpp.o
 bin/test: CMakeFiles/test.dir/src/db_worker.cpp.o
 bin/test: CMakeFiles/test.dir/src/postgres_worker.cpp.o
 bin/test: CMakeFiles/test.dir/src/access_control.cpp.o
+bin/test: CMakeFiles/test.dir/src/obj.cpp.o
+bin/test: CMakeFiles/test.dir/src/comparison_predicate.cpp.o
+bin/test: CMakeFiles/test.dir/src/predicate_tree.cpp.o
 bin/test: CMakeFiles/test.dir/build.make
 bin/test: CMakeFiles/test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable bin/test"
@@ -194,6 +269,9 @@ CMakeFiles/test.dir/requires: CMakeFiles/test.dir/lexer/acyy.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/db_worker.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/postgres_worker.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/access_control.cpp.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/obj.cpp.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/comparison_predicate.cpp.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/predicate_tree.cpp.o.requires
 .PHONY : CMakeFiles/test.dir/requires
 
 CMakeFiles/test.dir/clean:

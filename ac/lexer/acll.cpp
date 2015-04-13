@@ -539,10 +539,16 @@ char *yytext;
   #include "db/db_worker.h"
   #include "access_control.h"
   #include "permission.h"
+
+  #include "expression/comparison.h"
+  #include "expression/comparison_predicate.h"
+  #include "expression/predicate.h"
+  #include "expression/predicate_tree.h"
+  
   #include "acyy.hpp"
   using namespace std;
 
-#line 546 "acll.cpp"
+#line 552 "acll.cpp"
 
 #define INITIAL 0
 
@@ -729,9 +735,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 11 "acll.l"
+#line 17 "acll.l"
 
-#line 735 "acll.cpp"
+#line 741 "acll.cpp"
 
 	if ( !(yy_init) )
 		{
@@ -816,171 +822,171 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 12 "acll.l"
+#line 18 "acll.l"
 { yylval.iv = strtol(yytext,0,10); cout << "int" ;return TINT; }  
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 13 "acll.l"
+#line 19 "acll.l"
 {yylval.dv=strtol(yytext, 0, 10); return TDBL;}
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 14 "acll.l"
+#line 20 "acll.l"
 ; // ignore them
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 15 "acll.l"
+#line 21 "acll.l"
 {cout << "add"; return TADD;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 16 "acll.l"
+#line 22 "acll.l"
 {return TRM;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 17 "acll.l"
+#line 23 "acll.l"
 {return TSET;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 18 "acll.l"
+#line 24 "acll.l"
 {cout << "user"; return TUSER;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 19 "acll.l"
+#line 25 "acll.l"
 {return TOBJ;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 20 "acll.l"
+#line 26 "acll.l"
 {cout << "with";return TWITH;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 21 "acll.l"
+#line 27 "acll.l"
 {return TWHEN;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 22 "acll.l"
+#line 28 "acll.l"
 {return TON;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 23 "acll.l"
+#line 29 "acll.l"
 {return TTABLE;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 24 "acll.l"
+#line 30 "acll.l"
 {return TCOL;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 25 "acll.l"
+#line 31 "acll.l"
 {return TROW;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 26 "acll.l"
+#line 32 "acll.l"
 {return TCELL;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 27 "acll.l"
+#line 33 "acll.l"
 {return TAND;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 28 "acll.l"
+#line 34 "acll.l"
 {return TOR;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 29 "acll.l"
+#line 35 "acll.l"
 {return TCOMMA;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 30 "acll.l"
+#line 36 "acll.l"
 {return TLBRACKET;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 31 "acll.l"
+#line 37 "acll.l"
 {return TRBRACKET;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 32 "acll.l"
+#line 38 "acll.l"
 {return TEQUAL;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 33 "acll.l"
+#line 39 "acll.l"
 {return TGREATER;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 34 "acll.l"
+#line 40 "acll.l"
 {return TLESS;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 35 "acll.l"
+#line 41 "acll.l"
 {return TGE;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 36 "acll.l"
+#line 42 "acll.l"
 {return TLE;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 37 "acll.l"
+#line 43 "acll.l"
 {return TDOT;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 38 "acll.l"
+#line 44 "acll.l"
 {return TREAD;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 39 "acll.l"
+#line 45 "acll.l"
 {return TWRITE;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 40 "acll.l"
+#line 46 "acll.l"
 {return TALLOW;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 41 "acll.l"
+#line 47 "acll.l"
 {return TDENY;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 42 "acll.l"
+#line 48 "acll.l"
 { cout << "identifier";yylval.sv = strdup(yytext); return TIDENTIFIER; }  
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 43 "acll.l"
+#line 49 "acll.l"
 {yylval.sv = strdup(yytext); return TIDENTIFIER;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 45 "acll.l"
+#line 51 "acll.l"
 ECHO;
 	YY_BREAK
-#line 984 "acll.cpp"
+#line 990 "acll.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1978,7 +1984,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 45 "acll.l"
+#line 51 "acll.l"
 
 
 int yywrap() {

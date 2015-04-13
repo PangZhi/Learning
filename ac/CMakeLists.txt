@@ -84,6 +84,9 @@ add_executable(
   ${AC_SRC_DIR}/db_worker.cpp
   ${AC_SRC_DIR}/postgres_worker.cpp
   ${AC_SRC_DIR}/access_control.cpp
+  ${AC_SRC_DIR}/obj.cpp
+  ${AC_SRC_DIR}/comparison_predicate.cpp
+  ${AC_SRC_DIR}/predicate_tree.cpp
 )
 
 target_link_libraries(

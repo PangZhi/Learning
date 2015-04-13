@@ -29,7 +29,7 @@ class AccessControl {
   int addRule(bool isAllow, Permission p, const Obj& obj, 
               const std::string& logic);
 
-  bool allow(const std::string& username, const std::string& object,
+  bool allow(const std::string& username, const Obj& object,
              const std::string& action);
  
  private:

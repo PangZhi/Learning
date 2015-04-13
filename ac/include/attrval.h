@@ -38,4 +38,19 @@ class AttrVal {
 
 } // namespace util 
 
+
+namespace std {
+  struct hash<util::AttrVal> {
+
+    size_t operator() {const util::AttrVal& attrval} const {
+      switch (attrval.type()) {
+        case util::TypeBoolean:
+        break;
+        case util::TypeInt:break;
+        case util::TypeDouble:break;
+        case util::TypeString:break;
+      }
+    }
+  }
+}
 #endif // COMMON_H

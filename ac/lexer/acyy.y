@@ -1,12 +1,16 @@
 // add user with attr1=xx, attr2=xxx,attr3=xxx
 // allow read/write on Table("xxx").col("xxx") when xx and or yy 
-
+// username read/write Table("xxx").col("xxx")
 %{
   #include "attrval.h"
   #include "permission.h"
   #include "db/db_worker.h"
   #include "access_control.h"
   #include "obj.h"
+  
+  #include "expression/predicate.h"
+  #include "expression/comparison_predicate.h"
+  #include "expression/predicate_tree.h"
 
   #include <cstring>
   #include <iostream>
@@ -23,7 +27,8 @@
   // Used for adding user.
   std::string username;
   std::vector<ac::AttrItem> attrList;
-  
+
+  std::unordered_map<std::string, util::AttrVal> valueMap;
   ac::AccessControl *ac_ptr = new ac::AccessControl();
 %}
 
@@ -41,10 +46,14 @@
 %token TALLOW TDENY
 
 %type <av> attrval
+%type <sv> userval
+%type <sv> objval
 %type <sv> userop
 %type <sv> ruleop
 %type <pv> permissionval
 %type <objv> obj
+%type <predv> logic
+%type <compv> logicop
 
 %left TAND TOR
 %union {  
@@ -52,8 +61,11 @@
   double dv;
   util::AttrVal* av;
   char *sv;  
+  // std::string *strv;
   ac::Permission pv; 
   ac::Obj *objv;
+  ac::Predicate *predv;
+  ac::Comparison compv;
 };
 
 %%
@@ -136,22 +148,57 @@ obj : TTABLE TLBRACKET TSTR TRBRACKET
       {$$ = new ac::Obj(std::string($3), $8, std::string($10));}
     ;
 
-logicop : TEQUAL TGREATER TGE TLESS TLE;
+logicop : TEQUAL {$$ = ac::kEqual;}
+        | TGREATER {$$ = ac::kGreater;}
+        | TGE {$$ = ac::kGE;}
+        | TLESS {$$ = ac::kLess;}
+        | TLE {$$ = ac::kLE;}
+        ;
 
-userval : TUSER TDOT TIDENTIFIER;
-objval : TOBJ TDOT TIDENTIFIER; 
-logic : userval logicop objval 
-      | objval logicop userval
+userval : TUSER TDOT TIDENTIFIER 
+        {
+          $$ = new char[strlen($3) + 6];
+          strcat($$, "user.");
+          strcat($$ + 5, $3);
+        }
+
+objval : TOBJ TDOT TIDENTIFIER 
+       {
+          $$ = new char[strlen($3) + 5];
+          strcat($$, "obj.");
+          strcat($$ + 4, $3);
+       } 
+
+logic : userval logicop objval {} 
+      | objval logicop userval {}
       | userval logicop attrval
+        {$$ = new ac::ComparisonPredicate($2, std::string($1), $3);}
       | attrval logicop userval
+        {$$ = new ac::ComparisonPredicate($2, std::string($3), $1);}
       | objval logicop attrval
+        {$$ = new ac::ComparisonPredicate($2, std::string($1), $3);} 
       | attrval logicop objval
+        {$$ = new ac::ComparisonPredicate($2, std::string($3), $1);} 
       | TLBRACKET logic TRBRACKET
-      | logic TAND logic
+        {$$ = $2;}
+      | logic TAND logic 
+        {
+          $$ = new ac::ConjunctionPredicate();
+          dynamic_cast<ac::ConjunctionPredicate*>($$)->addPredicate($1);
+          dynamic_cast<ac::ConjunctionPredicate*>($$)->addPredicate($3);
+        }
       | logic TOR logic
+        {
+          $$ = new ac::DisjunctionPredicate();
+          dynamic_cast<ac::ConjunctionPredicate*>($$)->addPredicate($1);
+          dynamic_cast<ac::ConjunctionPredicate*>($$)->addPredicate($3);
+        }
       ;
 
-//logicexp : logic 
+query: TIDENTIFIER permissionval obj {} 
+     ;
+      
+//logicexp : logic
 //        | TLBRACKET logic TRBRACKET
 //        | logicexp TAND logicexp
 //        | logicexp TOR logicexp

@@ -183,6 +183,30 @@ src/access_control.cpp.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/access_control.cpp.s
 .PHONY : src/access_control.cpp.s
 
+src/comparison_predicate.o: src/comparison_predicate.cpp.o
+.PHONY : src/comparison_predicate.o
+
+# target to build an object file
+src/comparison_predicate.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/comparison_predicate.cpp.o
+.PHONY : src/comparison_predicate.cpp.o
+
+src/comparison_predicate.i: src/comparison_predicate.cpp.i
+.PHONY : src/comparison_predicate.i
+
+# target to preprocess a source file
+src/comparison_predicate.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/comparison_predicate.cpp.i
+.PHONY : src/comparison_predicate.cpp.i
+
+src/comparison_predicate.s: src/comparison_predicate.cpp.s
+.PHONY : src/comparison_predicate.s
+
+# target to generate assembly for a file
+src/comparison_predicate.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/comparison_predicate.cpp.s
+.PHONY : src/comparison_predicate.cpp.s
+
 src/db_worker.o: src/db_worker.cpp.o
 .PHONY : src/db_worker.o
 
@@ -206,6 +230,30 @@ src/db_worker.s: src/db_worker.cpp.s
 src/db_worker.cpp.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/db_worker.cpp.s
 .PHONY : src/db_worker.cpp.s
+
+src/obj.o: src/obj.cpp.o
+.PHONY : src/obj.o
+
+# target to build an object file
+src/obj.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/obj.cpp.o
+.PHONY : src/obj.cpp.o
+
+src/obj.i: src/obj.cpp.i
+.PHONY : src/obj.i
+
+# target to preprocess a source file
+src/obj.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/obj.cpp.i
+.PHONY : src/obj.cpp.i
+
+src/obj.s: src/obj.cpp.s
+.PHONY : src/obj.s
+
+# target to generate assembly for a file
+src/obj.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/obj.cpp.s
+.PHONY : src/obj.cpp.s
 
 src/postgres_worker.o: src/postgres_worker.cpp.o
 .PHONY : src/postgres_worker.o
@@ -231,6 +279,30 @@ src/postgres_worker.cpp.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/postgres_worker.cpp.s
 .PHONY : src/postgres_worker.cpp.s
 
+src/predicate_tree.o: src/predicate_tree.cpp.o
+.PHONY : src/predicate_tree.o
+
+# target to build an object file
+src/predicate_tree.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/predicate_tree.cpp.o
+.PHONY : src/predicate_tree.cpp.o
+
+src/predicate_tree.i: src/predicate_tree.cpp.i
+.PHONY : src/predicate_tree.i
+
+# target to preprocess a source file
+src/predicate_tree.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/predicate_tree.cpp.i
+.PHONY : src/predicate_tree.cpp.i
+
+src/predicate_tree.s: src/predicate_tree.cpp.s
+.PHONY : src/predicate_tree.s
+
+# target to generate assembly for a file
+src/predicate_tree.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/predicate_tree.cpp.s
+.PHONY : src/predicate_tree.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -249,12 +321,21 @@ help:
 	@echo "... src/access_control.o"
 	@echo "... src/access_control.i"
 	@echo "... src/access_control.s"
+	@echo "... src/comparison_predicate.o"
+	@echo "... src/comparison_predicate.i"
+	@echo "... src/comparison_predicate.s"
 	@echo "... src/db_worker.o"
 	@echo "... src/db_worker.i"
 	@echo "... src/db_worker.s"
+	@echo "... src/obj.o"
+	@echo "... src/obj.i"
+	@echo "... src/obj.s"
 	@echo "... src/postgres_worker.o"
 	@echo "... src/postgres_worker.i"
 	@echo "... src/postgres_worker.s"
+	@echo "... src/predicate_tree.o"
+	@echo "... src/predicate_tree.i"
+	@echo "... src/predicate_tree.s"
 .PHONY : help
 
 

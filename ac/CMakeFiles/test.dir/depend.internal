@@ -5,6 +5,11 @@ CMakeFiles/test.dir/lexer/acll.cpp.o
  ./include/access_control.h
  ./include/attrval.h
  ./include/db/db_worker.h
+ ./include/expression/comparison.h
+ ./include/expression/comparison_predicate.h
+ ./include/expression/predicate.h
+ ./include/expression/predicate_tree.h
+ ./include/obj.h
  ./include/permission.h
  /home/echo/GitHub/Learning/ac/lexer/acll.cpp
  /home/echo/GitHub/Learning/ac/lexer/acyy.hpp
@@ -12,6 +17,11 @@ CMakeFiles/test.dir/lexer/acyy.cpp.o
  ./include/access_control.h
  ./include/attrval.h
  ./include/db/db_worker.h
+ ./include/expression/comparison.h
+ ./include/expression/comparison_predicate.h
+ ./include/expression/predicate.h
+ ./include/expression/predicate_tree.h
+ ./include/obj.h
  ./include/permission.h
  /home/echo/GitHub/Learning/ac/lexer/acyy.cpp
 CMakeFiles/test.dir/src/access_control.cpp.o
@@ -19,13 +29,29 @@ CMakeFiles/test.dir/src/access_control.cpp.o
  ./include/attrval.h
  ./include/db/db_worker.h
  ./include/db/postgres_worker.h
+ ./include/obj.h
+ ./include/permission.h
  /home/echo/GitHub/Learning/ac/src/access_control.cpp
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o
+ ./include/attrval.h
+ ./include/expression/comparison.h
+ ./include/expression/comparison_predicate.h
+ ./include/expression/predicate.h
+ /home/echo/GitHub/Learning/ac/src/comparison_predicate.cpp
 CMakeFiles/test.dir/src/db_worker.cpp.o
  ./include/attrval.h
  ./include/db/db_worker.h
  /home/echo/GitHub/Learning/ac/src/db_worker.cpp
+CMakeFiles/test.dir/src/obj.cpp.o
+ ./include/obj.h
+ /home/echo/GitHub/Learning/ac/src/obj.cpp
 CMakeFiles/test.dir/src/postgres_worker.cpp.o
  ./include/attrval.h
  ./include/db/db_worker.h
  ./include/db/postgres_worker.h
  /home/echo/GitHub/Learning/ac/src/postgres_worker.cpp
+CMakeFiles/test.dir/src/predicate_tree.cpp.o
+ ./include/attrval.h
+ ./include/expression/predicate.h
+ ./include/expression/predicate_tree.h
+ /home/echo/GitHub/Learning/ac/src/predicate_tree.cpp

@@ -2,30 +2,46 @@
 #define PREDICATE_TREE_H
 
 #include <memory>
-#include <vector>
+#include <list>
 
-#include "predicate.h"
+#include "expression/predicate.h"
 
 namespace ac {
 
 class NegationPredicate : public Predicate {
  public:
   explicit NegationPredicate(Predicate *operand) : operand_ (operand) {
-    initHelper();
+    // initHelper();
   }
 
   ~NegationPredicate() {}
 
-  static Predicate* NegationPredicate(Predicate *operand);
-  Predicate* clone() const;
+  static Predicate* NegatePredicate(Predicate *operand);
+  Predicate* clone() const override;
 
-  PredicateType getPredicateType() const {
+  PredicateType getPredicateType() const override {
     return kNegation;
   }
+
+  // Currently not useful.
+  /**
+  bool hasStaticResult() const override {
+    return false;
+  }
+
+  bool getStaticResult() const override {
+    return false;
+  }
+  */
+
+  bool eval() override;
 
  private:
   void initHelper();
   std::unique_ptr<Predicate> operand_;
+  // bool has_static_result_;
+  // bool static_result_;
+
 }; // class NegationPredicate
 
 class PredicateWithList : public Predicate {
@@ -34,24 +50,39 @@ class PredicateWithList : public Predicate {
   virtual ~PredicateWithList() {}
   virtual void addPredicate(Predicate *operand)  = 0;
 
- protected:
-  std::vector<Predicate*> static_operand_list_;
-  std::vector<Predicate*> dynamic_operand_list_;
+  // Currently not useful.
+  /**bool hasStaticResult() const override() {
+    return false; 
+  }
 
+  bool getStaticResult() const override() {
+    return false;
+  }
+  */
+
+  virtual bool eval() = 0;
+
+ protected:
+  std::list<Predicate*> static_operand_list_;
+  std::list<Predicate*> dynamic_operand_list_;
+
+  // bool has_static_result_;
+  // bool static_result_;
 }; // class PredicateWithList
 
 class ConjunctionPredicate : public PredicateWithList {
  public:
   // Strange here
   ConjunctionPredicate() : PredicateWithList() {}
-  Predicate *clone() const;
+  Predicate *clone() const override;
 
   PredicateType getPredicateType() const {
     return kConjunction;
   }
 
-  void addPredicate(Predicate *operand);
+  void addPredicate(Predicate *operand) override;
 
+  bool eval() override;
  private:
   void processStaticOperand(const Predicate &operand);
   void processDynamicOperand();
@@ -61,13 +92,14 @@ class DisjunctionPredicate : public PredicateWithList {
  public:
   DisjunctionPredicate() : PredicateWithList() {}
 
-  Predicate *clone() const;
+  Predicate *clone() const override;
 
-  PredicateType getPredicateType() const {
+  PredicateType getPredicateType() const override {
     return kDisjunction;
   }
 
   void addPredicate(Predicate *operand);
+  bool eval() override;
 
  private:
   void processStaticOperand(const Predicate& operand);

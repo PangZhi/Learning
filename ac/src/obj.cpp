@@ -2,8 +2,7 @@
 
 namespace ac {
 
-Obj::Obj(const std::string& tbName) : tbName_(tbName) {
-  type_ = OTable;
+Obj::Obj(const std::string& tbName) : tbName_(tbName), type_(OTable) {
 }
 
   Obj::Obj(const std::string& tbName, const int rName) : tbName_(tbName), rName_(rName) {
@@ -15,10 +14,9 @@ Obj::Obj(const std::string& tbName) : tbName_(tbName) {
   }
 
   Obj::Obj(const std::string& tbName, const int rName, const std::string& cName) {
-    type_ OCell;
   }
 
-std::vector<Obj> Obj::getParent() {
+std::vector<Obj> Obj::getParent() const {
   std::vector<Obj> ret;
   switch (type_) {
     case OTable:
@@ -38,7 +36,7 @@ std::vector<Obj> Obj::getParent() {
 std::string Obj::serialize() {
   std::string ret;
   ret.append(tbName_);
-  switch (ObjType) {
+  switch (type_) {
     case ORow:
       ret.append("#row#").append(std::to_string(rName_));
       break;
