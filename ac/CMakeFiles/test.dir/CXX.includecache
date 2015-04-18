@@ -6,27 +6,11 @@
 
 #IncludeRegexTransform: 
 
-./include/attrval.h
+./include/permission.h
 string
 -
 
-./include/expression/predicate.h
-string
--
-unordered_map
--
-attrval.h
-./include/expression/attrval.h
-
-./include/expression/predicate_tree.h
-memory
--
-list
--
-expression/predicate.h
-./include/expression/expression/predicate.h
-
-/home/echo/GitHub/Learning/ac/src/predicate_tree.cpp
-expression/predicate_tree.h
-/home/echo/GitHub/Learning/ac/src/expression/predicate_tree.h
+/home/echo/GitHub/Learning/ac/src/permission.cpp
+permission.h
+/home/echo/GitHub/Learning/ac/src/permission.h
 

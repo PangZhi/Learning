@@ -21,4 +21,7 @@ bool ComparisonPredicate::eval() {
   return true;
 }
 
+bool ComparisonPredicate::eval(std::unordered_map<ComparisonPredicate, bool>& pred_val_map) {
+  return pred_val_map[*this];
+}
 }  // namespace quickstep

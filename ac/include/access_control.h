@@ -5,6 +5,7 @@
 #include "db/db_worker.h"
 #include "permission.h"
 #include "obj.h"
+#include "expression/comparison_predicate.h"
 
 #include <vector>
 #include <string>
@@ -26,8 +27,10 @@ class AccessControl {
   /**
   @brief currently support equality.
   **/
-  int addRule(bool isAllow, Permission p, const Obj& obj, 
-              const std::string& logic);
+  // int addRule(bool isAllow, Permission p, const Obj& obj, 
+  //            const std::string& logic);
+  int addRule(bool is_allow, const Permission& p, const Obj& obj,
+              const std::vector<std::vector<ComparisonPredicate> >& disjunctions);
 
   bool allow(const std::string& username, const Obj& object,
              const std::string& action);

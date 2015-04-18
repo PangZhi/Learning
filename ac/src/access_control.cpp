@@ -52,11 +52,33 @@ int AccessControl::addRule() {
 }
 */
 
-int AccessControl::addRule(bool isAllow, Permission p, const Obj& obj, const std::string& logic) {
+//int AccessControl::addRule(bool isAllow, Permission p, const Obj& obj, const std::string& logic) {
   // TODO: distinguish value independent logic and value dependent logic.
   // TODO: convert logic to disjunctions.
   // TODO: put the logics into rule table.
   // TODO: compute permission matrix for col level rule and table level rule.
+//}
+
+// Add another tag called is_value_dependent.
+int AccessControl::addRule(bool is_allow, const Permission& p, const Obj& obj,
+    const std::vector<std::vector<ComparisonPredicate> >& disjunctions) {
+  // TODO: Add database function for getting rule id.
+  static int ruleid = 0;
+  ++ruleid;
+  std::string permission_str = GetPermissionStr(p);
+  std::string obj_str = obj.serialize();
+  std::string sql_cmd;
+  for (auto disjunction : disjunctions) {
+    for (auto pred : disjunction) {
+      sql_cmd = "INSERT INTO Rules VALUES('" + permission_str 
+      + "','" + obj_str + "'," + std::to_string(ruleid) 
+      + ",'" + pred.lop() + "','" + std::to_string(pred.comparison())
+      + "','" + pred.rop().serialize() + ");";
+      if (!db_ptr_->execute(sql_cmd)) {
+        std::cout << "ERROR: Insert disjunctions error.\n";
+      }
+    }
+  }
 }
 
 bool AccessControl::allow(const std::string& username, const Obj& obj, const std::string& action) {

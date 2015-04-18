@@ -1,4 +1,5 @@
 #include "expression/predicate_tree.h"
+#include "expression/comparison_predicate.h"
 
 namespace ac {
   Predicate* NegationPredicate::clone() const {
@@ -18,6 +19,10 @@ namespace ac {
 
   bool NegationPredicate::eval() {
     return true;
+  }
+
+  bool NegationPredicate::eval(std::unordered_map<ComparisonPredicate, bool>& pred_val_map) {
+    return (!this->operand_->eval(pred_val_map));
   }
 
   Predicate* ConjunctionPredicate::clone() const {
@@ -97,6 +102,16 @@ namespace ac {
 bool ConjunctionPredicate::eval() {
   return true;
 }
+
+bool ConjunctionPredicate::eval(std::unordered_map<ComparisonPredicate, bool>& pred_val_map) {
+  for (auto item : dynamic_operand_list_) {
+    if (!item->eval(pred_val_map)) {
+      return false;
+    }
+  }  
+  return true;
+}
+
 Predicate* DisjunctionPredicate::clone() const {
   DisjunctionPredicate *clone = new DisjunctionPredicate();
 
@@ -156,6 +171,15 @@ bool DisjunctionPredicate::eval() {
 }
 
 
+bool DisjunctionPredicate::eval(std::unordered_map<ComparisonPredicate, bool>& pred_val_map) {
+  for (auto item : dynamic_operand_list_) {
+    if (item->eval(pred_val_map)) {
+      return true;
+    }
+  }  
+  return false;
+}
+
 void DisjunctionPredicate::processStaticOperand(const Predicate &operand) {
   /**
   if (operand.getStaticResult()) {
@@ -179,7 +203,6 @@ void DisjunctionPredicate::processDynamicOperand() {
   }
 
   fresh_ = false;
-  */
-}
+  */}
 
 } // namespace ac

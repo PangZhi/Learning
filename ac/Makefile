@@ -183,6 +183,30 @@ src/access_control.cpp.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/access_control.cpp.s
 .PHONY : src/access_control.cpp.s
 
+src/attrval_msg.pb.o: src/attrval_msg.pb.cc.o
+.PHONY : src/attrval_msg.pb.o
+
+# target to build an object file
+src/attrval_msg.pb.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/attrval_msg.pb.cc.o
+.PHONY : src/attrval_msg.pb.cc.o
+
+src/attrval_msg.pb.i: src/attrval_msg.pb.cc.i
+.PHONY : src/attrval_msg.pb.i
+
+# target to preprocess a source file
+src/attrval_msg.pb.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/attrval_msg.pb.cc.i
+.PHONY : src/attrval_msg.pb.cc.i
+
+src/attrval_msg.pb.s: src/attrval_msg.pb.cc.s
+.PHONY : src/attrval_msg.pb.s
+
+# target to generate assembly for a file
+src/attrval_msg.pb.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/attrval_msg.pb.cc.s
+.PHONY : src/attrval_msg.pb.cc.s
+
 src/comparison_predicate.o: src/comparison_predicate.cpp.o
 .PHONY : src/comparison_predicate.o
 
@@ -255,6 +279,30 @@ src/obj.cpp.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/obj.cpp.s
 .PHONY : src/obj.cpp.s
 
+src/permission.o: src/permission.cpp.o
+.PHONY : src/permission.o
+
+# target to build an object file
+src/permission.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/permission.cpp.o
+.PHONY : src/permission.cpp.o
+
+src/permission.i: src/permission.cpp.i
+.PHONY : src/permission.i
+
+# target to preprocess a source file
+src/permission.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/permission.cpp.i
+.PHONY : src/permission.cpp.i
+
+src/permission.s: src/permission.cpp.s
+.PHONY : src/permission.s
+
+# target to generate assembly for a file
+src/permission.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/permission.cpp.s
+.PHONY : src/permission.cpp.s
+
 src/postgres_worker.o: src/postgres_worker.cpp.o
 .PHONY : src/postgres_worker.o
 
@@ -321,6 +369,9 @@ help:
 	@echo "... src/access_control.o"
 	@echo "... src/access_control.i"
 	@echo "... src/access_control.s"
+	@echo "... src/attrval_msg.pb.o"
+	@echo "... src/attrval_msg.pb.i"
+	@echo "... src/attrval_msg.pb.s"
 	@echo "... src/comparison_predicate.o"
 	@echo "... src/comparison_predicate.i"
 	@echo "... src/comparison_predicate.s"
@@ -330,6 +381,9 @@ help:
 	@echo "... src/obj.o"
 	@echo "... src/obj.i"
 	@echo "... src/obj.s"
+	@echo "... src/permission.o"
+	@echo "... src/permission.i"
+	@echo "... src/permission.s"
 	@echo "... src/postgres_worker.o"
 	@echo "... src/postgres_worker.i"
 	@echo "... src/postgres_worker.s"

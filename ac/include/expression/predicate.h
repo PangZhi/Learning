@@ -7,6 +7,7 @@
 
 namespace ac {
 
+class ComparisonPredicate;
 
 extern std::unordered_map<std::string, util::AttrVal> valueMap;
 
@@ -37,7 +38,7 @@ class Predicate {
 
   virtual Predicate* clone() const = 0;
   virtual bool eval() = 0;
-  
+  virtual bool eval(std::unordered_map<ComparisonPredicate, bool>& pred_val_map) = 0;
   protected:
     bool has_static_result_;
     bool static_result_;

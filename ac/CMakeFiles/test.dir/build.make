@@ -233,6 +233,52 @@ CMakeFiles/test.dir/src/predicate_tree.cpp.o.provides: CMakeFiles/test.dir/src/p
 
 CMakeFiles/test.dir/src/predicate_tree.cpp.o.provides.build: CMakeFiles/test.dir/src/predicate_tree.cpp.o
 
+CMakeFiles/test.dir/src/attrval_msg.pb.cc.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/attrval_msg.pb.cc.o: src/attrval_msg.pb.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_9)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/attrval_msg.pb.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/attrval_msg.pb.cc.o -c /home/echo/GitHub/Learning/ac/src/attrval_msg.pb.cc
+
+CMakeFiles/test.dir/src/attrval_msg.pb.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/attrval_msg.pb.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/src/attrval_msg.pb.cc > CMakeFiles/test.dir/src/attrval_msg.pb.cc.i
+
+CMakeFiles/test.dir/src/attrval_msg.pb.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/attrval_msg.pb.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/src/attrval_msg.pb.cc -o CMakeFiles/test.dir/src/attrval_msg.pb.cc.s
+
+CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.requires:
+.PHONY : CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.requires
+
+CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.provides: CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.provides.build
+.PHONY : CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.provides
+
+CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.provides.build: CMakeFiles/test.dir/src/attrval_msg.pb.cc.o
+
+CMakeFiles/test.dir/src/permission.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/permission.cpp.o: src/permission.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_10)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/permission.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/permission.cpp.o -c /home/echo/GitHub/Learning/ac/src/permission.cpp
+
+CMakeFiles/test.dir/src/permission.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/permission.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/src/permission.cpp > CMakeFiles/test.dir/src/permission.cpp.i
+
+CMakeFiles/test.dir/src/permission.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/permission.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/src/permission.cpp -o CMakeFiles/test.dir/src/permission.cpp.s
+
+CMakeFiles/test.dir/src/permission.cpp.o.requires:
+.PHONY : CMakeFiles/test.dir/src/permission.cpp.o.requires
+
+CMakeFiles/test.dir/src/permission.cpp.o.provides: CMakeFiles/test.dir/src/permission.cpp.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/permission.cpp.o.provides.build
+.PHONY : CMakeFiles/test.dir/src/permission.cpp.o.provides
+
+CMakeFiles/test.dir/src/permission.cpp.o.provides.build: CMakeFiles/test.dir/src/permission.cpp.o
+
 # Object files for target test
 test_OBJECTS = \
 "CMakeFiles/test.dir/lexer/acll.cpp.o" \
@@ -242,7 +288,9 @@ test_OBJECTS = \
 "CMakeFiles/test.dir/src/access_control.cpp.o" \
 "CMakeFiles/test.dir/src/obj.cpp.o" \
 "CMakeFiles/test.dir/src/comparison_predicate.cpp.o" \
-"CMakeFiles/test.dir/src/predicate_tree.cpp.o"
+"CMakeFiles/test.dir/src/predicate_tree.cpp.o" \
+"CMakeFiles/test.dir/src/attrval_msg.pb.cc.o" \
+"CMakeFiles/test.dir/src/permission.cpp.o"
 
 # External object files for target test
 test_EXTERNAL_OBJECTS =
@@ -255,6 +303,8 @@ bin/test: CMakeFiles/test.dir/src/access_control.cpp.o
 bin/test: CMakeFiles/test.dir/src/obj.cpp.o
 bin/test: CMakeFiles/test.dir/src/comparison_predicate.cpp.o
 bin/test: CMakeFiles/test.dir/src/predicate_tree.cpp.o
+bin/test: CMakeFiles/test.dir/src/attrval_msg.pb.cc.o
+bin/test: CMakeFiles/test.dir/src/permission.cpp.o
 bin/test: CMakeFiles/test.dir/build.make
 bin/test: CMakeFiles/test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable bin/test"
@@ -272,6 +322,8 @@ CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/access_control.cpp.o.requi
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/obj.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/comparison_predicate.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/predicate_tree.cpp.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/permission.cpp.o.requires
 .PHONY : CMakeFiles/test.dir/requires
 
 CMakeFiles/test.dir/clean:

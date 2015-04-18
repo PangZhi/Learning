@@ -63,11 +63,12 @@ else()
 endif()
 
 include_directories(./include/)
+include_directories(/home/echo/local/include/)
 # python header
 # include_directories(/usr/include/python2.6)
 
 # link_directories(/usr/lib)
-
+link_directories(/home/echo/local/lib/)
 set(EXECUTABLE_OUTPUT_PATH bin)
 
 
@@ -87,9 +88,12 @@ add_executable(
   ${AC_SRC_DIR}/obj.cpp
   ${AC_SRC_DIR}/comparison_predicate.cpp
   ${AC_SRC_DIR}/predicate_tree.cpp
+  ${AC_SRC_DIR}/attrval_msg.pb.cc
+  ${AC_SRC_DIR}/permission.cpp
 )
 
 target_link_libraries(
     test
+    protobuf
     pqxx
     )

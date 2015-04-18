@@ -23,7 +23,7 @@ class Obj {
   std::vector<Obj> getParent() const;
   
   // Serialize the object to a string.
-  std::string serialize();
+  std::string serialize() const;
  public:
   ObjType type_;
   std::string tbName_;

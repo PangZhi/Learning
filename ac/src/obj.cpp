@@ -33,7 +33,7 @@ std::vector<Obj> Obj::getParent() const {
   return ret;
 }
 
-std::string Obj::serialize() {
+std::string Obj::serialize() const {
   std::string ret;
   ret.append(tbName_);
   switch (type_) {

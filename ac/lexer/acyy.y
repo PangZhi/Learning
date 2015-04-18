@@ -11,6 +11,7 @@
   #include "expression/predicate.h"
   #include "expression/comparison_predicate.h"
   #include "expression/predicate_tree.h"
+  #include "expression/disjunction_converter.h"
 
   #include <cstring>
   #include <iostream>
@@ -87,8 +88,25 @@ useradmin : userop TUSER TWITH attrlist
   attrList.clear();  
 }
 
+test : ruleop permissionval;
+
 ruleadmin : ruleop permissionval TON obj TWHEN logic 
-          {}
+          {
+            // Convert the logic into disjunction form, so that it can be
+            // stored in a relational table.
+            std::vector<std::vector<ac::ComparisonPredicate> > disjunctions = 
+              ac::disjunction_converter.convert2Disjunction($6);
+                
+              bool is_allow = (strcmp($1, "allow") == 0);
+              ac_ptr->addRule(is_allow,// Whether it is allow (or deny).
+              $2,// Permission type.
+              $4,// Object.
+              // $6// Logic.
+              disjunctions
+              );
+
+          }
+
 userop : TADD {$$="add";} 
       |  TRM {$$="rm";}
       | TSET {$$="set";}
@@ -195,14 +213,17 @@ logic : userval logicop objval {}
         }
       ;
 
-query: TIDENTIFIER permissionval obj {} 
+query: TIDENTIFIER permissionval obj 
+      {
+        
+      } 
      ;
       
 //logicexp : logic
 //        | TLBRACKET logic TRBRACKET
 //        | logicexp TAND logicexp
 //        | logicexp TOR logicexp
-;
+
 %%  
   
   

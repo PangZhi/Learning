@@ -36,6 +36,7 @@ class NegationPredicate : public Predicate {
 
   bool eval() override;
 
+  bool eval(std::unordered_map<ComparisonPredicate, bool>&) override;
  private:
   void initHelper();
   std::unique_ptr<Predicate> operand_;
@@ -61,7 +62,7 @@ class PredicateWithList : public Predicate {
   */
 
   virtual bool eval() = 0;
-
+  virtual bool eval(std::unordered_map<ComparisonPredicate, bool>&) = 0;
  protected:
   std::list<Predicate*> static_operand_list_;
   std::list<Predicate*> dynamic_operand_list_;
@@ -83,6 +84,8 @@ class ConjunctionPredicate : public PredicateWithList {
   void addPredicate(Predicate *operand) override;
 
   bool eval() override;
+  bool eval(std::unordered_map<ComparisonPredicate, bool>&);
+
  private:
   void processStaticOperand(const Predicate &operand);
   void processDynamicOperand();
@@ -100,6 +103,7 @@ class DisjunctionPredicate : public PredicateWithList {
 
   void addPredicate(Predicate *operand);
   bool eval() override;
+  bool eval(std::unordered_map<ComparisonPredicate, bool>&);
 
  private:
   void processStaticOperand(const Predicate& operand);
