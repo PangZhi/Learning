@@ -9,7 +9,7 @@
   #include "expression/comparison_predicate.h"
   #include "expression/predicate.h"
   #include "expression/predicate_tree.h"
-  
+  #include "expression/disjunction_converter.h" 
   #include "acyy.hpp"
   using namespace std;
 
@@ -21,11 +21,11 @@
 "add" {cout << "add"; return TADD;}
 "rm" {return TRM;}
 "test" {return TSET;}
-"user" {cout << "user"; return TUSER;}
-"obj" {return TOBJ;}
+"user" {cout << "user\n"; return TUSER;}
+"obj" {cout << "obj\n";return TOBJ;}
 "with" {cout << "with";return TWITH;}
-"when" {return TWHEN;}
-"on" {return TON;}
+"when" {cout << "when\n"; return TWHEN;}
+"on" {cout << "on\n"; return TON;}
 "table" {return TTABLE;}
 "col" {return TCOL;}
 "row" {return TROW;}
@@ -35,18 +35,18 @@
 "," {return TCOMMA;}
 "(" {return TLBRACKET;}
 ")" {return TRBRACKET;}
-"=" {return TEQUAL;}
+"=" {cout << "=\n";return TEQUAL;}
 ">" {return TGREATER;}
 "<" {return TLESS;}
 ">=" {return TGE;}
 "<=" {return TLE;}
 "." {return TDOT;}
-"read" {return TREAD;}
+"read" {cout << "read\n"; return TREAD;}
 "write" {return TWRITE;}
-"allow" {return TALLOW;}
+"allow" {cout << "allow\n"; return TALLOW;}
 "deny" {return TDENY;}
-[a-zA-Z]+     { cout << "identifier";yylval.sv = strdup(yytext); return TIDENTIFIER; }  
-\"[a-zA-Z0-9]+\" {yylval.sv = strdup(yytext); return TIDENTIFIER;}
+[a-zA-Z]+     { cout << "identifier\n"; yylval.sv = strdup(yytext); return TIDENTIFIER; }  
+\"[a-zA-Z0-9]+\" {cout << "str\n"; yylval.sv = strdup(yytext); return TSTR;}
 
 %%
 int yywrap() {

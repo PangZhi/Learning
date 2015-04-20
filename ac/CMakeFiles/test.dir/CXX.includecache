@@ -6,11 +6,3 @@
 
 #IncludeRegexTransform: 
 
-./include/permission.h
-string
--
-
-/home/echo/GitHub/Learning/ac/src/permission.cpp
-permission.h
-/home/echo/GitHub/Learning/ac/src/permission.h
-

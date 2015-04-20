@@ -73,6 +73,7 @@
   #include "expression/predicate.h"
   #include "expression/comparison_predicate.h"
   #include "expression/predicate_tree.h"
+  #include "expression/disjunction_converter.h"
 
   #include <cstring>
   #include <iostream>
@@ -93,7 +94,7 @@
   std::unordered_map<std::string, util::AttrVal> valueMap;
   ac::AccessControl *ac_ptr = new ac::AccessControl();
 
-#line 97 "acyy.cpp" /* yacc.c:339  */
+#line 98 "acyy.cpp" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -167,7 +168,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 59 "acyy.y" /* yacc.c:355  */
+#line 60 "acyy.y" /* yacc.c:355  */
   
   int iv;  
   double dv;
@@ -179,7 +180,7 @@ union YYSTYPE
   ac::Predicate *predv;
   ac::Comparison compv;
 
-#line 183 "acyy.cpp" /* yacc.c:355  */
+#line 184 "acyy.cpp" /* yacc.c:355  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
@@ -194,7 +195,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 198 "acyy.cpp" /* yacc.c:358  */
+#line 199 "acyy.cpp" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -494,11 +495,11 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    73,    73,    74,    75,    78,    90,    92,    93,    94,
-      97,    98,   103,   104,   107,   121,   122,   123,   124,   127,
-     128,   141,   143,   145,   147,   151,   152,   153,   154,   155,
-     158,   165,   172,   173,   174,   176,   178,   180,   182,   184,
-     190
+       0,    74,    74,    75,    76,    79,    91,   109,   110,   111,
+     114,   115,   120,   121,   124,   138,   139,   140,   141,   144,
+     145,   158,   160,   162,   164,   168,   169,   170,   171,   172,
+     175,   184,   193,   194,   195,   199,   201,   203,   205,   207,
+     213
 };
 #endif
 
@@ -1322,7 +1323,7 @@ yyreduce:
   switch (yyn)
     {
         case 5:
-#line 79 "acyy.y" /* yacc.c:1646  */
+#line 80 "acyy.y" /* yacc.c:1646  */
     {
   cout << "success"<< "\n"; 
   cout << attrList.size();
@@ -1333,47 +1334,62 @@ yyreduce:
   }
   attrList.clear();  
 }
-#line 1337 "acyy.cpp" /* yacc.c:1646  */
+#line 1338 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 91 "acyy.y" /* yacc.c:1646  */
-    {}
-#line 1343 "acyy.cpp" /* yacc.c:1646  */
+#line 92 "acyy.y" /* yacc.c:1646  */
+    {
+            // Convert the logic into disjunction form, so that it can be
+            // stored in a relational table.
+            ac::DisjunctionConverter test;
+            std::vector<std::vector<ac::ComparisonPredicate> > disjunctions = 
+              ac::DisjunctionConverter::convert2Disjunction((yyvsp[0].predv));
+                
+              bool is_allow = (strcmp((yyvsp[-5].sv), "allow") == 0);
+              ac_ptr->addRule(is_allow,// Whether it is allow (or deny).
+              (yyvsp[-4].pv),// Permission type.
+              *((yyvsp[-2].objv)),// Object.
+              // $6// Logic.
+              disjunctions
+              );
+
+          }
+#line 1359 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 92 "acyy.y" /* yacc.c:1646  */
+#line 109 "acyy.y" /* yacc.c:1646  */
     {(yyval.sv)="add";}
-#line 1349 "acyy.cpp" /* yacc.c:1646  */
+#line 1365 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 93 "acyy.y" /* yacc.c:1646  */
+#line 110 "acyy.y" /* yacc.c:1646  */
     {(yyval.sv)="rm";}
-#line 1355 "acyy.cpp" /* yacc.c:1646  */
+#line 1371 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 94 "acyy.y" /* yacc.c:1646  */
+#line 111 "acyy.y" /* yacc.c:1646  */
     {(yyval.sv)="set";}
-#line 1361 "acyy.cpp" /* yacc.c:1646  */
+#line 1377 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 97 "acyy.y" /* yacc.c:1646  */
+#line 114 "acyy.y" /* yacc.c:1646  */
     {(yyval.sv) = "allow";}
-#line 1367 "acyy.cpp" /* yacc.c:1646  */
+#line 1383 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 98 "acyy.y" /* yacc.c:1646  */
+#line 115 "acyy.y" /* yacc.c:1646  */
     {(yyval.sv) = "deny";}
-#line 1373 "acyy.cpp" /* yacc.c:1646  */
+#line 1389 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 108 "acyy.y" /* yacc.c:1646  */
+#line 125 "acyy.y" /* yacc.c:1646  */
     {
   if (strcmp((yyvsp[-2].sv), "username") == 0) {
     std::cout << "LOG : Find username" << std::endl;
@@ -1385,183 +1401,189 @@ yyreduce:
     attrList.push_back(attr);
   }
 }
-#line 1389 "acyy.cpp" /* yacc.c:1646  */
+#line 1405 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 121 "acyy.y" /* yacc.c:1646  */
+#line 138 "acyy.y" /* yacc.c:1646  */
     {(yyval.av) = new util::AttrVal((yyvsp[0].iv));}
-#line 1395 "acyy.cpp" /* yacc.c:1646  */
+#line 1411 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 122 "acyy.y" /* yacc.c:1646  */
+#line 139 "acyy.y" /* yacc.c:1646  */
     {(yyval.av) = new util::AttrVal((yyvsp[0].dv));}
-#line 1401 "acyy.cpp" /* yacc.c:1646  */
+#line 1417 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 123 "acyy.y" /* yacc.c:1646  */
+#line 140 "acyy.y" /* yacc.c:1646  */
     {(yyval.av) = new util::AttrVal((yyvsp[0].sv));}
-#line 1407 "acyy.cpp" /* yacc.c:1646  */
+#line 1423 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 124 "acyy.y" /* yacc.c:1646  */
+#line 141 "acyy.y" /* yacc.c:1646  */
     {(yyval.av) = new util::AttrVal((yyvsp[0].sv));}
-#line 1413 "acyy.cpp" /* yacc.c:1646  */
+#line 1429 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 127 "acyy.y" /* yacc.c:1646  */
+#line 144 "acyy.y" /* yacc.c:1646  */
     {(yyval.pv) = ac::PRead;}
-#line 1419 "acyy.cpp" /* yacc.c:1646  */
+#line 1435 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 128 "acyy.y" /* yacc.c:1646  */
+#line 145 "acyy.y" /* yacc.c:1646  */
     {(yyval.pv) = ac::PWrite;}
-#line 1425 "acyy.cpp" /* yacc.c:1646  */
+#line 1441 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 142 "acyy.y" /* yacc.c:1646  */
+#line 159 "acyy.y" /* yacc.c:1646  */
     {(yyval.objv) = new ac::Obj(std::string((yyvsp[-1].sv)));}
-#line 1431 "acyy.cpp" /* yacc.c:1646  */
+#line 1447 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 144 "acyy.y" /* yacc.c:1646  */
+#line 161 "acyy.y" /* yacc.c:1646  */
     {(yyval.objv) = new ac::Obj(std::string((yyvsp[-6].sv)),(yyvsp[-1].iv));}
-#line 1437 "acyy.cpp" /* yacc.c:1646  */
+#line 1453 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 146 "acyy.y" /* yacc.c:1646  */
+#line 163 "acyy.y" /* yacc.c:1646  */
     {(yyval.objv) = new ac::Obj(std::string((yyvsp[-6].sv)), std::string((yyvsp[-1].sv)));}
-#line 1443 "acyy.cpp" /* yacc.c:1646  */
+#line 1459 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 148 "acyy.y" /* yacc.c:1646  */
+#line 165 "acyy.y" /* yacc.c:1646  */
     {(yyval.objv) = new ac::Obj(std::string((yyvsp[-8].sv)), (yyvsp[-3].iv), std::string((yyvsp[-1].sv)));}
-#line 1449 "acyy.cpp" /* yacc.c:1646  */
+#line 1465 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 151 "acyy.y" /* yacc.c:1646  */
+#line 168 "acyy.y" /* yacc.c:1646  */
     {(yyval.compv) = ac::kEqual;}
-#line 1455 "acyy.cpp" /* yacc.c:1646  */
+#line 1471 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 152 "acyy.y" /* yacc.c:1646  */
+#line 169 "acyy.y" /* yacc.c:1646  */
     {(yyval.compv) = ac::kGreater;}
-#line 1461 "acyy.cpp" /* yacc.c:1646  */
+#line 1477 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 153 "acyy.y" /* yacc.c:1646  */
+#line 170 "acyy.y" /* yacc.c:1646  */
     {(yyval.compv) = ac::kGE;}
-#line 1467 "acyy.cpp" /* yacc.c:1646  */
+#line 1483 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 154 "acyy.y" /* yacc.c:1646  */
+#line 171 "acyy.y" /* yacc.c:1646  */
     {(yyval.compv) = ac::kLess;}
-#line 1473 "acyy.cpp" /* yacc.c:1646  */
-    break;
-
-  case 29:
-#line 155 "acyy.y" /* yacc.c:1646  */
-    {(yyval.compv) = ac::kLE;}
-#line 1479 "acyy.cpp" /* yacc.c:1646  */
-    break;
-
-  case 30:
-#line 159 "acyy.y" /* yacc.c:1646  */
-    {
-          (yyval.sv) = new char[strlen((yyvsp[0].sv)) + 6];
-          strcat((yyval.sv), "user.");
-          strcat((yyval.sv) + 5, (yyvsp[0].sv));
-        }
 #line 1489 "acyy.cpp" /* yacc.c:1646  */
     break;
 
-  case 31:
-#line 166 "acyy.y" /* yacc.c:1646  */
+  case 29:
+#line 172 "acyy.y" /* yacc.c:1646  */
+    {(yyval.compv) = ac::kLE;}
+#line 1495 "acyy.cpp" /* yacc.c:1646  */
+    break;
+
+  case 30:
+#line 176 "acyy.y" /* yacc.c:1646  */
     {
-          (yyval.sv) = new char[strlen((yyvsp[0].sv)) + 5];
-          strcat((yyval.sv), "obj.");
+          int len = strlen((yyvsp[0].sv)) + 6;
+          (yyval.sv) = new char[len];
+          strcpy((yyval.sv), "user.");
+          strcat((yyval.sv) + 5, (yyvsp[0].sv));
+          (yyval.sv)[len-1]='\0';
+        }
+#line 1507 "acyy.cpp" /* yacc.c:1646  */
+    break;
+
+  case 31:
+#line 185 "acyy.y" /* yacc.c:1646  */
+    {
+          int len = strlen((yyvsp[0].sv)) + 5;
+          (yyval.sv) = new char[len];
+          strcpy((yyval.sv), "user.");
           strcat((yyval.sv) + 4, (yyvsp[0].sv));
+          (yyval.sv)[len-1]='\0';
        }
-#line 1499 "acyy.cpp" /* yacc.c:1646  */
+#line 1519 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 172 "acyy.y" /* yacc.c:1646  */
+#line 193 "acyy.y" /* yacc.c:1646  */
     {}
-#line 1505 "acyy.cpp" /* yacc.c:1646  */
+#line 1525 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 173 "acyy.y" /* yacc.c:1646  */
+#line 194 "acyy.y" /* yacc.c:1646  */
     {}
-#line 1511 "acyy.cpp" /* yacc.c:1646  */
+#line 1531 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 175 "acyy.y" /* yacc.c:1646  */
-    {(yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[-2].sv)), (yyvsp[0].av));}
-#line 1517 "acyy.cpp" /* yacc.c:1646  */
+#line 196 "acyy.y" /* yacc.c:1646  */
+    {
+          std::cout << "find a logic\n";
+        (yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[-2].sv)), *((yyvsp[0].av)));}
+#line 1539 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 177 "acyy.y" /* yacc.c:1646  */
-    {(yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[0].sv)), (yyvsp[-2].av));}
-#line 1523 "acyy.cpp" /* yacc.c:1646  */
+#line 200 "acyy.y" /* yacc.c:1646  */
+    {(yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[0].sv)), *((yyvsp[-2].av)));}
+#line 1545 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 179 "acyy.y" /* yacc.c:1646  */
-    {(yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[-2].sv)), (yyvsp[0].av));}
-#line 1529 "acyy.cpp" /* yacc.c:1646  */
+#line 202 "acyy.y" /* yacc.c:1646  */
+    {(yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[-2].sv)), *((yyvsp[0].av)));}
+#line 1551 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 181 "acyy.y" /* yacc.c:1646  */
-    {(yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[0].sv)), (yyvsp[-2].av));}
-#line 1535 "acyy.cpp" /* yacc.c:1646  */
+#line 204 "acyy.y" /* yacc.c:1646  */
+    {(yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[0].sv)), *((yyvsp[-2].av)));}
+#line 1557 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 183 "acyy.y" /* yacc.c:1646  */
+#line 206 "acyy.y" /* yacc.c:1646  */
     {(yyval.predv) = (yyvsp[-1].predv);}
-#line 1541 "acyy.cpp" /* yacc.c:1646  */
+#line 1563 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 185 "acyy.y" /* yacc.c:1646  */
+#line 208 "acyy.y" /* yacc.c:1646  */
     {
           (yyval.predv) = new ac::ConjunctionPredicate();
           dynamic_cast<ac::ConjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[-2].predv));
           dynamic_cast<ac::ConjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[0].predv));
         }
-#line 1551 "acyy.cpp" /* yacc.c:1646  */
+#line 1573 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 191 "acyy.y" /* yacc.c:1646  */
+#line 214 "acyy.y" /* yacc.c:1646  */
     {
           (yyval.predv) = new ac::DisjunctionPredicate();
           dynamic_cast<ac::ConjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[-2].predv));
           dynamic_cast<ac::ConjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[0].predv));
         }
-#line 1561 "acyy.cpp" /* yacc.c:1646  */
+#line 1583 "acyy.cpp" /* yacc.c:1646  */
     break;
 
 
-#line 1565 "acyy.cpp" /* yacc.c:1646  */
+#line 1587 "acyy.cpp" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1789,7 +1811,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 203 "acyy.y" /* yacc.c:1906  */
+#line 232 "acyy.y" /* yacc.c:1906  */
   
   
   

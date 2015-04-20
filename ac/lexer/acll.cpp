@@ -544,7 +544,7 @@ char *yytext;
   #include "expression/comparison_predicate.h"
   #include "expression/predicate.h"
   #include "expression/predicate_tree.h"
-  
+  #include "expression/disjunction_converter.h" 
   #include "acyy.hpp"
   using namespace std;
 
@@ -854,12 +854,12 @@ YY_RULE_SETUP
 case 7:
 YY_RULE_SETUP
 #line 24 "acll.l"
-{cout << "user"; return TUSER;}
+{cout << "user\n"; return TUSER;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 25 "acll.l"
-{return TOBJ;}
+{cout << "obj\n";return TOBJ;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
@@ -869,12 +869,12 @@ YY_RULE_SETUP
 case 10:
 YY_RULE_SETUP
 #line 27 "acll.l"
-{return TWHEN;}
+{cout << "when\n"; return TWHEN;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 28 "acll.l"
-{return TON;}
+{cout << "on\n"; return TON;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
@@ -924,7 +924,7 @@ YY_RULE_SETUP
 case 21:
 YY_RULE_SETUP
 #line 38 "acll.l"
-{return TEQUAL;}
+{cout << "=\n";return TEQUAL;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
@@ -954,7 +954,7 @@ YY_RULE_SETUP
 case 27:
 YY_RULE_SETUP
 #line 44 "acll.l"
-{return TREAD;}
+{cout << "read\n"; return TREAD;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
@@ -964,7 +964,7 @@ YY_RULE_SETUP
 case 29:
 YY_RULE_SETUP
 #line 46 "acll.l"
-{return TALLOW;}
+{cout << "allow\n"; return TALLOW;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
@@ -974,12 +974,12 @@ YY_RULE_SETUP
 case 31:
 YY_RULE_SETUP
 #line 48 "acll.l"
-{ cout << "identifier";yylval.sv = strdup(yytext); return TIDENTIFIER; }  
+{ cout << "identifier\n"; yylval.sv = strdup(yytext); return TIDENTIFIER; }  
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 49 "acll.l"
-{yylval.sv = strdup(yytext); return TIDENTIFIER;}
+{cout << "str\n"; yylval.sv = strdup(yytext); return TSTR;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP

@@ -88,19 +88,18 @@ useradmin : userop TUSER TWITH attrlist
   attrList.clear();  
 }
 
-test : ruleop permissionval;
-
 ruleadmin : ruleop permissionval TON obj TWHEN logic 
           {
             // Convert the logic into disjunction form, so that it can be
             // stored in a relational table.
+            ac::DisjunctionConverter test;
             std::vector<std::vector<ac::ComparisonPredicate> > disjunctions = 
-              ac::disjunction_converter.convert2Disjunction($6);
+              ac::DisjunctionConverter::convert2Disjunction($6);
                 
               bool is_allow = (strcmp($1, "allow") == 0);
               ac_ptr->addRule(is_allow,// Whether it is allow (or deny).
               $2,// Permission type.
-              $4,// Object.
+              *($4),// Object.
               // $6// Logic.
               disjunctions
               );
@@ -175,28 +174,34 @@ logicop : TEQUAL {$$ = ac::kEqual;}
 
 userval : TUSER TDOT TIDENTIFIER 
         {
-          $$ = new char[strlen($3) + 6];
-          strcat($$, "user.");
+          int len = strlen($3) + 6;
+          $$ = new char[len];
+          strcpy($$, "user.");
           strcat($$ + 5, $3);
+          $$[len-1]='\0';
         }
 
 objval : TOBJ TDOT TIDENTIFIER 
        {
-          $$ = new char[strlen($3) + 5];
-          strcat($$, "obj.");
+          int len = strlen($3) + 5;
+          $$ = new char[len];
+          strcpy($$, "user.");
           strcat($$ + 4, $3);
+          $$[len-1]='\0';
        } 
 
 logic : userval logicop objval {} 
       | objval logicop userval {}
       | userval logicop attrval
-        {$$ = new ac::ComparisonPredicate($2, std::string($1), $3);}
+        {
+          std::cout << "find a logic\n";
+        $$ = new ac::ComparisonPredicate($2, std::string($1), *($3));}
       | attrval logicop userval
-        {$$ = new ac::ComparisonPredicate($2, std::string($3), $1);}
+        {$$ = new ac::ComparisonPredicate($2, std::string($3), *($1));}
       | objval logicop attrval
-        {$$ = new ac::ComparisonPredicate($2, std::string($1), $3);} 
+        {$$ = new ac::ComparisonPredicate($2, std::string($1), *($3));} 
       | attrval logicop objval
-        {$$ = new ac::ComparisonPredicate($2, std::string($3), $1);} 
+        {$$ = new ac::ComparisonPredicate($2, std::string($3), *($1));} 
       | TLBRACKET logic TRBRACKET
         {$$ = $2;}
       | logic TAND logic 
@@ -213,11 +218,11 @@ logic : userval logicop objval {}
         }
       ;
 
-query: TIDENTIFIER permissionval obj 
-      {
-        
-      } 
-     ;
+//query: TIDENTIFIER permissionval obj "?" 
+//      {
+//        
+//      } 
+//     ;
       
 //logicexp : logic
 //        | TLBRACKET logic TRBRACKET
