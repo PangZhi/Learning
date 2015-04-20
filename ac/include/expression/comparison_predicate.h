@@ -10,9 +10,27 @@
 namespace ac {
 class ComparisonPredicate : public Predicate {
  public:
+  enum ComparisonType {
+    kUser2Val = 0,
+    kCol2Val,
+    kUser2Col,
+  };
+  
+  /**
   ComparisonPredicate(const Comparison &comp,
                       const std::string &lop,
                       const util::AttrVal &rop);
+  **/
+
+  ComparisonPredicate(const Comparison& comp,
+                      const std::string& attr_str,
+                      const util::AttrVal& val,
+                      const ComparisonType& comp_type);
+ 
+  ComparisonPredicate(const Comparison& comp,
+                      const std::string& user_attr,
+                      const std::string& col_attr);
+
   ~ComparisonPredicate() {}
 
   Predicate* clone() const override;
@@ -21,48 +39,40 @@ class ComparisonPredicate : public Predicate {
     return kComparison;
   }
 
-  bool operator== (const ComparisonPredicate& p) const {
-    return (this->comparison() == p.comparison() 
-         && this->lop() == p.lop()
-            && this->rop() == p.rop());
-  }
-
-  /**bool hasStaticResult() const override {
-    return false;
-  }
-
-  bool getStaticResult() const override {
-    return false;
-  }
-  */
+  bool operator== (const ComparisonPredicate& p) const; 
   
-  /**
-  bool eval(const AttrVal& lval) const;
-  */
-
   bool eval() override;
 
   bool eval(std::unordered_map<ComparisonPredicate, bool>&) override;
   
-  Comparison comparison() const {
+  inline Comparison comparison() const {
     return comparison_;
   }
 
-  std::string lop() const {
-    return lop_;
+  inline std::string user_attr() const {
+    return user_attr_;
   }
 
-  util::AttrVal rop() const {
-    return rop_;
+  inline std::string col_attr() const {
+    return col_attr_;
+  } 
+
+  inline std::string comparion_type() const {
+    return comparison_type_;
   }
 
+  inline util::AttrVal val() const {
+    return val_;
+  }
+
+  std::string Serialize() const;
 
  private:
-  const Comparison comparison_;
-  std::string lop_;
-  util::AttrVal rop_;
-  // Currently not useful.
-  // bool static_result_;
+  Comparison comparison_;
+  std::string user_attr_;
+  std::string col_attr_; 
+  util::AttrVal val_;
+  ComparisonType comparison_type_;
 
   void initHelper(bool own_children);
 
@@ -73,19 +83,7 @@ namespace std {
   template <>
   struct hash<ac::ComparisonPredicate> {
     size_t operator() (const ac::ComparisonPredicate& compPred) const {
-      //size_t  first_hash;
-      size_t first_hash = hash<int>()(compPred.comparison());
-      size_t second_hash = hash<std::string>()(compPred.lop());
-      size_t third_hash = hash<util::AttrVal>()(compPred.rop());
-      const size_t kMul = 0x9ddfea08eb382d69ULL;
-      size_t a = (first_hash ^ second_hash) * kMul;
-      a ^= (a >> 47);
-      size_t b = (second_hash ^ a) * kMul;
-      b ^= (b >> 47);
-      b *= kMul;
-      size_t c = (third_hash ^ b) * kMul;
-      c ^= (c >> 47);
-      return c;
+      return hash<std::string>()(compPred.Serialize());
     }
   };
 } // namespace std

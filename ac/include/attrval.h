@@ -34,10 +34,10 @@ class AttrVal {
   }
 
   bool operator==(const AttrVal& av) const {
-    return (memcmp((void*)this, (void*)(&av), sizeof(AttrVal)) == 0);   
+    return ((this->type() == TypeInvalid && av.type() == TypeInvalid) 
+            || (memcmp((void*)this, (void*)(&av), sizeof(AttrVal)) == 0));   
   }
   
-
   std::string serialize() {
     AttrValMsg msg;
     
@@ -57,7 +57,9 @@ class AttrVal {
         msg.set_value((void*)(value_.asString), value_.asString->size());
         break;
       default:
-        std::cout << "ERROR: Unknown type when serializing attrval.\n";
+        // TODO: What if this is not used? We should for invalid type.
+        // std::cout << "ERROR: Unknown type when serializing attrval.\n";
+        std::cout << "LOG: Encounter invalid type of attrval.\n";
     }
     std::string ret;
     msg.SerializeToString(&ret);
@@ -81,22 +83,20 @@ namespace std {
   template <>
   struct hash<util::AttrVal> {
 
-    size_t operator() (const util::AttrVal& attrval) const {
+    size_t operator() (const util::AttrVal& attrval) const {mZ      /*
       switch (attrval.type()) {
         case util::AttrVal::TypeBoolean:
           return std::hash<bool>()(attrval.value_.asBool);
-          return 0;
-          break;
         case util::AttrVal::TypeInt:
         return std::hash<int>()(attrval.value_.asInt);
-          break;
         case util::AttrVal::TypeDouble:
         return std::hash<double>()(attrval.value_.asDouble);
-          break;
         case util::AttrVal::TypeString:
         return std::hash<string>()(*(attrval.value_.asString));
-          break;
+        case util::AttrVal::TypeInvalid:
       }
+      */
+      return std::hash<string>()(attrval.serialize());
     }
   };
 }

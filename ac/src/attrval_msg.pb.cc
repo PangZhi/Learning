@@ -78,7 +78,7 @@ void protobuf_AddDesc_attrval_5fmsg_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\021attrval_msg.proto\")\n\nAttrValMsg\022\014\n\004typ"
-    "e\030\001 \002(\005\022\r\n\005value\030\002 \002(\014", 62);
+    "e\030\001 \002(\005\022\r\n\005value\030\002 \001(\014", 62);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "attrval_msg.proto", &protobuf_RegisterTypes);
   AttrValMsg::default_instance_ = new AttrValMsg();
@@ -195,7 +195,7 @@ bool AttrValMsg::MergePartialFromCodedStream(
         break;
       }
 
-      // required bytes value = 2;
+      // optional bytes value = 2;
       case 2: {
         if (tag == 18) {
          parse_value:
@@ -238,7 +238,7 @@ void AttrValMsg::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->type(), output);
   }
 
-  // required bytes value = 2;
+  // optional bytes value = 2;
   if (has_value()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
       2, this->value(), output);
@@ -259,7 +259,7 @@ void AttrValMsg::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->type(), target);
   }
 
-  // required bytes value = 2;
+  // optional bytes value = 2;
   if (has_value()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
@@ -285,7 +285,7 @@ int AttrValMsg::ByteSize() const {
           this->type());
     }
 
-    // required bytes value = 2;
+    // optional bytes value = 2;
     if (has_value()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
@@ -342,7 +342,7 @@ void AttrValMsg::CopyFrom(const AttrValMsg& from) {
 }
 
 bool AttrValMsg::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
 
   return true;
 }

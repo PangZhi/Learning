@@ -1,4 +1,4 @@
 message AttrValMsg {
   required int32 type=1;
-  required bytes value=2;
+  optional bytes value=2;
 }

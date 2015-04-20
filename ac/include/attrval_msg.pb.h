@@ -95,7 +95,7 @@ class AttrValMsg : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 type() const;
   inline void set_type(::google::protobuf::int32 value);
 
-  // required bytes value = 2;
+  // optional bytes value = 2;
   inline bool has_value() const;
   inline void clear_value();
   static const int kValueFieldNumber = 2;
@@ -158,7 +158,7 @@ inline void AttrValMsg::set_type(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:AttrValMsg.type)
 }
 
-// required bytes value = 2;
+// optional bytes value = 2;
 inline bool AttrValMsg::has_value() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }

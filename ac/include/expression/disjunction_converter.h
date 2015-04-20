@@ -24,9 +24,10 @@ class DisjunctionConverter {
     // Get all the comparison predicate (atomic predicate).
     while (!predQueue.empty()) {
       Predicate *cur = predQueue.front();
+      predQueue.pop();
       switch (cur->getPredicateType()) {
         case Predicate::kComparison: {
-          ComparisonPredicate *compPred = dynamic_cast<ComparisonPredicate*>(pred);
+          ComparisonPredicate *compPred = dynamic_cast<ComparisonPredicate*>(cur);
           // predMap[*compPred] = compPred;
           pred_set.insert(*compPred);
           break;
@@ -36,13 +37,18 @@ class DisjunctionConverter {
           break;
         }
         case Predicate::kConjunction: { 
-          ConjunctionPredicate *conjunctionPred = dynamic_cast<ConjunctionPredicate*>(pred);
-          predQueue.push(pred);
+          ConjunctionPredicate *conjunctionPred = dynamic_cast<ConjunctionPredicate*>(cur);
+          for (auto item : conjunctionPred->dynamic_operand_list_) {
+        	  predQueue.push(item);
+          }
+          // predQueue.push(pred);
           break;
         }
         case Predicate::kDisjunction: {
-          DisjunctionPredicate *disjunctionPred = dynamic_cast<DisjunctionPredicate*>(pred);
-          predQueue.push(pred);
+          DisjunctionPredicate *disjunctionPred = dynamic_cast<DisjunctionPredicate*>(cur);
+          for (auto item : disjunctionPred->dynamic_operand_list_) {
+        	  predQueue.push(item);
+          }
           break;
         }
       }
@@ -68,8 +74,9 @@ class DisjunctionConverter {
           }
         }
         disjunction_predicates.push_back(disjunctions);
-        return;
-      }                                      
+      }
+
+      return;
     }
     ComparisonPredicate comp_pred = *(pred_set.begin());
     pred_val_map[comp_pred] = true;
