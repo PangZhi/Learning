@@ -1576,8 +1576,8 @@ yyreduce:
 #line 214 "acyy.y" /* yacc.c:1646  */
     {
           (yyval.predv) = new ac::DisjunctionPredicate();
-          dynamic_cast<ac::ConjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[-2].predv));
-          dynamic_cast<ac::ConjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[0].predv));
+          dynamic_cast<ac::DisjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[-2].predv));
+          dynamic_cast<ac::DisjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[0].predv));
         }
 #line 1583 "acyy.cpp" /* yacc.c:1646  */
     break;

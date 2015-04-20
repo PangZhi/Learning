@@ -213,8 +213,8 @@ logic : userval logicop objval {}
       | logic TOR logic
         {
           $$ = new ac::DisjunctionPredicate();
-          dynamic_cast<ac::ConjunctionPredicate*>($$)->addPredicate($1);
-          dynamic_cast<ac::ConjunctionPredicate*>($$)->addPredicate($3);
+          dynamic_cast<ac::DisjunctionPredicate*>($$)->addPredicate($1);
+          dynamic_cast<ac::DisjunctionPredicate*>($$)->addPredicate($3);
         }
       ;
 

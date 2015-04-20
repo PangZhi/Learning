@@ -63,7 +63,7 @@ class PredicateWithList : public Predicate {
 
   virtual bool eval() = 0;
   virtual bool eval(std::unordered_map<ComparisonPredicate, bool>&) = 0;
- protected:
+ //protected:
   std::list<Predicate*> static_operand_list_;
   std::list<Predicate*> dynamic_operand_list_;
 
