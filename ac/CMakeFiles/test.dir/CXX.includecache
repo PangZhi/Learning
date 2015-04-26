@@ -106,9 +106,15 @@ db/postgres_worker.h
 iostream
 -
 
-/home/echo/GitHub/Learning/ac/src/obj.cpp
-obj.h
-/home/echo/GitHub/Learning/ac/src/obj.h
+/home/echo/GitHub/Learning/ac/src/postgres_worker.cpp
+db/postgres_worker.h
+/home/echo/GitHub/Learning/ac/src/db/postgres_worker.h
+cstdlib
+-
+iostream
+-
+pqxx/pqxx
+-
 
 /home/echo/local/include/google/protobuf/descriptor.h
 set

@@ -63,8 +63,14 @@ int AccessControl::addRule() {
 int AccessControl::addRule(bool is_allow, const Permission& p, const Obj& obj,
     const std::vector<std::vector<ComparisonPredicate> >& disjunctions) {
   // TODO: Add database function for getting rule id.
-  static int ruleid = 0;
-  ++ruleid;
+  // static int ruleid = 0;
+  // ++ruleid;
+  // Get and rule id.
+  int ruleid = db_ptr_->GetRuleId("SELECT MAX(ruleid)+1 FROM ruleidtb");
+  if (db_ptr_->execute("INSERT INTO ruleidtb VALUES(" 
+                       + std::to_string(ruleid) + ");")) {
+      std::cout << "ERROR: INSERT ruleid failed.\n";
+  }
   std::string permission_str = GetPermissionStr(p);
   std::string obj_str = obj.serialize();
   std::string sql_cmd;
@@ -157,7 +163,7 @@ bool AccessControl::allow(const std::string& username, const Obj& obj, const Per
             "(SELECT * FROM " + user_tb_names[type_idx] + " WHERE username = '"
             + username + "') U "\
             "ON R.attr = U.attrname "\
-            "AND R.value " + negation_op[op_idx] + " U.val) S";
+            "WHERE U.val " + negation_op[op_idx] + " R.value OR username IS NULL";
         select_invalid_rules.push_back(select_invalid_rule);
         if (op_idx == 0) {
           select_from_diff_types = select_invalid_rule;
@@ -175,15 +181,15 @@ bool AccessControl::allow(const std::string& username, const Obj& obj, const Per
 
     sql_cmd = "SELECT COUNT(*) FROM "\
     		  "(SELECT ruleid FROM ruleidtb "\
-    		  "INTERSECT "\
-    		  "SELECT DISTINCT(*) FROM ("
-              + sql_cmd + ") newtb"\
-              ") tmptb";
+    		  "EXCEPT "\
+    		  "SELECT DISTINCT ruleid FROM ("
+          + sql_cmd + ") newtb"\
+          ") tmptb";
     
     //std::string select_invalid_rule = "SELECT ruleid FROM"
     //                                  "(SELECT * FROM ruleinttb)"    
     
-
+    std::cout << "DEBUG: " << sql_cmd << std::endl;
     if (db_ptr_->hasValidRule(sql_cmd)) {
       return true;
     } 

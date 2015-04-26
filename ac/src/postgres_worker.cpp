@@ -60,5 +60,11 @@ bool PostgresWorker::hasValidRule(std::string sqlcmd){
 
   int ruleNum = ret[0][0].as<int>();
   return (ruleNum > 0);
-} 
+}
+
+int PostgresWorker::GetRuleId(const std::string& sqlcmd) const {
+  pqxx::nontransaction nt(*c_ptr_);
+  pqxx::result ret(nt.exec(sqlcmd));
+  return ret[0][0].as<int>();
+}
 } // namespace db

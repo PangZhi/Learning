@@ -17,7 +17,7 @@ class DBWorker {
   virtual int execute(std::string sqlcmd) = 0;
   virtual std::vector<std::vector<util::AttrVal> > select(std::string sqlcmd) = 0;
   virtual bool hasValidRule(std::string sqlcmd) = 0;
-
+  virtual int GetRuleId(const std::string& sqlcmd) const = 0;
 }; // DBWorker
 } // namespace db
 

@@ -243,7 +243,14 @@ query: TIDENTIFIER permissionval obj
         } else {
           std::cout << "LOG: The operation is not allowed\n";
         }
-      } 
+      }
+      | TIDENTIFIER permissionval obj TWHEN logic {
+          if (ac_ptr->allow($1, *($3), $2)) {
+
+        } else {
+
+          } 
+        } 
       ;
 
 //logicexp : logic
