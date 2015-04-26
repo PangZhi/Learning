@@ -74,6 +74,7 @@
 
 main :  useradmin main
     | ruleadmin main
+    | query main
     |
     ;
 
@@ -235,12 +236,16 @@ logic : userval logicop objval
         }
       ;
 
-//query: TIDENTIFIER permissionval obj "?" 
-//      {
-//        
-//      } 
-//     ;
-      
+query: TIDENTIFIER permissionval obj  
+      {
+        if (ac_ptr->allow($1, *($3), $2 )) {
+          std::cout << "LOG: The operation is allowd\n";
+        } else {
+          std::cout << "LOG: The operation is not allowed\n";
+        }
+      } 
+      ;
+
 //logicexp : logic
 //        | TLBRACKET logic TRBRACKET
 //        | logicexp TAND logicexp

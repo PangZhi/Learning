@@ -30,6 +30,7 @@ std::vector<Obj> Obj::getParent() const {
       ret.push_back(Obj(tbName_, cName_));
       break;
   }
+  ret.push_back(*this);
   return ret;
 }
 

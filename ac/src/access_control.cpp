@@ -127,11 +127,12 @@ int AccessControl::addRule(bool is_allow, const Permission& p, const Obj& obj,
   }
 }
 
-bool AccessControl::allow(const std::string& username, const Obj& obj, const std::string& action) {
+bool AccessControl::allow(const std::string& username, const Obj& obj, const Permission& p) {
   // go from higher level objects to lower level objects, if higher level
   // permission is granted, then low level permission should be granted
   // (assumption).
 
+  std::string action = GetPermissionStr(p);
   std::vector<Obj> parents = obj.getParent();
   for (Obj& par : parents) {
     std::string objStr = par.serialize();
@@ -147,16 +148,16 @@ bool AccessControl::allow(const std::string& username, const Obj& obj, const std
     for (int type_idx = 0; type_idx < 2; ++type_idx) {
       std::string select_from_diff_types;
       std::vector<std::string> select_invalid_rules;
-      for (int op_idx = 0; op_idx < 5; ++op_idx) {
+      for (int op_idx = 0; op_idx < 2; ++op_idx) {
         std::string select_invalid_rule
           = "SELECT ruleid FROM "\
             "(SELECT * FROM " + rule_tb_names[type_idx] + " WHERE permission = '"\
-            + action + "' AND op = '" + op[op_idx] + "') R"\
-            "LEFT OUTER JOIN"\
-            "(SELECT * FROM " + user_tb_names[type_idx] + " WHERE userid = '"
-            + username + "') U"\
-            "ON R.attr = U.attrname"\
-            "AND R.value " + negation_op[op_idx] + " U.value) S";
+            + action + "' AND op = '" + op[op_idx] + "') R "\
+            "LEFT OUTER JOIN 	"\
+            "(SELECT * FROM " + user_tb_names[type_idx] + " WHERE username = '"
+            + username + "') U "\
+            "ON R.attr = U.attrname "\
+            "AND R.value " + negation_op[op_idx] + " U.val) S";
         select_invalid_rules.push_back(select_invalid_rule);
         if (op_idx == 0) {
           select_from_diff_types = select_invalid_rule;
@@ -172,8 +173,12 @@ bool AccessControl::allow(const std::string& username, const Obj& obj, const std
       }
     }
 
-    sql_cmd = "SELECT COUNT(*) FROM (SELECT * FROM ruleidtb INTERSECT SELECT DISTINCT(*) FROM (" 
-             + sql_cmd + ") newtb) tmptb";
+    sql_cmd = "SELECT COUNT(*) FROM "\
+    		  "(SELECT ruleid FROM ruleidtb "\
+    		  "INTERSECT "\
+    		  "SELECT DISTINCT(*) FROM ("
+              + sql_cmd + ") newtb"\
+              ") tmptb";
     
     //std::string select_invalid_rule = "SELECT ruleid FROM"
     //                                  "(SELECT * FROM ruleinttb)"    

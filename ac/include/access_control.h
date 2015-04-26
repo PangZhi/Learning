@@ -33,7 +33,7 @@ class AccessControl {
               const std::vector<std::vector<ComparisonPredicate> >& disjunctions);
 
   bool allow(const std::string& username, const Obj& object,
-             const std::string& action);
+             const Permission& p);
  
  private:
   db::DBWorker* db_ptr_;
