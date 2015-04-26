@@ -90,6 +90,7 @@ add_executable(
   ${AC_SRC_DIR}/predicate_tree.cpp
   ${AC_SRC_DIR}/attrval_msg.pb.cc
   ${AC_SRC_DIR}/permission.cpp
+  ${AC_SRC_DIR}/comparison.cpp
 )
 
 target_link_libraries(

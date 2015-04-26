@@ -207,6 +207,30 @@ src/attrval_msg.pb.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/attrval_msg.pb.cc.s
 .PHONY : src/attrval_msg.pb.cc.s
 
+src/comparison.o: src/comparison.cpp.o
+.PHONY : src/comparison.o
+
+# target to build an object file
+src/comparison.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/comparison.cpp.o
+.PHONY : src/comparison.cpp.o
+
+src/comparison.i: src/comparison.cpp.i
+.PHONY : src/comparison.i
+
+# target to preprocess a source file
+src/comparison.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/comparison.cpp.i
+.PHONY : src/comparison.cpp.i
+
+src/comparison.s: src/comparison.cpp.s
+.PHONY : src/comparison.s
+
+# target to generate assembly for a file
+src/comparison.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/comparison.cpp.s
+.PHONY : src/comparison.cpp.s
+
 src/comparison_predicate.o: src/comparison_predicate.cpp.o
 .PHONY : src/comparison_predicate.o
 
@@ -372,6 +396,9 @@ help:
 	@echo "... src/attrval_msg.pb.o"
 	@echo "... src/attrval_msg.pb.i"
 	@echo "... src/attrval_msg.pb.s"
+	@echo "... src/comparison.o"
+	@echo "... src/comparison.i"
+	@echo "... src/comparison.s"
 	@echo "... src/comparison_predicate.o"
 	@echo "... src/comparison_predicate.i"
 	@echo "... src/comparison_predicate.s"

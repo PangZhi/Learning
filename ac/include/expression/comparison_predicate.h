@@ -57,7 +57,7 @@ class ComparisonPredicate : public Predicate {
     return col_attr_;
   } 
 
-  inline std::string comparion_type() const {
+  inline ComparisonType comparison_type() const {
     return comparison_type_;
   }
 

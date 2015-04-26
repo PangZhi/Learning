@@ -2,10 +2,10 @@
 
 namespace ac {
 
-ComparisonPredicate(const Comparison& comp,
-                    const std::string& attr_str,
-                    const util::AttrVal& val,
-                    const ComparisonType& comp_type) 
+ComparisonPredicate::ComparisonPredicate(const Comparison& comp,
+                                         const std::string& attr_str,
+                                         const util::AttrVal& val,
+                                         const ComparisonType& comp_type) 
     : comparison_(comp),
       val_(val),
       comparison_type_(comp_type) {
@@ -18,9 +18,9 @@ ComparisonPredicate(const Comparison& comp,
   }
 }
 
-ComparisonPredicate(const Comparison& comp,
-                    const std::string& user_attr,
-                    const std::string& col_attr)
+ComparisonPredicate::ComparisonPredicate(const Comparison& comp,
+                                         const std::string& user_attr,
+                                         const std::string& col_attr)
     : comparison_(comp),
       comparison_type_(kUser2Col),
       user_attr_(user_attr),
@@ -48,8 +48,18 @@ Predicate* ComparisonPredicate::clone() const {
   }
 }
 
-bool operator== (const ComparisonPredicate& p) const {
+bool ComparisonPredicate::operator== (const ComparisonPredicate& p) const {
   return (this->Serialize() == p.Serialize());
+}
+
+std::string ComparisonPredicate::Serialize() const {
+  std::string ret;
+  ret.append(std::to_string(comparison_));
+  ret.append("u:").append(user_attr_);
+  ret.append("c:").append(col_attr_);
+  ret.append(val_.serialize());
+  ret.append(std::to_string(comparison_type_));
+  return ret;
 }
 
 bool ComparisonPredicate::eval() {

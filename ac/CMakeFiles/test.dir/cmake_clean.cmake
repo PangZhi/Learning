@@ -9,6 +9,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/test.dir/src/predicate_tree.cpp.o"
   "CMakeFiles/test.dir/src/attrval_msg.pb.cc.o"
   "CMakeFiles/test.dir/src/permission.cpp.o"
+  "CMakeFiles/test.dir/src/comparison.cpp.o"
   "bin/test.pdb"
   "bin/test"
 )

@@ -15,45 +15,45 @@ namespace util {
 class AttrVal {  
  public:
   enum Type {
-    TypeInvalid = 0,
-    TypeBoolean,
-    TypeInt,
-    TypeDouble,
-    TypeString
+    kBoolean= 0,
+    kInt,
+    kDouble,
+    kString,
+    kInvalid
   };
 
-  AttrVal() : type_(TypeInvalid) {}
-  AttrVal(bool boolVal) : type_(TypeBoolean) {value_.asBool = boolVal;}
-  AttrVal(int intVal) : type_(TypeInt) {value_.asInt = intVal;}
-  AttrVal(double dblVal) : type_(TypeDouble) {value_.asDouble = dblVal;}
-  AttrVal(const string& strVal) : type_(TypeString) {value_.asString = new string(strVal);}
-  AttrVal(const char* c) : type_(TypeString) {value_.asString = new string(c);}
+  AttrVal() : type_(kInvalid) {}
+  AttrVal(bool boolVal) : type_(kBoolean) {value_.asBool = boolVal;}
+  AttrVal(int intVal) : type_(kInt) {value_.asInt = intVal;}
+  AttrVal(double dblVal) : type_(kDouble) {value_.asDouble = dblVal;}
+  AttrVal(const string& strVal) : type_(kString) {value_.asString = new string(strVal);}
+  AttrVal(const char* c) : type_(kString) {value_.asString = new string(c);}
 
   Type type() const {
     return type_;
   }
 
   bool operator==(const AttrVal& av) const {
-    return ((this->type() == TypeInvalid && av.type() == TypeInvalid) 
+    return ((this->type() == kInvalid && av.type() == kInvalid) 
             || (memcmp((void*)this, (void*)(&av), sizeof(AttrVal)) == 0));   
   }
   
-  std::string serialize() {
+  std::string serialize() const {
     AttrValMsg msg;
     
     msg.set_type(type_);
 
     switch (type_) {
-      case TypeBoolean:
+      case kBoolean:
         msg.set_value(&(value_.asBool), sizeof(bool));
         break;
-      case TypeInt:
+      case kInt:
         msg.set_value(&(value_.asInt), sizeof(int));
         break;
-      case TypeDouble:
+      case kDouble:
         msg.set_value(&(value_.asDouble), sizeof(double));
         break;
-      case TypeString:
+      case kString:
         msg.set_value((void*)(value_.asString), value_.asString->size());
         break;
       default:
@@ -65,6 +65,23 @@ class AttrVal {
     msg.SerializeToString(&ret);
     return ret;
   }
+
+  bool GetBool() const {
+    return value_.asBool;
+  }
+
+  int GetInt() const {
+    return value_.asInt;
+  }
+  
+  double GetDouble() const {
+    return value_.asDouble;
+  }
+
+  std::string GetString() const {
+    return *(value_.asString);
+  }
+
 
  public:
   Type type_;
@@ -83,17 +100,18 @@ namespace std {
   template <>
   struct hash<util::AttrVal> {
 
-    size_t operator() (const util::AttrVal& attrval) const {mZ      /*
+    size_t operator() (const util::AttrVal& attrval) const {
+    /*
       switch (attrval.type()) {
-        case util::AttrVal::TypeBoolean:
+        case util::AttrVal::kBoolean:
           return std::hash<bool>()(attrval.value_.asBool);
-        case util::AttrVal::TypeInt:
+        case util::AttrVal::kInt:
         return std::hash<int>()(attrval.value_.asInt);
-        case util::AttrVal::TypeDouble:
+        case util::AttrVal::kDouble:
         return std::hash<double>()(attrval.value_.asDouble);
-        case util::AttrVal::TypeString:
+        case util::AttrVal::kString:
         return std::hash<string>()(*(attrval.value_.asString));
-        case util::AttrVal::TypeInvalid:
+        case util::AttrVal::kInvalid:
       }
       */
       return std::hash<string>()(attrval.serialize());

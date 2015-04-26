@@ -174,34 +174,50 @@ logicop : TEQUAL {$$ = ac::kEqual;}
 
 userval : TUSER TDOT TIDENTIFIER 
         {
-          int len = strlen($3) + 6;
-          $$ = new char[len];
-          strcpy($$, "user.");
-          strcat($$ + 5, $3);
-          $$[len-1]='\0';
+          // int len = strlen($3) + 6;
+          // $$ = new char[len];
+          // strcpy($$, "user.");
+          // strcat($$ + 5, $3);
+          // $$[len-1]='\0';
+          $$ = $3;
         }
 
 objval : TOBJ TDOT TIDENTIFIER 
        {
+          /*
           int len = strlen($3) + 5;
           $$ = new char[len];
           strcpy($$, "user.");
           strcat($$ + 4, $3);
           $$[len-1]='\0';
+          */
+          $$ = $3;
        } 
 
-logic : userval logicop objval {} 
-      | objval logicop userval {}
+logic : userval logicop objval 
+        {
+          $$ = new ac::ComparisonPredicate($2, std::string($1),
+          std::string($3));
+        } 
+      | objval logicop userval 
+        {
+          $$ = new ac::ComparisonPredicate($2, std::string($3),
+          std::string($1));
+        }
       | userval logicop attrval
         {
           std::cout << "find a logic\n";
-        $$ = new ac::ComparisonPredicate($2, std::string($1), *($3));}
+        $$ = new ac::ComparisonPredicate($2, std::string($1), *($3),
+        ac::ComparisonPredicate::kUser2Val);}
       | attrval logicop userval
-        {$$ = new ac::ComparisonPredicate($2, std::string($3), *($1));}
+        {$$ = new ac::ComparisonPredicate($2, std::string($3), *($1),
+        ac::ComparisonPredicate::kUser2Val);}
       | objval logicop attrval
-        {$$ = new ac::ComparisonPredicate($2, std::string($1), *($3));} 
+        {$$ = new ac::ComparisonPredicate($2, std::string($1), *($3),
+        ac::ComparisonPredicate::kCol2Val);} 
       | attrval logicop objval
-        {$$ = new ac::ComparisonPredicate($2, std::string($3), *($1));} 
+        {$$ = new ac::ComparisonPredicate($2, std::string($3), *($1),
+        ac::ComparisonPredicate::kCol2Val);} 
       | TLBRACKET logic TRBRACKET
         {$$ = $2;}
       | logic TAND logic 
