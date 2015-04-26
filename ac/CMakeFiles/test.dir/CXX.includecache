@@ -88,14 +88,6 @@ unordered_map
 attrval.h
 ./include/expression/attrval.h
 
-./include/expression/predicate_tree.h
-memory
--
-list
--
-expression/predicate.h
-./include/expression/expression/predicate.h
-
 ./include/obj.h
 string
 -
@@ -113,20 +105,6 @@ db/postgres_worker.h
 /home/echo/GitHub/Learning/ac/src/db/postgres_worker.h
 iostream
 -
-
-/home/echo/GitHub/Learning/ac/src/comparison.cpp
-expression/comparison.h
-/home/echo/GitHub/Learning/ac/src/expression/comparison.h
-
-/home/echo/GitHub/Learning/ac/src/comparison_predicate.cpp
-expression/comparison_predicate.h
-/home/echo/GitHub/Learning/ac/src/expression/comparison_predicate.h
-
-/home/echo/GitHub/Learning/ac/src/predicate_tree.cpp
-expression/predicate_tree.h
-/home/echo/GitHub/Learning/ac/src/expression/predicate_tree.h
-expression/comparison_predicate.h
-/home/echo/GitHub/Learning/ac/src/expression/comparison_predicate.h
 
 /home/echo/local/include/google/protobuf/descriptor.h
 set

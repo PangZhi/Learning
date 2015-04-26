@@ -32,6 +32,7 @@ int PostgresWorker::execute(std::string sqlcmd) {
     std::cerr << e.what() << "\n";
     return -1;
   }
+  return 0;
 }
 
 std::vector<std::vector<util::AttrVal>> PostgresWorker::select(std::string sqlcmd) {

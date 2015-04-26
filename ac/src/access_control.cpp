@@ -23,18 +23,18 @@ int AccessControl::addUser(const std::string& username,
   std::string sqlcmd;
   std::string tbnames[] {"UserAttrBoolTb", "UserAttrIntTb", "UserAttrDblTb", "UserAttrStrTb"};
   for (auto item : attrs) {
-        sqlcmd = "INSERT INTO " + tbnames[item.second.type_-1] + " values('"
+        sqlcmd = "INSERT INTO " + tbnames[item.second.type()] + " VALUES ('"
             + username + "', '" + item.first + "', ";
-        switch (item.second.type_) {
-          case util::AttrVal::Type::kInvalid:
+        switch (item.second.type()) {
+          case util::AttrVal::kInvalid:
             break;
-          case util::AttrVal::Type::kBoolean:
+          case util::AttrVal::kBoolean:
             break;
-          case util::AttrVal::Type::kInt:
+          case util::AttrVal::kInt:
               std::cout << "int value is : " << std::to_string(item.second.value_.asInt);
               sqlcmd += std::to_string(item.second.value_.asInt); 
             break;
-          case util::AttrVal::Type::kDouble:
+          case util::AttrVal::kDouble:
               std::cout << "double value is : " << std::to_string(item.second.value_.asDouble);
               sqlcmd += std::to_string(item.second.value_.asDouble);
             break;
@@ -83,7 +83,7 @@ int AccessControl::addRule(bool is_allow, const Permission& p, const Obj& obj,
                                   ? pred.user_attr()
                                   : pred.col_attr();
           util::AttrVal attrval = pred.val();
-          sql_cmd = "INSERT INTO " + tb_names[pred.val().type()] + "VALUES("
+          sql_cmd = "INSERT INTO " + tb_names[pred.val().type()] + " VALUES("
                     + std::to_string(ruleid) + ", '" + permission_str + "', '"
                     + obj_str + "', '" + attr_str + "', '" 
                     + GetComparisonStr(pred.comparison()) + "', "; 
@@ -101,8 +101,9 @@ int AccessControl::addRule(bool is_allow, const Permission& p, const Obj& obj,
             sql_cmd += "'" + attrval.GetString() + "'";
             break;
           }
-          sql_cmd += ", " + std::to_string(value_dependent) 
-                   + ", " + std::to_string(pred.comparison_type()); 
+          sql_cmd = sql_cmd + ", " + (value_dependent ? "true" : "false") 
+                   + ", " + std::to_string(pred.comparison_type())
+                   + ");"; 
           break;
         }
         case ac::ComparisonPredicate::kUser2Col: 
@@ -112,13 +113,14 @@ int AccessControl::addRule(bool is_allow, const Permission& p, const Obj& obj,
                   + obj_str + "', '" + pred.user_attr()  + "', '"
                   + GetComparisonStr(pred.comparison()) + "', '"
                   + pred.col_attr() + std::to_string(true) 
-                  + "', '" + std::to_string(pred.comparison_type());
+                  + "', '" + std::to_string(pred.comparison_type())
+                  + ");";
           break;
         }
 
       }
       
-      if (!db_ptr_->execute(sql_cmd)) {
+      if (db_ptr_->execute(sql_cmd)) {
         std::cout << "ERROR: Insert disjunctions error.\n";
       }
     }
@@ -175,7 +177,7 @@ bool AccessControl::allow(const std::string& username, const Obj& obj, const std
     
     //std::string select_invalid_rule = "SELECT ruleid FROM"
     //                                  "(SELECT * FROM ruleinttb)"    
-
+    
 
     if (db_ptr_->hasValidRule(sql_cmd)) {
       return true;

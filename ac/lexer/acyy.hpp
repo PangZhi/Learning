@@ -75,7 +75,8 @@ extern int yydebug;
     TREAD = 285,
     TWRITE = 286,
     TALLOW = 287,
-    TDENY = 288
+    TDENY = 288,
+    TENTER = 289
   };
 #endif
 
@@ -84,7 +85,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 60 "acyy.y" /* yacc.c:1909  */
+#line 61 "acyy.y" /* yacc.c:1909  */
   
   int iv;  
   double dv;
@@ -96,7 +97,7 @@ union YYSTYPE
   ac::Predicate *predv;
   ac::Comparison compv;
 
-#line 100 "acyy.hpp" /* yacc.c:1909  */
+#line 101 "acyy.hpp" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

@@ -45,6 +45,7 @@
 %token TCOMMA TLBRACKET TRBRACKET TEQUAL TGREATER TGE TLESS TLE TDOT
 %token TREAD TWRITE
 %token TALLOW TDENY
+%token TENTER
 
 %type <av> attrval
 %type <sv> userval

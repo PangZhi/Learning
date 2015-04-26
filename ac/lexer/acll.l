@@ -1,5 +1,7 @@
 %{  
   #include <iostream>  
+  #include <cstring>
+
   #include "attrval.h"
   #include "db/db_worker.h"
   #include "access_control.h"
@@ -15,9 +17,11 @@
 
 %}  
 %%
-[-+]?[0-9]+        { yylval.iv = strtol(yytext,0,10); cout << "int" ;return TINT; }  
-[-+]?(\d+(\.\d*)?|\.\d+)[dD]? {yylval.dv=strtol(yytext, 0, 10); return TDBL;}
-[ \t\r\n]         ; // ignore them
+[-+]?[0-9]+        { yylval.iv = strtol(yytext,0,10); cout << "int\n" ;return TINT; }  
+[-+]?([0-9]+(\.[0-9]*)?|\.[0-9]+) {cout << "double\n";char *end; yylval.dv=strtod(yytext, &end); return TDBL;}
+
+[ \t]         ; // ignore them
+[\r\n] {return TENTER;}
 "add" {cout << "add"; return TADD;}
 "rm" {return TRM;}
 "test" {return TSET;}
@@ -46,10 +50,17 @@
 "allow" {cout << "allow\n"; return TALLOW;}
 "deny" {return TDENY;}
 [a-zA-Z]+     { cout << "identifier\n"; yylval.sv = strdup(yytext); return TIDENTIFIER; }  
-\"[a-zA-Z0-9]+\" {cout << "str\n"; yylval.sv = strdup(yytext); return TSTR;}
+\"[a-zA-Z0-9]+\" {cout << "str\n"; //yylval.sv = strdup(yytext); 
+                  int len = strlen(yytext) - 2;
+                  yylval.sv = new char[len];
+                  memcpy(yylval.sv, yytext + 1, len);
+                  yylval.sv[len] = '\0';
+                  return TSTR;}
 
 %%
 int yywrap() {
+//[-+]?[0-9]+        { yylval.iv = strtol(yytext,0,10); cout << "int\n" ;return TINT; }  
+//[-+]?(\d+(\.\d*)?|\.\d+)[dD]? {cout << "double\n";char *end; yylval.dv=strtod(yytext, &end); return TDBL;}
   return 1;
 }
 

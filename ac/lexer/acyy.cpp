@@ -159,7 +159,8 @@ extern int yydebug;
     TREAD = 285,
     TWRITE = 286,
     TALLOW = 287,
-    TDENY = 288
+    TDENY = 288,
+    TENTER = 289
   };
 #endif
 
@@ -168,7 +169,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 60 "acyy.y" /* yacc.c:355  */
+#line 61 "acyy.y" /* yacc.c:355  */
   
   int iv;  
   double dv;
@@ -180,7 +181,7 @@ union YYSTYPE
   ac::Predicate *predv;
   ac::Comparison compv;
 
-#line 184 "acyy.cpp" /* yacc.c:355  */
+#line 185 "acyy.cpp" /* yacc.c:355  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
@@ -195,7 +196,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 199 "acyy.cpp" /* yacc.c:358  */
+#line 200 "acyy.cpp" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -440,7 +441,7 @@ union yyalloc
 #define YYLAST   85
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  34
+#define YYNTOKENS  35
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  15
 /* YYNRULES -- Number of rules.  */
@@ -451,7 +452,7 @@ union yyalloc
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   288
+#define YYMAXUTOK   289
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -488,18 +489,18 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26,    27,    28,    29,    30,    31,    32,    33
+      25,    26,    27,    28,    29,    30,    31,    32,    33,    34
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    74,    74,    75,    76,    79,    91,   109,   110,   111,
-     114,   115,   120,   121,   124,   138,   139,   140,   141,   144,
-     145,   158,   160,   162,   164,   168,   169,   170,   171,   172,
-     175,   185,   197,   202,   207,   212,   215,   218,   221,   223,
-     229
+       0,    75,    75,    76,    77,    80,    92,   110,   111,   112,
+     115,   116,   121,   122,   125,   139,   140,   141,   142,   145,
+     146,   159,   161,   163,   165,   169,   170,   171,   172,   173,
+     176,   186,   198,   203,   208,   213,   216,   219,   222,   224,
+     230
 };
 #endif
 
@@ -512,9 +513,10 @@ static const char *const yytname[] =
   "TADD", "TRM", "TSET", "TUSER", "TOBJ", "TWITH", "TWHEN", "TON",
   "TTABLE", "TCOL", "TROW", "TCELL", "TAND", "TOR", "TCOMMA", "TLBRACKET",
   "TRBRACKET", "TEQUAL", "TGREATER", "TGE", "TLESS", "TLE", "TDOT",
-  "TREAD", "TWRITE", "TALLOW", "TDENY", "$accept", "main", "useradmin",
-  "ruleadmin", "userop", "ruleop", "attrlist", "attr", "attrval",
-  "permissionval", "obj", "logicop", "userval", "objval", "logic", YY_NULLPTR
+  "TREAD", "TWRITE", "TALLOW", "TDENY", "TENTER", "$accept", "main",
+  "useradmin", "ruleadmin", "userop", "ruleop", "attrlist", "attr",
+  "attrval", "permissionval", "obj", "logicop", "userval", "objval",
+  "logic", YY_NULLPTR
 };
 #endif
 
@@ -526,7 +528,7 @@ static const yytype_uint16 yytoknum[] =
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
-     285,   286,   287,   288
+     285,   286,   287,   288,   289
 };
 # endif
 
@@ -618,13 +620,13 @@ static const yytype_uint8 yycheck[] =
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     7,     8,     9,    32,    33,    35,    36,    37,    38,
-      39,     0,    35,    35,    10,    30,    31,    43,    12,    14,
-       5,    40,    41,    15,    44,    24,    21,    22,    13,     3,
-       4,     5,     6,    42,    41,     6,    10,    11,    22,    42,
-      46,    47,    48,    23,    29,    29,    48,    24,    25,    26,
-      27,    28,    45,    45,    45,    19,    20,    29,     5,     5,
-      23,    46,    47,    42,    47,    42,    46,    48,    48,    16,
+       0,     7,     8,     9,    32,    33,    36,    37,    38,    39,
+      40,     0,    36,    36,    10,    30,    31,    44,    12,    14,
+       5,    41,    42,    15,    45,    24,    21,    22,    13,     3,
+       4,     5,     6,    43,    42,     6,    10,    11,    22,    43,
+      47,    48,    49,    23,    29,    29,    49,    24,    25,    26,
+      27,    28,    46,    46,    46,    19,    20,    29,     5,     5,
+      23,    47,    48,    43,    48,    43,    47,    49,    49,    16,
       17,    18,    22,    22,    22,     5,     3,     3,    23,    23,
       29,     5,    23
 };
@@ -632,11 +634,11 @@ static const yytype_uint8 yystos[] =
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    34,    35,    35,    35,    36,    37,    38,    38,    38,
-      39,    39,    40,    40,    41,    42,    42,    42,    42,    43,
-      43,    44,    44,    44,    44,    45,    45,    45,    45,    45,
-      46,    47,    48,    48,    48,    48,    48,    48,    48,    48,
-      48
+       0,    35,    36,    36,    36,    37,    38,    39,    39,    39,
+      40,    40,    41,    41,    42,    43,    43,    43,    43,    44,
+      44,    45,    45,    45,    45,    46,    46,    46,    46,    46,
+      47,    48,    49,    49,    49,    49,    49,    49,    49,    49,
+      49
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -1323,7 +1325,7 @@ yyreduce:
   switch (yyn)
     {
         case 5:
-#line 80 "acyy.y" /* yacc.c:1646  */
+#line 81 "acyy.y" /* yacc.c:1646  */
     {
   cout << "success"<< "\n"; 
   cout << attrList.size();
@@ -1334,11 +1336,11 @@ yyreduce:
   }
   attrList.clear();  
 }
-#line 1338 "acyy.cpp" /* yacc.c:1646  */
+#line 1340 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 92 "acyy.y" /* yacc.c:1646  */
+#line 93 "acyy.y" /* yacc.c:1646  */
     {
             // Convert the logic into disjunction form, so that it can be
             // stored in a relational table.
@@ -1355,41 +1357,41 @@ yyreduce:
               );
 
           }
-#line 1359 "acyy.cpp" /* yacc.c:1646  */
+#line 1361 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 109 "acyy.y" /* yacc.c:1646  */
+#line 110 "acyy.y" /* yacc.c:1646  */
     {(yyval.sv)="add";}
-#line 1365 "acyy.cpp" /* yacc.c:1646  */
+#line 1367 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 110 "acyy.y" /* yacc.c:1646  */
+#line 111 "acyy.y" /* yacc.c:1646  */
     {(yyval.sv)="rm";}
-#line 1371 "acyy.cpp" /* yacc.c:1646  */
+#line 1373 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 111 "acyy.y" /* yacc.c:1646  */
+#line 112 "acyy.y" /* yacc.c:1646  */
     {(yyval.sv)="set";}
-#line 1377 "acyy.cpp" /* yacc.c:1646  */
+#line 1379 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 114 "acyy.y" /* yacc.c:1646  */
+#line 115 "acyy.y" /* yacc.c:1646  */
     {(yyval.sv) = "allow";}
-#line 1383 "acyy.cpp" /* yacc.c:1646  */
+#line 1385 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 115 "acyy.y" /* yacc.c:1646  */
+#line 116 "acyy.y" /* yacc.c:1646  */
     {(yyval.sv) = "deny";}
-#line 1389 "acyy.cpp" /* yacc.c:1646  */
+#line 1391 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 125 "acyy.y" /* yacc.c:1646  */
+#line 126 "acyy.y" /* yacc.c:1646  */
     {
   if (strcmp((yyvsp[-2].sv), "username") == 0) {
     std::cout << "LOG : Find username" << std::endl;
@@ -1401,101 +1403,101 @@ yyreduce:
     attrList.push_back(attr);
   }
 }
-#line 1405 "acyy.cpp" /* yacc.c:1646  */
+#line 1407 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 138 "acyy.y" /* yacc.c:1646  */
+#line 139 "acyy.y" /* yacc.c:1646  */
     {(yyval.av) = new util::AttrVal((yyvsp[0].iv));}
-#line 1411 "acyy.cpp" /* yacc.c:1646  */
+#line 1413 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 139 "acyy.y" /* yacc.c:1646  */
+#line 140 "acyy.y" /* yacc.c:1646  */
     {(yyval.av) = new util::AttrVal((yyvsp[0].dv));}
-#line 1417 "acyy.cpp" /* yacc.c:1646  */
+#line 1419 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 140 "acyy.y" /* yacc.c:1646  */
+#line 141 "acyy.y" /* yacc.c:1646  */
     {(yyval.av) = new util::AttrVal((yyvsp[0].sv));}
-#line 1423 "acyy.cpp" /* yacc.c:1646  */
+#line 1425 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 141 "acyy.y" /* yacc.c:1646  */
+#line 142 "acyy.y" /* yacc.c:1646  */
     {(yyval.av) = new util::AttrVal((yyvsp[0].sv));}
-#line 1429 "acyy.cpp" /* yacc.c:1646  */
+#line 1431 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 144 "acyy.y" /* yacc.c:1646  */
+#line 145 "acyy.y" /* yacc.c:1646  */
     {(yyval.pv) = ac::PRead;}
-#line 1435 "acyy.cpp" /* yacc.c:1646  */
+#line 1437 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 145 "acyy.y" /* yacc.c:1646  */
+#line 146 "acyy.y" /* yacc.c:1646  */
     {(yyval.pv) = ac::PWrite;}
-#line 1441 "acyy.cpp" /* yacc.c:1646  */
+#line 1443 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 159 "acyy.y" /* yacc.c:1646  */
+#line 160 "acyy.y" /* yacc.c:1646  */
     {(yyval.objv) = new ac::Obj(std::string((yyvsp[-1].sv)));}
-#line 1447 "acyy.cpp" /* yacc.c:1646  */
+#line 1449 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 161 "acyy.y" /* yacc.c:1646  */
+#line 162 "acyy.y" /* yacc.c:1646  */
     {(yyval.objv) = new ac::Obj(std::string((yyvsp[-6].sv)),(yyvsp[-1].iv));}
-#line 1453 "acyy.cpp" /* yacc.c:1646  */
+#line 1455 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 163 "acyy.y" /* yacc.c:1646  */
+#line 164 "acyy.y" /* yacc.c:1646  */
     {(yyval.objv) = new ac::Obj(std::string((yyvsp[-6].sv)), std::string((yyvsp[-1].sv)));}
-#line 1459 "acyy.cpp" /* yacc.c:1646  */
+#line 1461 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 165 "acyy.y" /* yacc.c:1646  */
+#line 166 "acyy.y" /* yacc.c:1646  */
     {(yyval.objv) = new ac::Obj(std::string((yyvsp[-8].sv)), (yyvsp[-3].iv), std::string((yyvsp[-1].sv)));}
-#line 1465 "acyy.cpp" /* yacc.c:1646  */
+#line 1467 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 168 "acyy.y" /* yacc.c:1646  */
+#line 169 "acyy.y" /* yacc.c:1646  */
     {(yyval.compv) = ac::kEqual;}
-#line 1471 "acyy.cpp" /* yacc.c:1646  */
+#line 1473 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 169 "acyy.y" /* yacc.c:1646  */
+#line 170 "acyy.y" /* yacc.c:1646  */
     {(yyval.compv) = ac::kGreater;}
-#line 1477 "acyy.cpp" /* yacc.c:1646  */
+#line 1479 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 170 "acyy.y" /* yacc.c:1646  */
+#line 171 "acyy.y" /* yacc.c:1646  */
     {(yyval.compv) = ac::kGE;}
-#line 1483 "acyy.cpp" /* yacc.c:1646  */
+#line 1485 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 171 "acyy.y" /* yacc.c:1646  */
+#line 172 "acyy.y" /* yacc.c:1646  */
     {(yyval.compv) = ac::kLess;}
-#line 1489 "acyy.cpp" /* yacc.c:1646  */
+#line 1491 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 172 "acyy.y" /* yacc.c:1646  */
+#line 173 "acyy.y" /* yacc.c:1646  */
     {(yyval.compv) = ac::kLE;}
-#line 1495 "acyy.cpp" /* yacc.c:1646  */
+#line 1497 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 176 "acyy.y" /* yacc.c:1646  */
+#line 177 "acyy.y" /* yacc.c:1646  */
     {
           // int len = strlen($3) + 6;
           // $$ = new char[len];
@@ -1504,11 +1506,11 @@ yyreduce:
           // $$[len-1]='\0';
           (yyval.sv) = (yyvsp[0].sv);
         }
-#line 1508 "acyy.cpp" /* yacc.c:1646  */
+#line 1510 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 186 "acyy.y" /* yacc.c:1646  */
+#line 187 "acyy.y" /* yacc.c:1646  */
     {
           /*
           int len = strlen($3) + 5;
@@ -1519,85 +1521,85 @@ yyreduce:
           */
           (yyval.sv) = (yyvsp[0].sv);
        }
-#line 1523 "acyy.cpp" /* yacc.c:1646  */
+#line 1525 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 198 "acyy.y" /* yacc.c:1646  */
+#line 199 "acyy.y" /* yacc.c:1646  */
     {
           (yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[-2].sv)),
           std::string((yyvsp[0].sv)));
         }
-#line 1532 "acyy.cpp" /* yacc.c:1646  */
+#line 1534 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 203 "acyy.y" /* yacc.c:1646  */
+#line 204 "acyy.y" /* yacc.c:1646  */
     {
           (yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[0].sv)),
           std::string((yyvsp[-2].sv)));
         }
-#line 1541 "acyy.cpp" /* yacc.c:1646  */
+#line 1543 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 208 "acyy.y" /* yacc.c:1646  */
+#line 209 "acyy.y" /* yacc.c:1646  */
     {
           std::cout << "find a logic\n";
         (yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[-2].sv)), *((yyvsp[0].av)),
         ac::ComparisonPredicate::kUser2Val);}
-#line 1550 "acyy.cpp" /* yacc.c:1646  */
+#line 1552 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 213 "acyy.y" /* yacc.c:1646  */
+#line 214 "acyy.y" /* yacc.c:1646  */
     {(yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[0].sv)), *((yyvsp[-2].av)),
         ac::ComparisonPredicate::kUser2Val);}
-#line 1557 "acyy.cpp" /* yacc.c:1646  */
+#line 1559 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 216 "acyy.y" /* yacc.c:1646  */
+#line 217 "acyy.y" /* yacc.c:1646  */
     {(yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[-2].sv)), *((yyvsp[0].av)),
         ac::ComparisonPredicate::kCol2Val);}
-#line 1564 "acyy.cpp" /* yacc.c:1646  */
+#line 1566 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 219 "acyy.y" /* yacc.c:1646  */
+#line 220 "acyy.y" /* yacc.c:1646  */
     {(yyval.predv) = new ac::ComparisonPredicate((yyvsp[-1].compv), std::string((yyvsp[0].sv)), *((yyvsp[-2].av)),
         ac::ComparisonPredicate::kCol2Val);}
-#line 1571 "acyy.cpp" /* yacc.c:1646  */
+#line 1573 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 222 "acyy.y" /* yacc.c:1646  */
+#line 223 "acyy.y" /* yacc.c:1646  */
     {(yyval.predv) = (yyvsp[-1].predv);}
-#line 1577 "acyy.cpp" /* yacc.c:1646  */
+#line 1579 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 224 "acyy.y" /* yacc.c:1646  */
+#line 225 "acyy.y" /* yacc.c:1646  */
     {
           (yyval.predv) = new ac::ConjunctionPredicate();
           dynamic_cast<ac::ConjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[-2].predv));
           dynamic_cast<ac::ConjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[0].predv));
         }
-#line 1587 "acyy.cpp" /* yacc.c:1646  */
+#line 1589 "acyy.cpp" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 230 "acyy.y" /* yacc.c:1646  */
+#line 231 "acyy.y" /* yacc.c:1646  */
     {
           (yyval.predv) = new ac::DisjunctionPredicate();
           dynamic_cast<ac::DisjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[-2].predv));
           dynamic_cast<ac::DisjunctionPredicate*>((yyval.predv))->addPredicate((yyvsp[0].predv));
         }
-#line 1597 "acyy.cpp" /* yacc.c:1646  */
+#line 1599 "acyy.cpp" /* yacc.c:1646  */
     break;
 
 
-#line 1601 "acyy.cpp" /* yacc.c:1646  */
+#line 1603 "acyy.cpp" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1825,7 +1827,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 248 "acyy.y" /* yacc.c:1906  */
+#line 249 "acyy.y" /* yacc.c:1906  */
   
   
   
