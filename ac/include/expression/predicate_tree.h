@@ -23,6 +23,13 @@ class NegationPredicate : public Predicate {
     return kNegation;
   }
 
+  serialization::Predicate GetProto() const {
+    serialization::Predicate proto;
+    proto.set_predicate_type(serialization::Predicate::NEGATION);
+    proto.MutableExtension(serialization::NegationPredicate::operand)
+      ->CopyFrom(operand_->GetProto());
+  }
+
   // Currently not useful.
   /**
   bool hasStaticResult() const override {
@@ -51,6 +58,7 @@ class PredicateWithList : public Predicate {
   virtual ~PredicateWithList() {}
   virtual void addPredicate(Predicate *operand)  = 0;
 
+  serialization::Predicate GetProto() const = 0;
   // Currently not useful.
   /**bool hasStaticResult() const override() {
     return false; 
@@ -86,6 +94,8 @@ class ConjunctionPredicate : public PredicateWithList {
   bool eval() override;
   bool eval(std::unordered_map<ComparisonPredicate, bool>&);
 
+  serialization::Predicate GetProto() const;
+
  private:
   void processStaticOperand(const Predicate &operand);
   void processDynamicOperand();
@@ -104,6 +114,8 @@ class DisjunctionPredicate : public PredicateWithList {
   void addPredicate(Predicate *operand);
   bool eval() override;
   bool eval(std::unordered_map<ComparisonPredicate, bool>&);
+
+  serialization::Predicate GetProto() const;
 
  private:
   void processStaticOperand(const Predicate& operand);

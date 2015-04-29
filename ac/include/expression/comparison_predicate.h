@@ -44,7 +44,9 @@ class ComparisonPredicate : public Predicate {
   bool eval() override;
 
   bool eval(std::unordered_map<ComparisonPredicate, bool>&) override;
-  
+
+  serialization::Predicate GetProto() const;
+
   inline Comparison comparison() const {
     return comparison_;
   }
@@ -66,6 +68,8 @@ class ComparisonPredicate : public Predicate {
   }
 
   std::string Serialize() const;
+
+  std::string GetLiteralString() const;
 
  private:
   Comparison comparison_;

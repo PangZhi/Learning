@@ -207,6 +207,30 @@ src/attrval_msg.pb.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/attrval_msg.pb.cc.s
 .PHONY : src/attrval_msg.pb.cc.s
 
+src/auth_predicate.pb.o: src/auth_predicate.pb.cc.o
+.PHONY : src/auth_predicate.pb.o
+
+# target to build an object file
+src/auth_predicate.pb.cc.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/auth_predicate.pb.cc.o
+.PHONY : src/auth_predicate.pb.cc.o
+
+src/auth_predicate.pb.i: src/auth_predicate.pb.cc.i
+.PHONY : src/auth_predicate.pb.i
+
+# target to preprocess a source file
+src/auth_predicate.pb.cc.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/auth_predicate.pb.cc.i
+.PHONY : src/auth_predicate.pb.cc.i
+
+src/auth_predicate.pb.s: src/auth_predicate.pb.cc.s
+.PHONY : src/auth_predicate.pb.s
+
+# target to generate assembly for a file
+src/auth_predicate.pb.cc.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/auth_predicate.pb.cc.s
+.PHONY : src/auth_predicate.pb.cc.s
+
 src/comparison.o: src/comparison.cpp.o
 .PHONY : src/comparison.o
 
@@ -396,6 +420,9 @@ help:
 	@echo "... src/attrval_msg.pb.o"
 	@echo "... src/attrval_msg.pb.i"
 	@echo "... src/attrval_msg.pb.s"
+	@echo "... src/auth_predicate.pb.o"
+	@echo "... src/auth_predicate.pb.i"
+	@echo "... src/auth_predicate.pb.s"
 	@echo "... src/comparison.o"
 	@echo "... src/comparison.i"
 	@echo "... src/comparison.s"

@@ -91,6 +91,7 @@ add_executable(
   ${AC_SRC_DIR}/attrval_msg.pb.cc
   ${AC_SRC_DIR}/permission.cpp
   ${AC_SRC_DIR}/comparison.cpp
+  ${AC_SRC_DIR}/auth_predicate.pb.cc
 )
 
 target_link_libraries(

@@ -16,6 +16,9 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
+namespace ac {
+namespace serialization {
+
 namespace {
 
 const ::google::protobuf::Descriptor* AttrValMsg_descriptor_ = NULL;
@@ -77,8 +80,8 @@ void protobuf_AddDesc_attrval_5fmsg_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\021attrval_msg.proto\")\n\nAttrValMsg\022\014\n\004typ"
-    "e\030\001 \002(\005\022\r\n\005value\030\002 \001(\014", 62);
+    "\n\021attrval_msg.proto\022\020ac.serialization\")\n"
+    "\nAttrValMsg\022\014\n\004type\030\001 \002(\005\022\r\n\005value\030\002 \001(\014", 80);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "attrval_msg.proto", &protobuf_RegisterTypes);
   AttrValMsg::default_instance_ = new AttrValMsg();
@@ -103,7 +106,7 @@ const int AttrValMsg::kValueFieldNumber;
 AttrValMsg::AttrValMsg()
   : ::google::protobuf::Message() {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:AttrValMsg)
+  // @@protoc_insertion_point(constructor:ac.serialization.AttrValMsg)
 }
 
 void AttrValMsg::InitAsDefaultInstance() {
@@ -113,7 +116,7 @@ AttrValMsg::AttrValMsg(const AttrValMsg& from)
   : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:AttrValMsg)
+  // @@protoc_insertion_point(copy_constructor:ac.serialization.AttrValMsg)
 }
 
 void AttrValMsg::SharedCtor() {
@@ -125,7 +128,7 @@ void AttrValMsg::SharedCtor() {
 }
 
 AttrValMsg::~AttrValMsg() {
-  // @@protoc_insertion_point(destructor:AttrValMsg)
+  // @@protoc_insertion_point(destructor:ac.serialization.AttrValMsg)
   SharedDtor();
 }
 
@@ -175,7 +178,7 @@ bool AttrValMsg::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:AttrValMsg)
+  // @@protoc_insertion_point(parse_start:ac.serialization.AttrValMsg)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -222,17 +225,17 @@ bool AttrValMsg::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:AttrValMsg)
+  // @@protoc_insertion_point(parse_success:ac.serialization.AttrValMsg)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:AttrValMsg)
+  // @@protoc_insertion_point(parse_failure:ac.serialization.AttrValMsg)
   return false;
 #undef DO_
 }
 
 void AttrValMsg::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:AttrValMsg)
+  // @@protoc_insertion_point(serialize_start:ac.serialization.AttrValMsg)
   // required int32 type = 1;
   if (has_type()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->type(), output);
@@ -248,12 +251,12 @@ void AttrValMsg::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:AttrValMsg)
+  // @@protoc_insertion_point(serialize_end:ac.serialization.AttrValMsg)
 }
 
 ::google::protobuf::uint8* AttrValMsg::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:AttrValMsg)
+  // @@protoc_insertion_point(serialize_to_array_start:ac.serialization.AttrValMsg)
   // required int32 type = 1;
   if (has_type()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->type(), target);
@@ -270,7 +273,7 @@ void AttrValMsg::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:AttrValMsg)
+  // @@protoc_insertion_point(serialize_to_array_end:ac.serialization.AttrValMsg)
   return target;
 }
 
@@ -367,5 +370,8 @@ void AttrValMsg::Swap(AttrValMsg* other) {
 
 
 // @@protoc_insertion_point(namespace_scope)
+
+}  // namespace serialization
+}  // namespace ac
 
 // @@protoc_insertion_point(global_scope)

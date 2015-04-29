@@ -1,3 +1,5 @@
+package ac.serialization;
+
 message AttrValMsg {
   required int32 type=1;
   optional bytes value=2;

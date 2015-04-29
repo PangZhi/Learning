@@ -4,6 +4,7 @@
 #include <string>
 #include <unordered_map>
 #include "attrval.h"
+#include "expression/auth_predicate.pb.h"
 
 namespace ac {
 
@@ -39,6 +40,9 @@ class Predicate {
   virtual Predicate* clone() const = 0;
   virtual bool eval() = 0;
   virtual bool eval(std::unordered_map<ComparisonPredicate, bool>& pred_val_map) = 0;
+  
+  virtual serialization::Predicate GetProto() const = 0;
+  
   protected:
     bool has_static_result_;
     bool static_result_;

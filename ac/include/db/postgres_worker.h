@@ -13,7 +13,11 @@ class PostgresWorker : public DBWorker {
 
   int execute(std::string sqlcmd);
   std::vector<std::vector<util::AttrVal>> select(std::string sqlcmd);
-  bool hasValidRule(std::string sqlcmd);
+  // bool hasValidRule(std::string sqlcmd);
+  bool hasValidRule(const std::string& drop_candidate_table,
+                    const std::string& generate_candidate_table,
+                    const std::string& select_value_independent,
+                    const std::vector<std::string>& select_value_dependent) const;
   int GetRuleId(const std::string& sqlcmd) const;
 private:
   pqxx::connection* c_ptr_;

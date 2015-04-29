@@ -112,6 +112,31 @@ bool ConjunctionPredicate::eval(std::unordered_map<ComparisonPredicate, bool>& p
   return true;
 }
 
+serialization::Predicate ConjunctionPredicate::GetProto() const {
+  serialization::Predicate proto;
+  proto.set_predicate_type(serialization::Predicate::CONJUNCTION);
+  for (auto it = dynamic_operand_list_.begin();
+       it != dynamic_operand_list_.end();
+       ++it) {
+         proto.AddExtension(serialization::PredicateWithList::operands)
+          ->CopyFrom((*it)->GetProto());
+       }
+
+  return proto;
+}
+
+serialization::Predicate DisjunctionPredicate::GetProto() const {
+  serialization::Predicate proto;
+  proto.set_predicate_type(serialization::Predicate::DISJUNCTION);
+  for (auto it = dynamic_operand_list_.begin();
+       it != dynamic_operand_list_.end();
+       ++it) {
+         proto.AddExtension(serialization::PredicateWithList::operands)
+          ->CopyFrom((*it)->GetProto());
+       }
+  return proto;
+}
+
 Predicate* DisjunctionPredicate::clone() const {
   DisjunctionPredicate *clone = new DisjunctionPredicate();
 

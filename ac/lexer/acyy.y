@@ -1,6 +1,8 @@
 // add user with attr1=xx, attr2=xxx,attr3=xxx
 // allow read/write on Table("xxx").col("xxx") when xx and or yy 
 // username read/write Table("xxx").col("xxx")
+// allow read on col1, col2 from tablename where predicate
+// username read/write col1, coln from tablename
 %{
   #include "attrval.h"
   #include "permission.h"
@@ -72,10 +74,11 @@
 
 %%
 
-main :  useradmin main
-    | ruleadmin main
-    | query main
+main :  useradmin TENTER main 
+    | ruleadmin TENTER main 
+    | query TENTER main
     |
+    | TENTER
     ;
 
 useradmin : userop TUSER TWITH attrlist 
@@ -244,13 +247,6 @@ query: TIDENTIFIER permissionval obj
           std::cout << "LOG: The operation is not allowed\n";
         }
       }
-      | TIDENTIFIER permissionval obj TWHEN logic {
-          if (ac_ptr->allow($1, *($3), $2)) {
-
-        } else {
-
-          } 
-        } 
       ;
 
 //logicexp : logic

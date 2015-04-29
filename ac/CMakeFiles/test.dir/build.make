@@ -302,6 +302,29 @@ CMakeFiles/test.dir/src/comparison.cpp.o.provides: CMakeFiles/test.dir/src/compa
 
 CMakeFiles/test.dir/src/comparison.cpp.o.provides.build: CMakeFiles/test.dir/src/comparison.cpp.o
 
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: src/auth_predicate.pb.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_12)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/auth_predicate.pb.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/auth_predicate.pb.cc.o -c /home/echo/GitHub/Learning/ac/src/auth_predicate.pb.cc
+
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/auth_predicate.pb.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/src/auth_predicate.pb.cc > CMakeFiles/test.dir/src/auth_predicate.pb.cc.i
+
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/auth_predicate.pb.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/src/auth_predicate.pb.cc -o CMakeFiles/test.dir/src/auth_predicate.pb.cc.s
+
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o.requires:
+.PHONY : CMakeFiles/test.dir/src/auth_predicate.pb.cc.o.requires
+
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o.provides: CMakeFiles/test.dir/src/auth_predicate.pb.cc.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/auth_predicate.pb.cc.o.provides.build
+.PHONY : CMakeFiles/test.dir/src/auth_predicate.pb.cc.o.provides
+
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o.provides.build: CMakeFiles/test.dir/src/auth_predicate.pb.cc.o
+
 # Object files for target test
 test_OBJECTS = \
 "CMakeFiles/test.dir/lexer/acll.cpp.o" \
@@ -314,7 +337,8 @@ test_OBJECTS = \
 "CMakeFiles/test.dir/src/predicate_tree.cpp.o" \
 "CMakeFiles/test.dir/src/attrval_msg.pb.cc.o" \
 "CMakeFiles/test.dir/src/permission.cpp.o" \
-"CMakeFiles/test.dir/src/comparison.cpp.o"
+"CMakeFiles/test.dir/src/comparison.cpp.o" \
+"CMakeFiles/test.dir/src/auth_predicate.pb.cc.o"
 
 # External object files for target test
 test_EXTERNAL_OBJECTS =
@@ -330,6 +354,7 @@ bin/test: CMakeFiles/test.dir/src/predicate_tree.cpp.o
 bin/test: CMakeFiles/test.dir/src/attrval_msg.pb.cc.o
 bin/test: CMakeFiles/test.dir/src/permission.cpp.o
 bin/test: CMakeFiles/test.dir/src/comparison.cpp.o
+bin/test: CMakeFiles/test.dir/src/auth_predicate.pb.cc.o
 bin/test: CMakeFiles/test.dir/build.make
 bin/test: CMakeFiles/test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable bin/test"
@@ -350,6 +375,7 @@ CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/predicate_tree.cpp.o.requi
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/permission.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/comparison.cpp.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/auth_predicate.pb.cc.o.requires
 .PHONY : CMakeFiles/test.dir/requires
 
 CMakeFiles/test.dir/clean:

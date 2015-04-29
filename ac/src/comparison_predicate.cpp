@@ -57,7 +57,7 @@ std::string ComparisonPredicate::Serialize() const {
   ret.append(std::to_string(comparison_));
   ret.append("u:").append(user_attr_);
   ret.append("c:").append(col_attr_);
-  ret.append(val_.serialize());
+  ret.append(val_.Serialize());
   ret.append(std::to_string(comparison_type_));
   return ret;
 }
@@ -69,4 +69,48 @@ bool ComparisonPredicate::eval() {
 bool ComparisonPredicate::eval(std::unordered_map<ComparisonPredicate, bool>& pred_val_map) {
   return pred_val_map[*this];
 }
+
+serialization::Predicate ComparisonPredicate::GetProto() const {
+  serialization::Predicate proto;
+  proto.set_predicate_type(serialization::Predicate::COMPARISON);
+  // TODO: here.
+  //serialization::ComparisonPredicate::Comparison comp =
+  //  proto.MutableExtension(serialization::ComparisonPredicate::comparison);
+  //proto.MutableExtension(serialization::ComparisonPredicate::comparison)->CopyFrom(comparison_);
+  serialization::ComparisonPredicate::Comparison protobuf_comp = 
+    (serialization::ComparisonPredicate::Comparison)((int)comparison_);
+  proto.SetExtension(serialization::ComparisonPredicate::comparison, protobuf_comp);
+  /**
+  switch (comparison_) {
+    case kEqual:
+      protobuf_comp = serialization::ComparisonPredicate::EQUAL;
+    break;
+    case kGreater:
+      protobuf_comp = serialization::ComparisonPredicate::GREATER;
+    break;
+    case kLess:
+      protobuf_comp = serialization::ComparisonPredicate::LESS;
+    break;
+    case kGE:
+      protobuf_comp = serialization::ComparisonPredicate::GE;
+    break;
+    case kLE:
+      protobuf_comp = serialization::ComparisonPredicate::GE;
+  }**/
+  //*(proto.MutableExtension(serialization::ComparisonPredicate::col_attr))
+  //= col_attr_;
+  proto.SetExtension(serialization::ComparisonPredicate::col_attr,
+                     col_attr_);
+  proto.MutableExtension(serialization::ComparisonPredicate::attrval)
+    ->CopyFrom(val_.GetProto());
+  return proto;
+}
+
+std::string ComparisonPredicate::GetLiteralString() const {
+  std::string ret = col_attr_;
+  ret += " " + GetComparisonStr(comparison_);
+  ret += " " + val_.GetValueString();
+  return ret;
+}
+
 }  // namespace quickstep

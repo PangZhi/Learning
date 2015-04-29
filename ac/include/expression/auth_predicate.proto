@@ -1,0 +1,50 @@
+package ac.serialization;
+
+import "attrval_msg.proto";
+
+message Predicate {
+  enum PredicateType {
+    TRUE = 0;
+    FALSE = 1;
+    COMPARISON = 2;
+    NEGATION = 3;
+    CONJUNCTION = 4;
+    DISJUNCTION = 5;
+  }
+
+  required PredicateType predicate_type = 1;
+
+  // The convention for extension numbering is that extensions for a particular
+  // PredicateType should begin from (predicate_type + 1) * 32.
+  extensions 32 to max;
+}
+
+message ComparisonPredicate {
+  enum Comparison {
+    EQUAL = 0;
+    GREATER = 1;
+    LESS = 2;
+    GE = 3;
+    LE = 4;
+  }
+
+  extend Predicate {
+    optional Comparison comparison = 96;
+    optional string col_attr = 97;
+    optional AttrValMsg attrval = 98;
+  }
+}
+
+message NegationPredicate {
+  extend Predicate {
+    optional Predicate operand = 128;
+  }
+}
+
+// Either ConjunctionPredicate or DisjunctionPredicate.
+message PredicateWithList {
+  extend Predicate {
+    repeated Predicate operands = 160;
+  }
+}
+

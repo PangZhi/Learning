@@ -26,6 +26,9 @@
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
+namespace ac {
+namespace serialization {
+
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_attrval_5fmsg_2eproto();
 void protobuf_AssignDesc_attrval_5fmsg_2eproto();
@@ -107,7 +110,7 @@ class AttrValMsg : public ::google::protobuf::Message {
   inline ::std::string* release_value();
   inline void set_allocated_value(::std::string* value);
 
-  // @@protoc_insertion_point(class_scope:AttrValMsg)
+  // @@protoc_insertion_point(class_scope:ac.serialization.AttrValMsg)
  private:
   inline void set_has_type();
   inline void clear_has_type();
@@ -149,13 +152,13 @@ inline void AttrValMsg::clear_type() {
   clear_has_type();
 }
 inline ::google::protobuf::int32 AttrValMsg::type() const {
-  // @@protoc_insertion_point(field_get:AttrValMsg.type)
+  // @@protoc_insertion_point(field_get:ac.serialization.AttrValMsg.type)
   return type_;
 }
 inline void AttrValMsg::set_type(::google::protobuf::int32 value) {
   set_has_type();
   type_ = value;
-  // @@protoc_insertion_point(field_set:AttrValMsg.type)
+  // @@protoc_insertion_point(field_set:ac.serialization.AttrValMsg.type)
 }
 
 // optional bytes value = 2;
@@ -175,7 +178,7 @@ inline void AttrValMsg::clear_value() {
   clear_has_value();
 }
 inline const ::std::string& AttrValMsg::value() const {
-  // @@protoc_insertion_point(field_get:AttrValMsg.value)
+  // @@protoc_insertion_point(field_get:ac.serialization.AttrValMsg.value)
   return *value_;
 }
 inline void AttrValMsg::set_value(const ::std::string& value) {
@@ -184,7 +187,7 @@ inline void AttrValMsg::set_value(const ::std::string& value) {
     value_ = new ::std::string;
   }
   value_->assign(value);
-  // @@protoc_insertion_point(field_set:AttrValMsg.value)
+  // @@protoc_insertion_point(field_set:ac.serialization.AttrValMsg.value)
 }
 inline void AttrValMsg::set_value(const char* value) {
   set_has_value();
@@ -192,7 +195,7 @@ inline void AttrValMsg::set_value(const char* value) {
     value_ = new ::std::string;
   }
   value_->assign(value);
-  // @@protoc_insertion_point(field_set_char:AttrValMsg.value)
+  // @@protoc_insertion_point(field_set_char:ac.serialization.AttrValMsg.value)
 }
 inline void AttrValMsg::set_value(const void* value, size_t size) {
   set_has_value();
@@ -200,14 +203,14 @@ inline void AttrValMsg::set_value(const void* value, size_t size) {
     value_ = new ::std::string;
   }
   value_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:AttrValMsg.value)
+  // @@protoc_insertion_point(field_set_pointer:ac.serialization.AttrValMsg.value)
 }
 inline ::std::string* AttrValMsg::mutable_value() {
   set_has_value();
   if (value_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     value_ = new ::std::string;
   }
-  // @@protoc_insertion_point(field_mutable:AttrValMsg.value)
+  // @@protoc_insertion_point(field_mutable:ac.serialization.AttrValMsg.value)
   return value_;
 }
 inline ::std::string* AttrValMsg::release_value() {
@@ -231,11 +234,14 @@ inline void AttrValMsg::set_allocated_value(::std::string* value) {
     clear_has_value();
     value_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
-  // @@protoc_insertion_point(field_set_allocated:AttrValMsg.value)
+  // @@protoc_insertion_point(field_set_allocated:ac.serialization.AttrValMsg.value)
 }
 
 
 // @@protoc_insertion_point(namespace_scope)
+
+}  // namespace serialization
+}  // namespace ac
 
 #ifndef SWIG
 namespace google {

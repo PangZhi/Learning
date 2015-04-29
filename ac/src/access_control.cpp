@@ -67,14 +67,11 @@ int AccessControl::addRule(bool is_allow, const Permission& p, const Obj& obj,
   // ++ruleid;
   // Get and rule id.
   int ruleid = db_ptr_->GetRuleId("SELECT MAX(ruleid)+1 FROM ruleidtb");
-  if (db_ptr_->execute("INSERT INTO ruleidtb VALUES(" 
-                       + std::to_string(ruleid) + ");")) {
-      std::cout << "ERROR: INSERT ruleid failed.\n";
-  }
   std::string permission_str = GetPermissionStr(p);
   std::string obj_str = obj.serialize();
   std::string sql_cmd;
   for (auto disjunction : disjunctions) {
+    bool rule_value_dependent = false;
     for (auto pred : disjunction) {
       // pred is ComparisonPredicate.
       static std::string tb_names[]{"rulebooltb", "ruleinttb", "ruledbltb", "rulestringtb"}; 
@@ -84,6 +81,10 @@ int AccessControl::addRule(bool is_allow, const Permission& p, const Obj& obj,
         {
           bool value_dependent = (pred.comparison_type() 
                                   == ac::ComparisonPredicate::kUser2Val) ? false : true;
+          
+          if (value_dependent) {
+            rule_value_dependent = true;
+          }
           std::string attr_str = (pred.comparison_type() 
                                   == ac::ComparisonPredicate::kUser2Val)
                                   ? pred.user_attr()
@@ -130,6 +131,15 @@ int AccessControl::addRule(bool is_allow, const Permission& p, const Obj& obj,
         std::cout << "ERROR: Insert disjunctions error.\n";
       }
     }
+
+    std::string insert_ruleid = "INSERT INTO ruleidtb VALUES(" 
+                        + std::to_string(ruleid++) 
+                        + ", " + (rule_value_dependent ? "true" : "false")  
+                        + ");";
+    if (db_ptr_->execute(insert_ruleid)) {
+      std::cout << "ERROR: INSERT ruleid failed.\n";
+    }
+ 
   }
 }
 
@@ -149,7 +159,7 @@ bool AccessControl::allow(const std::string& username, const Obj& obj, const Per
     std::string user_tb_names[]{"userattrinttb", "userattrdbltb"};
     std::string rule_tb_names[]{"ruleinttb", "ruledbltb"}; 
     
-    std::string sql_cmd;
+    std::string select_candidates;
     
     for (int type_idx = 0; type_idx < 2; ++type_idx) {
       std::string select_from_diff_types;
@@ -158,7 +168,7 @@ bool AccessControl::allow(const std::string& username, const Obj& obj, const Per
         std::string select_invalid_rule
           = "SELECT ruleid FROM "\
             "(SELECT * FROM " + rule_tb_names[type_idx] + " WHERE permission = '"\
-            + action + "' AND op = '" + op[op_idx] + "') R "\
+            + action + "' AND op = '" + op[op_idx] + "' AND value_dependent = false) R "\
             "LEFT OUTER JOIN 	"\
             "(SELECT * FROM " + user_tb_names[type_idx] + " WHERE username = '"
             + username + "') U "\
@@ -173,28 +183,53 @@ bool AccessControl::allow(const std::string& username, const Obj& obj, const Per
         }
       }
       if (0 == type_idx) {
-        sql_cmd = select_from_diff_types;
+        select_candidates = select_from_diff_types;
       } else {
-        sql_cmd = sql_cmd + " UNION ALL " + select_from_diff_types;
+        select_candidates = select_candidates + " UNION ALL " + select_from_diff_types;
       }
     }
+    
+    // Drop the table candidates.
+    std::string drop_candidates = "DROP TABLE candidates;";
 
-    sql_cmd = "SELECT COUNT(*) FROM "\
+    // Generate the table candidates.
+    select_candidates = "SELECT * INTO candidates FROM "\
     		  "(SELECT ruleid FROM ruleidtb "\
     		  "EXCEPT "\
     		  "SELECT DISTINCT ruleid FROM ("
-          + sql_cmd + ") newtb"\
+          + select_candidates + ") newtb"\
           ") tmptb";
+   
+    std::string check_value_independent = "SELECT * FROM candidates, ruleidtb "\
+                                          "WHERE candidates.ruleid = ruleidtb.ruleid "\
+                                          "AND ruleidtb.value_dependent = false;";
+
     
+    std::vector<std::string> select_value_dependent;
+
+    for (int type_idx = 0; type_idx < 2; ++type_idx) {
+      std::string select_type_cmd = "SELECT * FROM "
+                                    + rule_tb_names[type_idx] + ", candidates, ruleidtb "\
+                                    "WHERE " + rule_tb_names[type_idx] + ".ruleid"\
+                                    "=candidates.ruleid AND ruleidtb.ruleid = candidates.ruleid "\
+                                    "AND ruleidtb.value_dependent= true AND " + rule_tb_names[type_idx]
+                                    + ".value_dependent=true";
+      select_value_dependent.push_back(select_type_cmd);  
+    }
+
     //std::string select_invalid_rule = "SELECT ruleid FROM"
     //                                  "(SELECT * FROM ruleinttb)"    
     
-    std::cout << "DEBUG: " << sql_cmd << std::endl;
-    if (db_ptr_->hasValidRule(sql_cmd)) {
+    std::cout << "DEBUG: " << select_candidates << std::endl;
+    if (db_ptr_->hasValidRule(drop_candidates,
+                              select_candidates,
+                              check_value_independent,
+                              select_value_dependent)) {
+      std::cout << "LOG: The access is allowed.\n";
       return true;
     } 
   }
-
+  std::cout << "LOG: The access is denied.\n";
   return false;  
   //std::vectorstd<std::vector<util::AttrVal> > ret = db_ptr_->select(sqlcmd);
 

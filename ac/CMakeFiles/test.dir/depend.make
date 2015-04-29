@@ -8,6 +8,7 @@ CMakeFiles/test.dir/src/access_control.cpp.o: ./include/attrval.h
 CMakeFiles/test.dir/src/access_control.cpp.o: ./include/attrval_msg.pb.h
 CMakeFiles/test.dir/src/access_control.cpp.o: ./include/db/db_worker.h
 CMakeFiles/test.dir/src/access_control.cpp.o: ./include/db/postgres_worker.h
+CMakeFiles/test.dir/src/access_control.cpp.o: ./include/expression/auth_predicate.pb.h
 CMakeFiles/test.dir/src/access_control.cpp.o: ./include/expression/comparison.h
 CMakeFiles/test.dir/src/access_control.cpp.o: ./include/expression/comparison_predicate.h
 CMakeFiles/test.dir/src/access_control.cpp.o: ./include/expression/predicate.h
@@ -16,6 +17,7 @@ CMakeFiles/test.dir/src/access_control.cpp.o: ./include/permission.h
 CMakeFiles/test.dir/src/access_control.cpp.o: src/access_control.cpp
 CMakeFiles/test.dir/src/access_control.cpp.o: /home/echo/local/include/google/protobuf/descriptor.h
 CMakeFiles/test.dir/src/access_control.cpp.o: /home/echo/local/include/google/protobuf/extension_set.h
+CMakeFiles/test.dir/src/access_control.cpp.o: /home/echo/local/include/google/protobuf/generated_enum_reflection.h
 CMakeFiles/test.dir/src/access_control.cpp.o: /home/echo/local/include/google/protobuf/generated_message_util.h
 CMakeFiles/test.dir/src/access_control.cpp.o: /home/echo/local/include/google/protobuf/message.h
 CMakeFiles/test.dir/src/access_control.cpp.o: /home/echo/local/include/google/protobuf/message_lite.h
@@ -76,17 +78,56 @@ CMakeFiles/test.dir/src/attrval_msg.pb.cc.o: /home/echo/local/include/google/pro
 CMakeFiles/test.dir/src/attrval_msg.pb.cc.o: /home/echo/local/include/google/protobuf/wire_format_lite.h
 CMakeFiles/test.dir/src/attrval_msg.pb.cc.o: /home/echo/local/include/google/protobuf/wire_format_lite_inl.h
 
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: ./include/attrval_msg.pb.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: ./include/expression/auth_predicate.pb.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: src/auth_predicate.pb.cc
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/descriptor.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/descriptor.pb.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/extension_set.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/generated_enum_reflection.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/generated_message_reflection.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/generated_message_util.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/io/coded_stream.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/message.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/message_lite.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/reflection_ops.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/repeated_field.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_arm64_gcc.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_arm_gcc.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_arm_qnx.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_atomicword_compat.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_generic_gcc.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_macosx.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_mips_gcc.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_pnacl.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_solaris.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_tsan.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_x86_gcc.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/atomicops_internals_x86_msvc.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/common.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/once.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/platform_macros.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/template_util.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/stubs/type_traits.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/unknown_field_set.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/wire_format.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/wire_format_lite.h
+CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: /home/echo/local/include/google/protobuf/wire_format_lite_inl.h
+
 CMakeFiles/test.dir/src/comparison.cpp.o: ./include/expression/comparison.h
 CMakeFiles/test.dir/src/comparison.cpp.o: src/comparison.cpp
 
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: ./include/attrval.h
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: ./include/attrval_msg.pb.h
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o: ./include/expression/auth_predicate.pb.h
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: ./include/expression/comparison.h
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: ./include/expression/comparison_predicate.h
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: ./include/expression/predicate.h
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: src/comparison_predicate.cpp
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: /home/echo/local/include/google/protobuf/descriptor.h
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: /home/echo/local/include/google/protobuf/extension_set.h
+CMakeFiles/test.dir/src/comparison_predicate.cpp.o: /home/echo/local/include/google/protobuf/generated_enum_reflection.h
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: /home/echo/local/include/google/protobuf/generated_message_util.h
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: /home/echo/local/include/google/protobuf/message.h
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: /home/echo/local/include/google/protobuf/message_lite.h
@@ -151,9 +192,15 @@ CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/attrval.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/attrval_msg.pb.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/db/db_worker.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/db/postgres_worker.h
+CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/expression/auth_predicate.pb.h
+CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/expression/comparison.h
+CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/expression/comparison_predicate.h
+CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/expression/predicate.h
+CMakeFiles/test.dir/src/postgres_worker.cpp.o: ./include/expression/predicate_tree.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: src/postgres_worker.cpp
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: /home/echo/local/include/google/protobuf/descriptor.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: /home/echo/local/include/google/protobuf/extension_set.h
+CMakeFiles/test.dir/src/postgres_worker.cpp.o: /home/echo/local/include/google/protobuf/generated_enum_reflection.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: /home/echo/local/include/google/protobuf/generated_message_util.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: /home/echo/local/include/google/protobuf/message.h
 CMakeFiles/test.dir/src/postgres_worker.cpp.o: /home/echo/local/include/google/protobuf/message_lite.h
@@ -180,6 +227,7 @@ CMakeFiles/test.dir/src/postgres_worker.cpp.o: /home/echo/local/include/google/p
 
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: ./include/attrval.h
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: ./include/attrval_msg.pb.h
+CMakeFiles/test.dir/src/predicate_tree.cpp.o: ./include/expression/auth_predicate.pb.h
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: ./include/expression/comparison.h
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: ./include/expression/comparison_predicate.h
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: ./include/expression/predicate.h
@@ -187,6 +235,7 @@ CMakeFiles/test.dir/src/predicate_tree.cpp.o: ./include/expression/predicate_tre
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: src/predicate_tree.cpp
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: /home/echo/local/include/google/protobuf/descriptor.h
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: /home/echo/local/include/google/protobuf/extension_set.h
+CMakeFiles/test.dir/src/predicate_tree.cpp.o: /home/echo/local/include/google/protobuf/generated_enum_reflection.h
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: /home/echo/local/include/google/protobuf/generated_message_util.h
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: /home/echo/local/include/google/protobuf/message.h
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: /home/echo/local/include/google/protobuf/message_lite.h
