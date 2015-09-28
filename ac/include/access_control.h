@@ -5,6 +5,7 @@
 #include "db/db_worker.h"
 #include "permission.h"
 #include "obj.h"
+#include "table_obj.h"
 #include "expression/comparison_predicate.h"
 
 #include <vector>
@@ -32,10 +33,20 @@ class AccessControl {
   int addRule(bool is_allow, const Permission& p, const Obj& obj,
               const std::vector<std::vector<ComparisonPredicate> >& disjunctions);
 
+  int addRule(bool is_allow, const Permission& p, const TableObj& obj,
+              const std::vector<std::vector<ComparisonPredicate> >& disjunctions);
+  
   bool allow(const std::string& username, const Obj& object,
              const Permission& p);
- 
- private:
+
+  bool allow(const std::string& username, const TableObj& object,
+             const Permission& p);
+
+  bool AddTag(const std::string& tagname, const std::string& tagproto);
+  std::string GetTag(const std::string& tagname);
+
+  bool RemoveTag(const std::string& tagname);
+private:
   db::DBWorker* db_ptr_;
 
 }; // AccessControl

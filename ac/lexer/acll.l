@@ -17,7 +17,7 @@
 
 %}  
 %%
-[-+]?[0-9]+        { yylval.iv = strtol(yytext,0,10); cout << "int\n" ;return TINT; }  
+[-+]?[0-9]+ { yylval.iv = strtol(yytext,0,10); cout << "int\n" ;return TINT; }  
 [-+]?([0-9]+(\.[0-9]*)?|\.[0-9]+) {cout << "double\n";char *end; yylval.dv=strtod(yytext, &end); return TDBL;}
 
 [ \t]         ; // ignore them
@@ -49,6 +49,9 @@
 "write" {return TWRITE;}
 "allow" {cout << "allow\n"; return TALLOW;}
 "deny" {return TDENY;}
+"from" {cout << "from\n";return TFROM;}
+"where" {cout << "where\n";return TWHERE;}
+"tag" {cout << "tag\n"; return TTAG;}
 [a-zA-Z]+     { cout << "identifier\n"; yylval.sv = strdup(yytext); return TIDENTIFIER; }  
 \"[a-zA-Z0-9]+\" {cout << "str\n"; //yylval.sv = strdup(yytext); 
                   int len = strlen(yytext) - 2;

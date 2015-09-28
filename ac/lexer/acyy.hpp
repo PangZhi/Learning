@@ -76,7 +76,9 @@ extern int yydebug;
     TWRITE = 286,
     TALLOW = 287,
     TDENY = 288,
-    TENTER = 289
+    TENTER = 289,
+    TFROM = 290,
+    TWHERE = 291
   };
 #endif
 
@@ -85,7 +87,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 61 "acyy.y" /* yacc.c:1909  */
+#line 66 "acyy.y" /* yacc.c:1909  */
   
   int iv;  
   double dv;
@@ -96,8 +98,9 @@ union YYSTYPE
   ac::Obj *objv;
   ac::Predicate *predv;
   ac::Comparison compv;
+  std::vector<std::string>* string_listv;
 
-#line 101 "acyy.hpp" /* yacc.c:1909  */
+#line 104 "acyy.hpp" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

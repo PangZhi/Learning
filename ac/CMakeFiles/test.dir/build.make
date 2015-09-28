@@ -187,9 +187,32 @@ CMakeFiles/test.dir/src/obj.cpp.o.provides: CMakeFiles/test.dir/src/obj.cpp.o.re
 
 CMakeFiles/test.dir/src/obj.cpp.o.provides.build: CMakeFiles/test.dir/src/obj.cpp.o
 
+CMakeFiles/test.dir/src/table_obj.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/table_obj.cpp.o: src/table_obj.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_7)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/table_obj.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/table_obj.cpp.o -c /home/echo/GitHub/Learning/ac/src/table_obj.cpp
+
+CMakeFiles/test.dir/src/table_obj.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/src/table_obj.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/echo/GitHub/Learning/ac/src/table_obj.cpp > CMakeFiles/test.dir/src/table_obj.cpp.i
+
+CMakeFiles/test.dir/src/table_obj.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/table_obj.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/echo/GitHub/Learning/ac/src/table_obj.cpp -o CMakeFiles/test.dir/src/table_obj.cpp.s
+
+CMakeFiles/test.dir/src/table_obj.cpp.o.requires:
+.PHONY : CMakeFiles/test.dir/src/table_obj.cpp.o.requires
+
+CMakeFiles/test.dir/src/table_obj.cpp.o.provides: CMakeFiles/test.dir/src/table_obj.cpp.o.requires
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/table_obj.cpp.o.provides.build
+.PHONY : CMakeFiles/test.dir/src/table_obj.cpp.o.provides
+
+CMakeFiles/test.dir/src/table_obj.cpp.o.provides.build: CMakeFiles/test.dir/src/table_obj.cpp.o
+
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/src/comparison_predicate.cpp.o: src/comparison_predicate.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/comparison_predicate.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/comparison_predicate.cpp.o -c /home/echo/GitHub/Learning/ac/src/comparison_predicate.cpp
 
@@ -212,7 +235,7 @@ CMakeFiles/test.dir/src/comparison_predicate.cpp.o.provides.build: CMakeFiles/te
 
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/src/predicate_tree.cpp.o: src/predicate_tree.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/predicate_tree.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/predicate_tree.cpp.o -c /home/echo/GitHub/Learning/ac/src/predicate_tree.cpp
 
@@ -235,7 +258,7 @@ CMakeFiles/test.dir/src/predicate_tree.cpp.o.provides.build: CMakeFiles/test.dir
 
 CMakeFiles/test.dir/src/attrval_msg.pb.cc.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/src/attrval_msg.pb.cc.o: src/attrval_msg.pb.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/attrval_msg.pb.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/attrval_msg.pb.cc.o -c /home/echo/GitHub/Learning/ac/src/attrval_msg.pb.cc
 
@@ -258,7 +281,7 @@ CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.provides.build: CMakeFiles/test.dir/
 
 CMakeFiles/test.dir/src/permission.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/src/permission.cpp.o: src/permission.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_10)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/permission.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/permission.cpp.o -c /home/echo/GitHub/Learning/ac/src/permission.cpp
 
@@ -281,7 +304,7 @@ CMakeFiles/test.dir/src/permission.cpp.o.provides.build: CMakeFiles/test.dir/src
 
 CMakeFiles/test.dir/src/comparison.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/src/comparison.cpp.o: src/comparison.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_11)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_12)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/comparison.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/comparison.cpp.o -c /home/echo/GitHub/Learning/ac/src/comparison.cpp
 
@@ -304,7 +327,7 @@ CMakeFiles/test.dir/src/comparison.cpp.o.provides.build: CMakeFiles/test.dir/src
 
 CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/src/auth_predicate.pb.cc.o: src/auth_predicate.pb.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_12)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/echo/GitHub/Learning/ac/CMakeFiles $(CMAKE_PROGRESS_13)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/test.dir/src/auth_predicate.pb.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test.dir/src/auth_predicate.pb.cc.o -c /home/echo/GitHub/Learning/ac/src/auth_predicate.pb.cc
 
@@ -333,6 +356,7 @@ test_OBJECTS = \
 "CMakeFiles/test.dir/src/postgres_worker.cpp.o" \
 "CMakeFiles/test.dir/src/access_control.cpp.o" \
 "CMakeFiles/test.dir/src/obj.cpp.o" \
+"CMakeFiles/test.dir/src/table_obj.cpp.o" \
 "CMakeFiles/test.dir/src/comparison_predicate.cpp.o" \
 "CMakeFiles/test.dir/src/predicate_tree.cpp.o" \
 "CMakeFiles/test.dir/src/attrval_msg.pb.cc.o" \
@@ -349,6 +373,7 @@ bin/test: CMakeFiles/test.dir/src/db_worker.cpp.o
 bin/test: CMakeFiles/test.dir/src/postgres_worker.cpp.o
 bin/test: CMakeFiles/test.dir/src/access_control.cpp.o
 bin/test: CMakeFiles/test.dir/src/obj.cpp.o
+bin/test: CMakeFiles/test.dir/src/table_obj.cpp.o
 bin/test: CMakeFiles/test.dir/src/comparison_predicate.cpp.o
 bin/test: CMakeFiles/test.dir/src/predicate_tree.cpp.o
 bin/test: CMakeFiles/test.dir/src/attrval_msg.pb.cc.o
@@ -370,6 +395,7 @@ CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/db_worker.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/postgres_worker.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/access_control.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/obj.cpp.o.requires
+CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/table_obj.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/comparison_predicate.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/predicate_tree.cpp.o.requires
 CMakeFiles/test.dir/requires: CMakeFiles/test.dir/src/attrval_msg.pb.cc.o.requires

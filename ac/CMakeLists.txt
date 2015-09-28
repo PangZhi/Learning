@@ -86,6 +86,7 @@ add_executable(
   ${AC_SRC_DIR}/postgres_worker.cpp
   ${AC_SRC_DIR}/access_control.cpp
   ${AC_SRC_DIR}/obj.cpp
+  ${AC_SRC_DIR}/table_obj.cpp
   ${AC_SRC_DIR}/comparison_predicate.cpp
   ${AC_SRC_DIR}/predicate_tree.cpp
   ${AC_SRC_DIR}/attrval_msg.pb.cc

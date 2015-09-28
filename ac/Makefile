@@ -399,6 +399,30 @@ src/predicate_tree.cpp.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/predicate_tree.cpp.s
 .PHONY : src/predicate_tree.cpp.s
 
+src/table_obj.o: src/table_obj.cpp.o
+.PHONY : src/table_obj.o
+
+# target to build an object file
+src/table_obj.cpp.o:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/table_obj.cpp.o
+.PHONY : src/table_obj.cpp.o
+
+src/table_obj.i: src/table_obj.cpp.i
+.PHONY : src/table_obj.i
+
+# target to preprocess a source file
+src/table_obj.cpp.i:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/table_obj.cpp.i
+.PHONY : src/table_obj.cpp.i
+
+src/table_obj.s: src/table_obj.cpp.s
+.PHONY : src/table_obj.s
+
+# target to generate assembly for a file
+src/table_obj.cpp.s:
+	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/table_obj.cpp.s
+.PHONY : src/table_obj.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -444,6 +468,9 @@ help:
 	@echo "... src/predicate_tree.o"
 	@echo "... src/predicate_tree.i"
 	@echo "... src/predicate_tree.s"
+	@echo "... src/table_obj.o"
+	@echo "... src/table_obj.i"
+	@echo "... src/table_obj.s"
 .PHONY : help
 
 

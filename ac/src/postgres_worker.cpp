@@ -211,6 +211,8 @@ bool PostgresWorker::hasValidRule(
 
   std::cout << "LOG: Extra predicates is " << extra_predicates << "\n";
 
+  std::cout << "LOG: The operation is undecided, waiting for db to check tuple values.\n";
+
     // Reconstruct the disjunctions.
     return true;
   } catch (const std::exception& e) {

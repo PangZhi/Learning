@@ -2,18 +2,22 @@
 // allow read/write on Table("xxx").col("xxx") when xx and or yy 
 // username read/write Table("xxx").col("xxx")
 // allow read on col1, col2 from tablename where predicate
-// username read/write col1, coln from tablename
+// username read/write col1, coln from tablename where predicate
+// add tag with logic 
 %{
   #include "attrval.h"
   #include "permission.h"
   #include "db/db_worker.h"
   #include "access_control.h"
   #include "obj.h"
+  #include "table_obj.h"
+  #include "attrval_msg.pb.h"
   
   #include "expression/predicate.h"
   #include "expression/comparison_predicate.h"
   #include "expression/predicate_tree.h"
   #include "expression/disjunction_converter.h"
+  #include "expression/auth_predicate.pb.h"
 
   #include <cstring>
   #include <iostream>
@@ -48,6 +52,8 @@
 %token TREAD TWRITE
 %token TALLOW TDENY
 %token TENTER
+%token TFROM TWHERE 
+%token TTAG
 
 %type <av> attrval
 %type <sv> userval
@@ -58,6 +64,7 @@
 %type <objv> obj
 %type <predv> logic
 %type <compv> logicop
+%type <string_listv> columnlist
 
 %left TAND TOR
 %union {  
@@ -70,6 +77,7 @@
   ac::Obj *objv;
   ac::Predicate *predv;
   ac::Comparison compv;
+  std::vector<std::string>* string_listv;
 };
 
 %%
@@ -77,9 +85,22 @@
 main :  useradmin TENTER main 
     | ruleadmin TENTER main 
     | query TENTER main
+    | tagadmin TENTER main
     |
     | TENTER
     ;
+
+tagadmin :: TADD TTAG TIDENTIFIER TWITH logic 
+            {
+              std::string protostr;
+              $5->GetProto().SerializeToString(&protostr);
+              ac_ptr->AddTag($3, protostr);  
+            }
+          | TRM TTAG TIDENTIFIER
+          {
+            ac_ptr->RemoveTag($3); 
+          };
+            
 
 useradmin : userop TUSER TWITH attrlist 
 {
@@ -97,7 +118,6 @@ ruleadmin : ruleop permissionval TON obj TWHEN logic
           {
             // Convert the logic into disjunction form, so that it can be
             // stored in a relational table.
-            ac::DisjunctionConverter test;
             std::vector<std::vector<ac::ComparisonPredicate> > disjunctions = 
               ac::DisjunctionConverter::convert2Disjunction($6);
                 
@@ -110,7 +130,35 @@ ruleadmin : ruleop permissionval TON obj TWHEN logic
               );
 
           }
+          | ruleop permissionval TON columnlist TFROM TIDENTIFIER TWHERE logic
+          {
+            std::cout << "LOG: New syntax here\n";
+            std::vector<std::vector<ac::ComparisonPredicate> > disjunctions = 
+                ac::DisjunctionConverter::convert2Disjunction($8);
+                
+              bool is_allow = (strcmp($1, "allow") == 0);
+              ac_ptr->addRule(is_allow,// Whether it is allow (or deny).
+              $2,// Permission type.
+              //*($4),// Object.
+              ac::TableObj($6, *($4)),
+              // $6// Logic.
+              disjunctions
+              );
 
+          }
+          ;
+
+columnlist : TIDENTIFIER 
+           {
+            $$ = new std::vector<std::string>();
+            $$->push_back($1);
+           }
+           | columnlist TCOMMA TIDENTIFIER
+           {
+            $$ = $1;
+            $1->push_back($3);
+           }
+           ;
 userop : TADD {$$="add";} 
       |  TRM {$$="rm";}
       | TSET {$$="set";}
@@ -187,7 +235,7 @@ userval : TUSER TDOT TIDENTIFIER
           $$ = $3;
         }
 
-objval : TOBJ TDOT TIDENTIFIER 
+objval :TTABLE TDOT TIDENTIFIER 
        {
           /*
           int len = strlen($3) + 5;
@@ -197,7 +245,7 @@ objval : TOBJ TDOT TIDENTIFIER
           $$[len-1]='\0';
           */
           $$ = $3;
-       } 
+       }
 
 logic : userval logicop objval 
         {
@@ -245,6 +293,14 @@ query: TIDENTIFIER permissionval obj
           std::cout << "LOG: The operation is allowd\n";
         } else {
           std::cout << "LOG: The operation is not allowed\n";
+        }
+      }
+      | TIDENTIFIER permissionval columnlist TFROM TIDENTIFIER
+      {
+        if (ac_ptr->allow($1, ac::TableObj($5, *($3)), $2)) {
+          std::cout << "LOG: New syntax, the operation is allowed\n";
+        } else {
+          std::cout << "LOG: The operation is not allowed or undetermined\n";
         }
       }
       ;
